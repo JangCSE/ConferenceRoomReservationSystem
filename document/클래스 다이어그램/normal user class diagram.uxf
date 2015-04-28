@@ -1,0 +1,562 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>13</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>559</x>
+      <y>208</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>*SERVER*
+valign=center
+halign=center
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>533</x>
+      <y>299</y>
+      <w>52</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>*Data*
+bg=pink</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>988</y>
+      <w>104</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>60.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>637</x>
+      <y>247</y>
+      <w>143</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1..n
+m2=1
+Communicate</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>559</x>
+      <y>390</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>*CLIENT*
+valign=center
+halign=center
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>637</x>
+      <y>429</y>
+      <w>39</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1144</x>
+      <y>260</y>
+      <w>325</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*BookRoomModel*
+extends Observable
+--
+- message : String
+- date : Date
+- selectedRoom : Room
+--
++ set functions of each instance
++ get functions of each instance
++ setInstance(Data) : void
++ validCheck() : int
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>520</y>
+      <w>325</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*BookRoomController*
+implements ActionListener
+--
+- rrm : BookRoomModel
+- rrv : BookRoomView
+--
++ ActionPerformed(ActionEvent) : void
++ controlModel(Data) : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1378</x>
+      <y>520</y>
+      <w>325</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*BookRoomView*
+extends JPanel
+implements Observer
+--
+
+--
++ update() : void
++ setListener(ActionListener) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>494</x>
+      <y>533</y>
+      <w>312</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*MasterController*
+extends JFrame
+--
+
+--
++ perform(Data) : void
++ startGUI() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1222</x>
+      <y>533</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+ActionEvent</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1222</x>
+      <y>598</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+View Select</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>988</x>
+      <y>325</y>
+      <w>182</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+changes</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>325</y>
+      <w>182</w>
+      <h>221</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+shows</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0;120.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>377</y>
+      <w>156</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+updates</panel_attributes>
+    <additional_attributes>50.0;110.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>884</x>
+      <y>208</y>
+      <w>845</w>
+      <h>572</h>
+    </coordinates>
+    <panel_attributes>Book Room Sub-module (MVC Pattern)
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>1014</y>
+      <w>325</w>
+      <h>195</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*ListBookableRoomController*
+implements ActionListener
+--
+- lbrm : ListBookableRoomModel
+- lbrv : ListBookableRoomView
+--
++ ActionPerformed(ActionEvent) : void
++ controlModel(Data) : int
++ downloadToFile() : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>988</x>
+      <y>871</y>
+      <w>182</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+changes</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1144</x>
+      <y>858</y>
+      <w>325</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*ListBookableRoomModel*
+extends Observable
+--
+- myList : MeetingRoomList
+--
++ setInstance(Data) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1222</x>
+      <y>1027</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+ActionEvent</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>884</x>
+      <y>806</y>
+      <w>845</w>
+      <h>429</h>
+    </coordinates>
+    <panel_attributes>List Bookable Room Sub-module (MVC Pattern)
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1378</x>
+      <y>1014</y>
+      <w>325</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*ListBookableRoomView*
+extends JPanel
+implements Observer
+--
+
+--
++ update() : void
++ setListener(ActionListener) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>936</y>
+      <w>156</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+updates</panel_attributes>
+    <additional_attributes>50.0;60.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>871</y>
+      <w>182</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+shows</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0;120.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1222</x>
+      <y>1092</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+View Select</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>910</x>
+      <y>1469</y>
+      <w>325</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*ShowRoominfoController*
+implements ActionListener
+--
+- shm : ShowRoominfoModel
+- shv : ShowRoominfoView
+--
++ ActionPerformed(ActionEvent) : void
++ controlModel(Data) : int</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>988</x>
+      <y>1326</y>
+      <w>182</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+changes</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0;10.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1144</x>
+      <y>1313</y>
+      <w>325</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*ShowRoominfoModel*
+extends Observable
+--
+- selectedRoom : Room
+--
++ setInstance(Data) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1222</x>
+      <y>1482</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+ActionEvent</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>884</x>
+      <y>1261</y>
+      <w>845</w>
+      <h>416</h>
+    </coordinates>
+    <panel_attributes>Show Roominfo Sub-module (MVC Pattern)
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1378</x>
+      <y>1469</y>
+      <w>325</w>
+      <h>182</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*ShowRoominfoView*
+extends JPanel
+implements Observer
+--
+
+--
++ update() : void
++ setListener(ActionListener) : void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>1391</y>
+      <w>156</w>
+      <h>104</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+updates</panel_attributes>
+    <additional_attributes>50.0;60.0;50.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1456</x>
+      <y>1326</y>
+      <w>182</w>
+      <h>169</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+shows</panel_attributes>
+    <additional_attributes>10.0;20.0;120.0;20.0;120.0;110.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1222</x>
+      <y>1547</y>
+      <w>182</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+View Select</panel_attributes>
+    <additional_attributes>120.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>494</x>
+      <y>780</y>
+      <w>312</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;class&gt;&gt;
+*NMUFunctionDistributer*
+extends JPanel
+--
+
+--
++ distribute(Data) : void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>637</x>
+      <y>676</y>
+      <w>39</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>793</x>
+      <y>598</y>
+      <w>143</w>
+      <h>234</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>90.0;10.0;40.0;10.0;40.0;160.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>793</x>
+      <y>845</y>
+      <w>143</w>
+      <h>286</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>90.0;200.0;40.0;200.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>637</x>
+      <y>897</y>
+      <w>299</w>
+      <h>689</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>210.0;510.0;10.0;510.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>572</x>
+      <y>299</y>
+      <w>104</w>
+      <h>52</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
+  </element>
+</diagram>
