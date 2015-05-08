@@ -9,6 +9,15 @@ public abstract class GenericUser {
 	private String email;
 	private String contact;
 	private boolean login;
+	
+	public GenericUser(String id, String pw, String name,
+			String email, String ct) {
+		setId(id);
+		setPassword(pw);
+		setName(name);
+		setEmail(email);
+		setContact(ct);
+	}
 
 	public int getKey() {
 		return key;

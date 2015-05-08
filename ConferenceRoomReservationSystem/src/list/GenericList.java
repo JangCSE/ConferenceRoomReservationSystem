@@ -19,10 +19,6 @@ public abstract class GenericList<T> {
 		key++;
 	}
 
-	void deleteByName(String name) {
-		
-	}
-
 	void deleteByKey(int k) {
 
 	}
@@ -30,7 +26,7 @@ public abstract class GenericList<T> {
 	T findByName(String name) {
 		return null;
 	}
-	
+
 	T findByID(String ID) {
 		return null;
 	}
