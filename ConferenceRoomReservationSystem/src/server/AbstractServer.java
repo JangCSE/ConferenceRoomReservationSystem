@@ -285,6 +285,7 @@ public abstract class AbstractServer implements Runnable {
 					// the data exchange, then add it to thread group
 
 					synchronized (this) {
+						@SuppressWarnings("unused")
 						ConnectionToClient c = new ConnectionToClient(
 								this.clientThreadGroup, clientSocket, this);
 					}
