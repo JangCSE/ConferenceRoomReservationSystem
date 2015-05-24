@@ -4,6 +4,8 @@
 
 import java.io.*;
 
+import javax.swing.UIManager;
+
 import master.ClientMasterController;
 import client.*;
 import common.*;
@@ -100,6 +102,14 @@ public class ClientConsole implements ChatIF {
 	 */
 	public static void main(String[] args) {
 		String host = "";
+		
+		try {
+
+			UIManager
+					.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+
+		} catch (Exception e) {
+		}
 
 		try {
 			host = args[0];
