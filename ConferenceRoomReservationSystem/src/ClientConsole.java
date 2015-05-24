@@ -3,6 +3,8 @@
 // license found at www.lloseng.com 
 
 import java.io.*;
+
+import master.ClientMasterController;
 import client.*;
 import common.*;
 
@@ -30,6 +32,7 @@ public class ClientConsole implements ChatIF {
 	 * The instance of the client that created this ConsoleChat.
 	 */
 	ChatClient client;
+	private ClientMasterController cmc = new ClientMasterController();
 
 	// Constructors ****************************************************
 
@@ -85,6 +88,10 @@ public class ClientConsole implements ChatIF {
 
 	// Class methods ***************************************************
 
+	private void setInitial() {
+		cmc.initialSetting();
+	}
+
 	/**
 	 * This method is responsible for the creation of the Client UI.
 	 *
@@ -100,6 +107,7 @@ public class ClientConsole implements ChatIF {
 			host = "localhost";
 		}
 		ClientConsole chat = new ClientConsole(host, DEFAULT_PORT);
+		chat.setInitial();
 		chat.accept(); // Wait for console data
 	}
 }

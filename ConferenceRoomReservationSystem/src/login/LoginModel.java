@@ -9,7 +9,6 @@ public class LoginModel extends Observable {
 	private String message;
 	
 	public LoginModel() {
-		
 	}
 
 	public String getId() {

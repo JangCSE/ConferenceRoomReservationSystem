@@ -3,6 +3,10 @@ package transmission;
 import room.Room;
 
 public class TransmissionData {
+	
+	public void TranmissionData() {
+		
+	}
 
 	private int flags;
 	private String message;

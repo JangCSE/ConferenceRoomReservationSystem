@@ -1,19 +1,34 @@
 package master;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import login.LoginController;
+import login.LoginModel;
+import login.LoginView;
 import enterprise.EnterpriseDistributer;
 import transmission.TransmissionData;
 
+@SuppressWarnings("serial")
 public class ClientMasterController extends JFrame {
 	
 	public ClientMasterController() {
+		lc = new LoginController(lm, lv);
+	}
+	
+	public void initialSetting() {
+		this.setTitle("회의실 예약 시스템");
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setSize(1280, 720);
+		this.setVisible(true);
 		
+		this.add(lv);
 	}
 	
 	private EnterpriseDistributer ed = new EnterpriseDistributer();
-	private LoginController lc = new LoginController();
+	private LoginModel lm = new LoginModel();
+	private LoginView lv = new LoginView();;
+	private LoginController lc;
 
 	public void perform(TransmissionData data) {		
 		if (data.getFlags() < 10) {
