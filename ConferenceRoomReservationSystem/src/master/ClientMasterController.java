@@ -1,11 +1,19 @@
 package master;
 
+import javax.swing.JFrame;
+
+import login.LoginController;
 import enterprise.EnterpriseDistributer;
 import transmission.TransmissionData;
 
-public class ClientMasterController {
+public class ClientMasterController extends JFrame {
+	
+	public ClientMasterController() {
+		
+	}
 	
 	private EnterpriseDistributer ed = new EnterpriseDistributer();
+	private LoginController lc = new LoginController();
 
 	public void perform(TransmissionData data) {		
 		if (data.getFlags() < 10) {
@@ -13,7 +21,7 @@ public class ClientMasterController {
 			
 		} else if (data.getFlags() < 20) {
 			// login
-			
+			lc.controlModel(data);
 		} else if (data.getFlags() < 30) {
 			// room register
 			ed.distribute(data);

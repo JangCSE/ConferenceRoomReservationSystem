@@ -11,6 +11,10 @@ public class RegisterRoomModel extends Observable {
 	private int maxNumber;
 	private int cost;
 	private String detail;
+	
+	public RegisterRoomModel() {
+		
+	}
 
 	public String getMessage() {
 		return message;
