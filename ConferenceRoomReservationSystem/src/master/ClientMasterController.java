@@ -1,9 +1,7 @@
 package master;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.UIManager;
-
+import client.ChatClient;
 import login.LoginController;
 import login.LoginModel;
 import login.LoginView;
@@ -13,11 +11,27 @@ import transmission.TransmissionData;
 @SuppressWarnings("serial")
 public class ClientMasterController extends JFrame {
 	
+	private static ChatClient client;
+	
 	public ClientMasterController() {
-		lc = new LoginController(lm, lv);
+		initialSetting();
+	}
+	
+	public ClientMasterController(ChatClient cc) {
+		client = cc;
+		initialSetting();
+	}
+	
+	public static ChatClient getClient() {
+		return client;
 	}
 	
 	public void initialSetting() {
+		lm.addObserver(lv);
+		lc = new LoginController(lm, lv);
+	}
+	
+	public void initialGUI() {
 		this.setTitle("회의실 예약 시스템");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setSize(1280, 720);

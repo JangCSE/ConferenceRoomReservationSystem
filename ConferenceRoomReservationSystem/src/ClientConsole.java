@@ -34,7 +34,7 @@ public class ClientConsole implements ChatIF {
 	 * The instance of the client that created this ConsoleChat.
 	 */
 	ChatClient client;
-	private ClientMasterController cmc = new ClientMasterController();
+	private ClientMasterController cmc;
 
 	// Constructors ****************************************************
 
@@ -49,6 +49,7 @@ public class ClientConsole implements ChatIF {
 	public ClientConsole(String host, int port) {
 		try {
 			client = new ChatClient(host, port, this);
+			cmc = new ClientMasterController(client);
 		} catch (IOException exception) {
 			System.out.println("Error: Can't setup connection!"
 					+ " Terminating client.");
@@ -91,7 +92,7 @@ public class ClientConsole implements ChatIF {
 	// Class methods ***************************************************
 
 	private void setInitial() {
-		cmc.initialSetting();
+		cmc.initialGUI();
 	}
 
 	/**
@@ -102,7 +103,7 @@ public class ClientConsole implements ChatIF {
 	 */
 	public static void main(String[] args) {
 		String host = "";
-		
+
 		try {
 
 			UIManager

@@ -2,7 +2,9 @@ package login;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
+import master.ClientMasterController;
 import transmission.TransmissionData;
 
 public class LoginController implements ActionListener {
@@ -11,26 +13,45 @@ public class LoginController implements ActionListener {
 	private LoginView lv;
 
 	public LoginController(LoginModel m, LoginView v) {
-		lm = new LoginModel();
-		lv = new LoginView();
+		lm = m;
+		lv = v;
 		lv.setLoginListener(this);
 	}
 
-	public void controlModel(TransmissionData data) {
+	public boolean controlModel(TransmissionData data) {
 
 		if (data.getFlags() == 12) {
 			// there is same named room
 			lm.setMessage(data.getMessage());
+			return true;
 		} else if (data.getFlags() == 13) {
 			// successfully registered
 			lm.setMessage(data.getMessage());
 		}
+
+		return false;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		lm.setId(lv.getIdStr());
+		lm.setPw(lv.getPwStr());
 
+		if (lv.isEpu() && lv.isNmu()) {
+			lm.setMessage("사용자 하나만을 선택하세요.");
+		} else if (lv.isEpu() == false && lv.isNmu() == false) {
+			lm.setMessage("사용자를 선택하세요.");
+		} else if (lv.isEpu()) {
+			try {
+				ClientMasterController.getClient().sendToServer(lm.getId());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (lv.isNmu()) {
+
+		}
 	}
 
 }

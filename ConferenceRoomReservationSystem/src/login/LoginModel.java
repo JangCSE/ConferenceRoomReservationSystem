@@ -7,7 +7,6 @@ public class LoginModel extends Observable {
 	private String id;
 	private String pw;
 	private String message;
-	private int userFlag;
 
 	public LoginModel() {
 	}
@@ -36,14 +35,6 @@ public class LoginModel extends Observable {
 		this.message = message;
 		setChanged();
 		notifyObservers();
-	}
-
-	public int getUserFlag() {
-		return userFlag;
-	}
-
-	public void setUserFlag(int userFlag) {
-		this.userFlag = userFlag;
 	}
 
 }
