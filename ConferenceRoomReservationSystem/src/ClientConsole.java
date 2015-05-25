@@ -58,6 +58,7 @@ public class ClientConsole implements ChatIF {
 		}
 	}
 
+	
 	// Instance methods ************************************************
 
 	/**
@@ -87,7 +88,7 @@ public class ClientConsole implements ChatIF {
 	 *            The string to be displayed.
 	 */
 	public void display(Object receivedData) {
-		cmc.perform((TransmissionData)receivedData);
+		cmc.perform((TransmissionData) receivedData);
 	}
 
 	// Class methods ***************************************************
@@ -106,10 +107,8 @@ public class ClientConsole implements ChatIF {
 		String host = "";
 
 		try {
-
 			UIManager
 					.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-
 		} catch (Exception e) {
 		}
 

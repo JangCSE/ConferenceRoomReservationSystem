@@ -49,8 +49,8 @@ public class EchoServer extends AbstractServer {
 	 *            The connection from which the message originated.
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		TransmissionData data = (TransmissionData)msg;
-		System.out.println(data.getLoginData().getId() + ", " + data.getLoginData().getPw());
+		TransmissionData data = null;
+		data = (TransmissionData) msg;
 		smc.perform(data, client);
 	}
 

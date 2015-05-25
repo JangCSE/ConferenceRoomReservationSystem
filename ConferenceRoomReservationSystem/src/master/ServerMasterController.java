@@ -9,9 +9,11 @@ import management.EPuserManagement;
 public class ServerMasterController {
 
 	private EPuserManagement EPM = new EPuserManagement();
-	private TransmissionData sendingData = new TransmissionData();
+	private TransmissionData sendingData;
 
 	public void perform(TransmissionData data, ConnectionToClient client) {
+		sendingData = new TransmissionData();
+		
 		if (data.getFlags() < 10) {
 			// user register
 
@@ -22,7 +24,7 @@ public class ServerMasterController {
 				// normal user login
 
 			} else if (data.getFlags() == 11) {
-				// enterprise user login
+				// enterprise user login				
 				if (EPM.login(data.getLoginData())) {
 					sendingData.setFlags(12); // success
 					sendingData.setMessage("로그인에 성공하였습니다.");

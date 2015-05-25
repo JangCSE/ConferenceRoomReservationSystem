@@ -40,7 +40,6 @@ public abstract class GenericList<T> {
 	}
 
 	public void add(T t) {
-		System.out.println("add");
 		list.add(t);
 	}
 
