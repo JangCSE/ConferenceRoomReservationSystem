@@ -2,8 +2,10 @@
 // "Object Oriented Software Engineering" and is issued under the open-source
 // license found at www.lloseng.com 
 
+import master.ServerMasterController;
 import server.AbstractServer;
 import server.ConnectionToClient;
+import transmission.TransmissionData;
 
 /**
  * This class overrides some of the methods in the abstract superclass in order
@@ -22,6 +24,7 @@ public class EchoServer extends AbstractServer {
 	 * The default port to listen on.
 	 */
 	final public static int DEFAULT_PORT = 5555;
+	private ServerMasterController smc = new ServerMasterController();
 
 	// Constructors ****************************************************
 
@@ -46,8 +49,8 @@ public class EchoServer extends AbstractServer {
 	 *            The connection from which the message originated.
 	 */
 	public void handleMessageFromClient(Object msg, ConnectionToClient client) {
-		System.out.println("Message received: " + msg + " from " + client);
-		this.sendToAllClients(msg);
+		TransmissionData data = (TransmissionData)msg;		
+		smc.perform(data, client);
 	}
 
 	/**

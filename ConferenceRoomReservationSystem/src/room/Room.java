@@ -1,6 +1,9 @@
 package room;
 
-public class Room {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class Room implements Serializable {
 
 	private String message;
 	private String name;

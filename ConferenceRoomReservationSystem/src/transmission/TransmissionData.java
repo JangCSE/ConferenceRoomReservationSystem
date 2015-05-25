@@ -1,16 +1,19 @@
 package transmission;
 
+import java.io.Serializable;
+
 import room.Room;
 
-public class TransmissionData {
+@SuppressWarnings("serial")
+public class TransmissionData implements Serializable {
 	
 	public void TranmissionData() {
-		
 	}
 
 	private int flags;
 	private String message;
 	private Room room;
+	private LoginData loginData;
 
 	public int getFlags() {
 		return flags;
@@ -34,6 +37,14 @@ public class TransmissionData {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public LoginData getLoginData() {
+		return loginData;
+	}
+
+	public void setLoginData(LoginData loginData) {
+		this.loginData = loginData;
 	}
 	
 }

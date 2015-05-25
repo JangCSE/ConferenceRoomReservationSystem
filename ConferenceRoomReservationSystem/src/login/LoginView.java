@@ -20,13 +20,13 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class LoginView extends JPanel implements Observer {
 
-	JPanel loginPanel = new JPanel();
-	JTextField idField = new JTextField("아이디");
-	JPasswordField pwField = new JPasswordField("비밀번호");
-	JTextArea messageArea = new JTextArea("메시지");
-	JButton loginButton = new JButton("로그인");
-	JRadioButton epuLogin = new JRadioButton("기업 사용자로 로그인");
-	JRadioButton nmuLogin = new JRadioButton("일반 사용자로 로그인");
+	private JPanel loginPanel = new JPanel();
+	private JTextField idField = new JTextField("아이디");
+	private JPasswordField pwField = new JPasswordField("비밀번호");
+	private JTextArea messageArea = new JTextArea("메시지");
+	private JButton loginButton = new JButton("로그인");
+	private JRadioButton epuLogin = new JRadioButton("기업 사용자로 로그인");
+	private JRadioButton nmuLogin = new JRadioButton("일반 사용자로 로그인");
 	private final Insets insets = new Insets(10, 10, 10, 10);
 
 	public LoginView() {
@@ -62,7 +62,7 @@ public class LoginView extends JPanel implements Observer {
 	}
 	
 	public String getPwStr() {
-		return pwField.getPassword().toString();
+		return new String(pwField.getPassword());
 	}
 	
 	public boolean isEpu() {
@@ -72,7 +72,6 @@ public class LoginView extends JPanel implements Observer {
 	public boolean isNmu() {
 		return nmuLogin.isSelected();
 	}
-
 
 	@Override
 	public void update(Observable arg0, Object arg1) {

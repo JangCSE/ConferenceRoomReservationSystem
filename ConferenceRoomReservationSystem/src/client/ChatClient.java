@@ -54,7 +54,7 @@ public class ChatClient extends AbstractClient {
 	 *            The message from the server.
 	 */
 	public void handleMessageFromServer(Object msg) {
-		clientUI.display(msg.toString());
+		clientUI.display(msg);
 	}
 
 	/**

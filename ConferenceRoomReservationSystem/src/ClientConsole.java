@@ -6,6 +6,7 @@ import java.io.*;
 
 import javax.swing.UIManager;
 
+import transmission.TransmissionData;
 import master.ClientMasterController;
 import client.*;
 import common.*;
@@ -85,8 +86,8 @@ public class ClientConsole implements ChatIF {
 	 * @param message
 	 *            The string to be displayed.
 	 */
-	public void display(String message) {
-		System.out.println("> " + message);
+	public void display(Object receivedData) {
+		cmc.perform((TransmissionData)receivedData);
 	}
 
 	// Class methods ***************************************************

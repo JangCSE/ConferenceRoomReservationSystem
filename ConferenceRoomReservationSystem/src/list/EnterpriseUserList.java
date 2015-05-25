@@ -6,8 +6,12 @@ import user.EPuser;
 
 public class EnterpriseUserList extends GenericList<EPuser> {
 
+	public EnterpriseUserList() {
+		
+	}
+	
 	@Override
-	void deleteByKey(int k) {
+	public void deleteByKey(int k) {
 		Iterator<EPuser> itr = this.getList().iterator();
 		EPuser temp;
 
@@ -22,7 +26,7 @@ public class EnterpriseUserList extends GenericList<EPuser> {
 	}
 
 	@Override
-	EPuser findByID(String ID) {
+	public EPuser findByID(String ID) {
 		Iterator<EPuser> itr = this.getList().iterator();
 		EPuser temp;
 
@@ -38,7 +42,7 @@ public class EnterpriseUserList extends GenericList<EPuser> {
 	}
 
 	@Override
-	EPuser findByKey(int k) {
+	public EPuser findByKey(int k) {
 		Iterator<EPuser> itr = this.getList().iterator();
 		EPuser temp;
 
@@ -54,7 +58,7 @@ public class EnterpriseUserList extends GenericList<EPuser> {
 	}
 
 	@Override
-	boolean isItDuplicated(String id) {
+	public boolean isItDuplicated(String id) {
 		// search by id
 		EPuser temp = findByID(id);
 

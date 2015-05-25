@@ -15,23 +15,23 @@ public abstract class GenericList<T> {
 		return list;
 	}
 
-	void increaseKey() {
+	public void increaseKey() {
 		key++;
 	}
 
-	void deleteByKey(int k) {
+	public void deleteByKey(int k) {
 
 	}
 
-	T findByName(String name) {
+	public T findByName(String name) {
 		return null;
 	}
 
-	T findByID(String ID) {
+	public T findByID(String ID) {
 		return null;
 	}
 
-	T findByKey(int k) {
+	public T findByKey(int k) {
 		return null;
 	}
 
@@ -39,7 +39,8 @@ public abstract class GenericList<T> {
 		return false;
 	}
 
-	void add(T t) {
+	public void add(T t) {
+		System.out.println("add");
 		list.add(t);
 	}
 
