@@ -15,8 +15,8 @@ public class EPuserManagement {
 	
 	public boolean login(LoginData loginData) {
 		// true if success, false if fail
+		System.out.println(loginData.getId() + ", " + loginData.getPw());
 		if (EUL.findByID(loginData.getId()) != null) {
-			System.out.println(loginData.getId() + ", " + loginData.getPw());
 			if (EUL.findByID(loginData.getId()).getPassword().equals(loginData.getPw())) {
 				System.out.println("correct password");
 				return true;

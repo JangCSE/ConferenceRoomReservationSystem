@@ -23,20 +23,12 @@ public class ServerMasterController {
 
 			} else if (data.getFlags() == 11) {
 				// enterprise user login
-				System.out.println("flag is 11");
 				if (EPM.login(data.getLoginData())) {
 					sendingData.setFlags(12); // success
 					sendingData.setMessage("로그인에 성공하였습니다.");
 				} else {
-					System.out.println("login fail");
 					sendingData.setFlags(13); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
-				}
-				try {
-					client.sendToClient(sendingData);
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
 			}
 
@@ -64,6 +56,13 @@ public class ServerMasterController {
 		} else if (data.getFlags() < 100) {
 			// cancel booking
 
+		}
+		
+		try {
+			client.sendToClient(sendingData);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

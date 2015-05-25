@@ -12,7 +12,6 @@ public class LoginController implements ActionListener {
 
 	private LoginModel lm;
 	private LoginView lv;
-	private LoginData loginData;
 	private TransmissionData data = new TransmissionData();
 
 	public LoginController(LoginModel m, LoginView v) {
@@ -45,12 +44,11 @@ public class LoginController implements ActionListener {
 			lm.setMessage("사용자 하나만을 선택하세요.");
 		} else if (lv.isEpu() == false && lv.isNmu() == false) {
 			lm.setMessage("사용자를 선택하세요.");
-		} else if (lv.isEpu()) {
-			loginData = new LoginData(lm.getId(), lm.getPw());
+		} else if (lv.isEpu()) {;
 			data.setFlags(11);
-			data.setLoginData(loginData);
-			System.out.println(loginData.getId() + ", " + loginData.getPw());
+			data.setLoginData(new LoginData(lm.getId(), lm.getPw()));
 			try {
+				System.out.println(data.getLoginData().getId() + ", " + data.getLoginData().getPw());
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
