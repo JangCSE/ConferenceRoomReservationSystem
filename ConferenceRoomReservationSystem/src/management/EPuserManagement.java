@@ -1,6 +1,7 @@
 package management;
 
 import transmission.LoginData;
+import transmission.TransmissionData;
 import user.EPuser;
 import list.EnterpriseUserList;
 
@@ -22,6 +23,14 @@ public class EPuserManagement {
 			}
 		}		
 		return false;
+	}
+	
+	public boolean isItduplicated(LoginData loginData) {
+		// true if overlap, false if non-overlap
+		if(EUL.isItDuplicated(loginData.getId()))
+			return true;
+		else
+			return false;
 	}
 	
 	public void logout() {

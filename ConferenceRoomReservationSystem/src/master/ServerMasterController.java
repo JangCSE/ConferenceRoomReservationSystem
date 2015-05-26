@@ -5,10 +5,12 @@ import java.io.IOException;
 import server.ConnectionToClient;
 import transmission.TransmissionData;
 import management.EPuserManagement;
+import management.NMuserManagement;
 
 public class ServerMasterController {
 
 	private EPuserManagement EPM = new EPuserManagement();
+	private NMuserManagement NMM = new NMuserManagement();
 	private TransmissionData sendingData;
 
 	public void perform(TransmissionData data, ConnectionToClient client) {
@@ -22,14 +24,42 @@ public class ServerMasterController {
 			} else if (data.getFlags() == 2) {
 				// request cancel register
 				sendingData.setFlags(3);
-			}
+			} else if (data.getFlags() == 4) {
+				// send nmuser data
+				if(EPM.isItduplicated(data.getLoginData()) || 
+						NMM.isItduplicated(data.getLoginData())) {
+					sendingData.setFlags(6);
+					sendingData.setMessage("이미 가입된 아이디입니다.");
+				} else {
+					NMM.addNMuser(data.getNMuser());
+					sendingData.setFlags(7);
+					sendingData.setMessage("회원가입에 성공하였습니다.");
+				}
+			} else if (data.getFlags() == 5) {
+				//send epuser data
+				if(EPM.isItduplicated(data.getLoginData()) || 
+						NMM.isItduplicated(data.getLoginData())) {
+					sendingData.setFlags(6);
+					sendingData.setMessage("이미 가입된 아이디입니다.");
+				} else {
+					EPM.addEPuser(data.getEPuser());
+					sendingData.setFlags(7);
+					sendingData.setMessage("회원가입에 성공하였습니다.");
+				}
+			} 
 
 		} else if (data.getFlags() < 20) {
 			// login
 
 			if (data.getFlags() == 10) {
 				// normal user login
-
+				if (NMM.login(data.getLoginData())) {
+					sendingData.setFlags(12); // success
+					sendingData.setMessage("로그인에 성공하였습니다.");
+				} else {
+					sendingData.setFlags(13); // fail
+					sendingData.setMessage("로그인에 실패하였습니다.");
+				}
 			} else if (data.getFlags() == 11) {
 				// enterprise user login				
 				if (EPM.login(data.getLoginData())) {

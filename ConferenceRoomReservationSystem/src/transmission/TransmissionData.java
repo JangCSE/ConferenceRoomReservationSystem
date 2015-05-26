@@ -3,6 +3,8 @@ package transmission;
 import java.io.Serializable;
 
 import room.Room;
+import user.EPuser;
+import user.NMuser;
 
 @SuppressWarnings("serial")
 public class TransmissionData implements Serializable {
@@ -14,6 +16,8 @@ public class TransmissionData implements Serializable {
 	private String message;
 	private Room room;
 	private LoginData loginData;
+	private EPuser epuser;
+	private NMuser nmuser;
 
 	public int getFlags() {
 		return flags;
@@ -47,4 +51,19 @@ public class TransmissionData implements Serializable {
 		this.loginData = loginData;
 	}
 	
+	public EPuser getEPuser() {
+		return epuser;
+	}
+	
+	public void setEPuser(EPuser epuser) {
+		this.epuser = epuser;
+	}
+	
+	public NMuser getNMuser() {
+		return nmuser;
+	}
+	
+	public void setNMuser(NMuser nmuser) {
+		this.nmuser = nmuser;
+	}
 }

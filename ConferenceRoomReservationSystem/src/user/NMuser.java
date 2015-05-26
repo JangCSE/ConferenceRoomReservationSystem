@@ -13,7 +13,7 @@ public class NMuser extends GenericUser {
 	public ArrayList<Integer> getBookedRoomKeyList() {
 		return bookedRoomKeyList;
 	}
-
+	
 	public void setBookedRoomKeyList(ArrayList<Integer> bookedRoomKeyList) {
 		this.bookedRoomKeyList = bookedRoomKeyList;
 	}
