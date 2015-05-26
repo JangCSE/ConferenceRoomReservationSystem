@@ -51,6 +51,7 @@ public class ClientMasterController extends JFrame {
 		cards = new JPanel(new CardLayout());
 		cards.add(lv, "loginPanel");
 		cards.add(rv, "registerPanel");
+		cards.add(ED, "EPUser");
 		c = (CardLayout)cards.getLayout();
 		c.show(cards, "loginPanel");
 		this.add(cards);
@@ -63,6 +64,7 @@ public class ClientMasterController extends JFrame {
 	private RegisterView rv = new RegisterView();
 	private RegisterController rc;
 	private LoginController lc;
+	private EnterpriseDistributer ED = new EnterpriseDistributer();
 	
 	public void perform(TransmissionData data) {	
 		
@@ -74,7 +76,8 @@ public class ClientMasterController extends JFrame {
 				c.show(cards, "loginPanel");
 			}			
 		} else if (data.getFlags() < 20) {
-			// login
+			if (data.getFlags() == 12)
+				c.show(cards, "EPUser");
 			lc.controlModel(data);
 		} else if (data.getFlags() < 30) {
 			// room register
