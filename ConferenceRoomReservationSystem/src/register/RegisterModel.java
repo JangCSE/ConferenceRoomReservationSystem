@@ -6,6 +6,7 @@ public class RegisterModel extends Observable {
 
 	private String id;
 	private String password;
+	private String confirmPassword;
 	private String name;
 	private String email;
 	private String contact;
@@ -62,6 +63,14 @@ public class RegisterModel extends Observable {
 		this.message = message;
 		setChanged();
 		notifyObservers();
+	}
+
+	public String getConfirmPassword() {
+		return confirmPassword;
+	}
+
+	public void setConfirmPassword(String confirmPassword) {
+		this.confirmPassword = confirmPassword;
 	}
 
 }

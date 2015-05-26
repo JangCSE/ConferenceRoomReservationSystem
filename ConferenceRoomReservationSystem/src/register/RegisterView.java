@@ -123,7 +123,7 @@ public class RegisterView extends JPanel implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		messageArea.setText(((LoginModel) arg0).getMessage());
+		messageArea.setText(((RegisterModel) arg0).getMessage());
 	}
 	
 	public void setLoginListener(ActionListener listener) {
