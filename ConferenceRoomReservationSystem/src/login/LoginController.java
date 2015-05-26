@@ -37,6 +37,18 @@ public class LoginController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
+		if (arg0.getActionCommand().equals("회원가입")) {
+			data = new TransmissionData();
+			data.setFlags(0);
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
+		
 		lm.setId(lv.getIdStr());
 		lm.setPw(lv.getPwStr());
 

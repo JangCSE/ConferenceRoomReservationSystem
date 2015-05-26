@@ -1,17 +1,26 @@
 package master;
 
+import java.awt.CardLayout;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import client.ChatClient;
 import login.LoginController;
 import login.LoginModel;
 import login.LoginView;
 import enterprise.EnterpriseDistributer;
+import register.RegisterController;
+import register.RegisterModel;
+import register.RegisterView;
 import transmission.TransmissionData;
 
 @SuppressWarnings("serial")
 public class ClientMasterController extends JFrame {
 	
 	private static ChatClient client;
+	private JPanel cards;
+	CardLayout c;
 	
 	public ClientMasterController() {
 		initialSetting();
@@ -29,6 +38,8 @@ public class ClientMasterController extends JFrame {
 	public void initialSetting() {
 		lm.addObserver(lv);
 		lc = new LoginController(lm, lv);
+		rm.addObserver(rv);
+		rc = new RegisterController(rm, rv);
 	}
 	
 	public void initialGUI() {
@@ -37,18 +48,31 @@ public class ClientMasterController extends JFrame {
 		this.setSize(1280, 720);
 		this.setVisible(true);
 		
-		this.add(lv);
+		cards = new JPanel(new CardLayout());
+		cards.add(lv, "loginPanel");
+		cards.add(rv, "registerPanel");
+		c = (CardLayout)cards.getLayout();
+		c.show(cards, "loginPanel");
+		this.add(cards);
 	}
 	
 	private EnterpriseDistributer ed = new EnterpriseDistributer();
 	private LoginModel lm = new LoginModel();
-	private LoginView lv = new LoginView();;
+	private LoginView lv = new LoginView();
+	private RegisterModel rm = new RegisterModel();
+	private RegisterView rv = new RegisterView();
+	private RegisterController rc;
 	private LoginController lc;
-
-	public void perform(TransmissionData data) {		
+	
+	public void perform(TransmissionData data) {	
+		
 		if (data.getFlags() < 10) {
 			// user register
-			
+			if (data.getFlags() == 1) {
+				c.show(cards, "registerPanel");
+			} else if (data.getFlags() == 3) {
+				c.show(cards, "loginPanel");
+			}			
 		} else if (data.getFlags() < 20) {
 			// login
 			lc.controlModel(data);

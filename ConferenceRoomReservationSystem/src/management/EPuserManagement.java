@@ -9,6 +9,7 @@ public class EPuserManagement {
 	private EnterpriseUserList EUL = new EnterpriseUserList();
 	
 	public EPuserManagement() {
+		// temporary master account
 		EPuser temp = new EPuser("master", "master", "master", "master", "master");
 		addEPuser(temp);
 	}

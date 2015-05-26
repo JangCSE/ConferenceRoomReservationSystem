@@ -16,6 +16,13 @@ public class ServerMasterController {
 		
 		if (data.getFlags() < 10) {
 			// user register
+			if (data.getFlags() == 0) {
+				// request register
+				sendingData.setFlags(1);
+			} else if (data.getFlags() == 2) {
+				// request cancel register
+				sendingData.setFlags(3);
+			}
 
 		} else if (data.getFlags() < 20) {
 			// login

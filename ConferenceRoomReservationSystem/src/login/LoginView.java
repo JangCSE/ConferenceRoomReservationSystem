@@ -25,6 +25,7 @@ public class LoginView extends JPanel implements Observer {
 	private JPasswordField pwField = new JPasswordField("비밀번호");
 	private JTextArea messageArea = new JTextArea("메시지");
 	private JButton loginButton = new JButton("로그인");
+	private JButton registerButton = new JButton("회원가입");
 	private JRadioButton epuLogin = new JRadioButton("기업 사용자로 로그인");
 	private JRadioButton nmuLogin = new JRadioButton("일반 사용자로 로그인");
 	private final Insets insets = new Insets(10, 10, 10, 10);
@@ -46,29 +47,31 @@ public class LoginView extends JPanel implements Observer {
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
 		addComponent(loginPanel, pwField, 1, 2, GridBagConstraints.REMAINDER,
 				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(loginPanel, new JLabel("메시지 :"), 0, 3, 1, 1,
+		addComponent(loginPanel, new JLabel("결과 메시지 :"), 0, 3, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
 		addComponent(loginPanel, messageArea, 1, 3,
 				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.BOTH);
 		addComponent(loginPanel, loginButton, 3, 4, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(loginPanel, registerButton, 4, 4, 1, 1,
+				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(this, loginPanel, 0, 0, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.HORIZONTAL);
 	}
-	
+
 	public String getIdStr() {
 		return idField.getText();
 	}
-	
+
 	public String getPwStr() {
 		return new String(pwField.getPassword());
 	}
-	
+
 	public boolean isEpu() {
 		return epuLogin.isSelected();
 	}
-	
+
 	public boolean isNmu() {
 		return nmuLogin.isSelected();
 	}
@@ -81,6 +84,7 @@ public class LoginView extends JPanel implements Observer {
 
 	public void setLoginListener(ActionListener listener) {
 		loginButton.addActionListener(listener);
+		registerButton.addActionListener(listener);
 	}
 
 	private void addComponent(JPanel container, Component component, int gridx,
