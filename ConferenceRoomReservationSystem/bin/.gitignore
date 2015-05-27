@@ -1,9 +1,12 @@
+/client/
+/common/
 /enterprise/
-/master/
-/transmission/
 /list/
-/management/
-/user/
-/room/
 /login/
+/management/
+/master/
 /register/
+/room/
+/server/
+/transmission/
+/user/
