@@ -1,7 +1,9 @@
 package transmission;
 
 import java.io.Serializable;
+import java.util.Date;
 
+import list.RoomList;
 import room.Room;
 import user.EPuser;
 import user.NMuser;
@@ -18,6 +20,16 @@ public class TransmissionData implements Serializable {
 	private LoginData loginData;
 	private EPuser epuser;
 	private NMuser nmuser;
+	private RoomList roomlist;
+	private Date date;
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
 
 	public int getFlags() {
 		return flags;
@@ -66,4 +78,13 @@ public class TransmissionData implements Serializable {
 	public void setNMuser(NMuser nmuser) {
 		this.nmuser = nmuser;
 	}
+	
+	public RoomList getRoomList() {
+		return roomlist;
+	}
+	
+	public void setRoomList(RoomList roomlist) {
+		this.roomlist = roomlist;
+	}
+	
 }

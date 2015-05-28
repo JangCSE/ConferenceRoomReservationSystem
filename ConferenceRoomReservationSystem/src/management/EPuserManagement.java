@@ -25,6 +25,16 @@ public class EPuserManagement {
 		return false;
 	}
 	
+	public EPuser getEPuserByID(String id) {
+		// get log-ined user data
+		return EUL.findByID(id);
+	}
+
+	public EPuser getEPuserByKey(int key) {
+		// get user data
+		return EUL.findByKey(key);
+	}
+	
 	public boolean isItduplicated(LoginData loginData) {
 		// true if overlap, false if non-overlap
 		if(EUL.isItDuplicated(loginData.getId()))

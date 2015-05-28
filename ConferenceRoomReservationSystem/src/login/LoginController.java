@@ -67,7 +67,15 @@ public class LoginController implements ActionListener {
 				e.printStackTrace();
 			}
 		} else if (lv.isNmu()) {
-			
+			data = new TransmissionData();
+			data.setFlags(10);
+			data.setLoginData(new LoginData(lm.getId(), lm.getPw()));
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 

@@ -7,6 +7,8 @@ import java.io.IOException;
 import master.ClientMasterController;
 import transmission.LoginData;
 import transmission.TransmissionData;
+import user.EPuser;
+import user.NMuser;
 
 public class RegisterController implements ActionListener {
 
@@ -65,8 +67,30 @@ public class RegisterController implements ActionListener {
 		} else if (rv.isEpu() == false && rv.isNmu() == false) {
 			rm.setMessage("사용자를 선택하세요.");
 		} else if (rv.isEpu()) {
+			data = new TransmissionData();
+			data.setFlags(5);
+			
+			data.setEPuser(new EPuser(rm.getId(),rm.getPassword(), rm.getName(), rm.getEmail(),rm.getContact()));
+			data.setLoginData(new LoginData(rm.getId(),rm.getPassword()));
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		} else if (rv.isNmu()) {
+			data = new TransmissionData();
+			data.setFlags(4);
+			
+			data.setNMuser(new NMuser(rm.getId(),rm.getPassword(), rm.getName(), rm.getEmail(),rm.getContact()));
+			data.setLoginData(new LoginData(rm.getId(),rm.getPassword()));
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 		}
 	}

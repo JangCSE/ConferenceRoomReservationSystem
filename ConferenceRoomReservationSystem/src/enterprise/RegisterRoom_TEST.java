@@ -28,7 +28,7 @@ public class RegisterRoom_TEST extends TestCase {
 		ClientMasterController cmc = new ClientMasterController();
 		TransmissionData data = new TransmissionData();
 
-		data.setFlags(21);
+		data.setFlags(22);
 		data.setMessage("회의실이 성공적으로 등록되었습니다.");
 		cmc.perform(data);
 

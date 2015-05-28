@@ -1,6 +1,7 @@
 package room;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class Room implements Serializable {
@@ -13,7 +14,34 @@ public class Room implements Serializable {
 	private int cost;
 	private String detail;
 	private int enterpriseKey;
+	private int key;
+	private ArrayList<reservedDate> bookingUserKeyList = new ArrayList<reservedDate>();
 
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
+	}
+
+	public ArrayList<reservedDate> getBookingUserKeyList() {
+		return bookingUserKeyList;
+	}
+
+	public void setBookingUserKeyList(ArrayList<reservedDate> bookingUserKeyList) {
+		this.bookingUserKeyList = bookingUserKeyList;
+	}
+
+	public Room(String name, String city, String detailLocation, int maxNumber, int cost, String detail) {
+		setName(name);
+		setCity(city);
+		setDetailLocation(detailLocation);
+		setMaxNumber(maxNumber);
+		setCost(cost);
+		setDetail(detail);
+	}
+	
 	public String getMessage() {
 		return message;
 	}
@@ -76,6 +104,21 @@ public class Room implements Serializable {
 
 	public void setEnterpriseKey(int enterpriseKey) {
 		this.enterpriseKey = enterpriseKey;
+	}
+	
+	public void addbookingUserKeyList(reservedDate rd) {
+		getBookingUserKeyList().add(rd);
+	}
+	
+	public void deletebookingUserKeyList(int key) {
+		int end = getBookingUserKeyList().size();
+		
+		for(int i=0;i<end;i++) {
+			if(getBookingUserKeyList().get(i).getUserKey() == key) {
+				getBookingUserKeyList().remove(i);
+				break;
+			}
+		}
 	}
 
 }

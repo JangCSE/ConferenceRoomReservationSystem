@@ -2,16 +2,24 @@ package master;
 
 import java.io.IOException;
 
+import room.reservedDate;
 import server.ConnectionToClient;
 import transmission.TransmissionData;
+import user.EPuser;
+import user.NMuser;
 import management.EPuserManagement;
 import management.NMuserManagement;
+import management.RoomManagement;
 
 public class ServerMasterController {
 
 	private EPuserManagement EPM = new EPuserManagement();
 	private NMuserManagement NMM = new NMuserManagement();
+	private RoomManagement RM = new RoomManagement();
 	private TransmissionData sendingData;
+	private EPuser loginedEPuser;
+	private NMuser loginedNMuser;
+	private reservedDate bufrd;
 
 	public void perform(TransmissionData data, ConnectionToClient client) {
 		sendingData = new TransmissionData();
@@ -29,7 +37,7 @@ public class ServerMasterController {
 				if(EPM.isItduplicated(data.getLoginData()) || 
 						NMM.isItduplicated(data.getLoginData())) {
 					sendingData.setFlags(6);
-					sendingData.setMessage("이미 가입된 아이디입니다.");
+					sendingData.setMessage("이미 가입된 아이디 입니다.");
 				} else {
 					NMM.addNMuser(data.getNMuser());
 					sendingData.setFlags(7);
@@ -40,7 +48,7 @@ public class ServerMasterController {
 				if(EPM.isItduplicated(data.getLoginData()) || 
 						NMM.isItduplicated(data.getLoginData())) {
 					sendingData.setFlags(6);
-					sendingData.setMessage("이미 가입된 아이디입니다.");
+					sendingData.setMessage("이미 가입된 아이디 입니다.");
 				} else {
 					EPM.addEPuser(data.getEPuser());
 					sendingData.setFlags(7);
@@ -56,45 +64,106 @@ public class ServerMasterController {
 				if (NMM.login(data.getLoginData())) {
 					sendingData.setFlags(12); // success
 					sendingData.setMessage("로그인에 성공하였습니다.");
+					loginedNMuser =  new NMuser("","","","","");
+					loginedNMuser.setNMuser(NMM.getNMuserByID(data.getLoginData().getId()));
 				} else {
-					sendingData.setFlags(13); // fail
+					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
 				}
 			} else if (data.getFlags() == 11) {
 				// enterprise user login				
 				if (EPM.login(data.getLoginData())) {
-					sendingData.setFlags(12); // success
+					sendingData.setFlags(13); // success
 					sendingData.setMessage("로그인에 성공하였습니다.");
+					loginedEPuser = new EPuser("","","","","");
+					loginedEPuser.setEPuser(EPM.getEPuserByID(data.getLoginData().getId()));
 				} else {
-					sendingData.setFlags(13); // fail
+					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
 				}
 			}
 
 		} else if (data.getFlags() < 30) {
 			// room register
+			
+			if(data.getFlags() == 20) {
+				// room register
+				if(RM.isItduplicated(data.getRoom())) {
+					sendingData.setFlags(21);
+					sendingData.setMessage("이미 등록된 회의실 입니다.");
+				} else {
+					RM.addRoom(data.getRoom());
+					sendingData.setFlags(22);
+					sendingData.setMessage("회의실 등록에 성공하엿습니다.");
+				}
+			}
 
 		} else if (data.getFlags() < 40) {
 			// registered room list
+			
+			if(data.getFlags() == 30) {
+				sendingData.setRoomList(RM.getRegisteredRoomList(loginedEPuser.getKey()));
+				sendingData.setFlags(31);
+				sendingData.setMessage("등록한 외의실 정보입니다.");
+			}
 
 		} else if (data.getFlags() < 50) {
 			// delete room
-
+			
+			if(data.getFlags() == 40) {
+				RM.deleteRoom(data.getRoom());
+				sendingData.setFlags(41);
+				sendingData.setMessage("회의실을 삭제했습니다.");
+			}
 		} else if (data.getFlags() < 60) {
 			// book room
-
+			
+			if(data.getFlags() == 50) {
+				bufrd = new reservedDate();
+				bufrd.setDate(data.getDate());
+				bufrd.setUserKey(loginedNMuser.getKey());
+				RM.getRoom(data.getRoom().getKey()).addbookingUserKeyList(bufrd);
+				NMM.getNMuserByKey(loginedNMuser.getKey()).addBookedRoomKeyList(data.getRoom().getKey());
+				sendingData.setFlags(51);
+				sendingData.setMessage("회의실을 예약했습니다.");
+			}
 		} else if (data.getFlags() < 70) {
 			// bookable room list
+			
+			if(data.getFlags() == 60) {
+				sendingData.setRoomList(RM.getBookableRoomList(data.getRoom(), data.getDate()));
+				sendingData.setFlags(61);
+				sendingData.setMessage("예약 가능한 회의실 목록입니다.");
+			}
 
 		} else if (data.getFlags() < 80) {
 			// room info
-
+			
+			if(data.getFlags() == 70) {
+				sendingData.setFlags(71);
+				sendingData.setMessage("회의실 정보입니다.");
+			}
 		} else if (data.getFlags() < 90) {
 			// booked room list
-
+			
+			if(data.getFlags() == 80) {
+				int end = loginedNMuser.getBookedRoomKeyList().size();
+				
+				for(int i=0;i<end;i++) {
+					sendingData.getRoomList().add(RM.getRoom(loginedNMuser.getBookedRoomKeyList().get(i)));
+				}
+				sendingData.setFlags(81);
+				sendingData.setMessage("예약한 회의실 목록입니다.");
+			}
 		} else if (data.getFlags() < 100) {
 			// cancel booking
-
+			
+			if(data.getFlags() == 90) {
+				RM.getRoom(data.getRoom().getKey()).deletebookingUserKeyList(loginedNMuser.getKey());
+				NMM.getNMuserByKey(loginedNMuser.getKey()).deleteBookedRoomKeyList(loginedNMuser.getKey());
+				sendingData.setFlags(91);
+				sendingData.setMessage("예약이 취소되었습니다.");
+			}
 		}
 		
 		try {

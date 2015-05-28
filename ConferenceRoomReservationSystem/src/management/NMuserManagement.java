@@ -25,6 +25,16 @@ public class NMuserManagement {
 		return false;
 	}
 	
+	public NMuser getNMuserByID(String id) {
+		//get log-in user data
+		return NUL.findByID(id);
+	}
+	
+	public NMuser getNMuserByKey(int key) {
+		//get user data
+		return NUL.findByKey(key);
+	}
+	
 	public boolean isItduplicated(LoginData loginData) {
 		// true if overlap, false if non-overlap
 		if(NUL.isItDuplicated(loginData.getId()))

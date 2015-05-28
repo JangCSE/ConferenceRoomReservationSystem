@@ -97,5 +97,9 @@ public class RegisterRoomModel extends Observable {
 		setCost(c);
 		setDetail(dt);
 	}
+	
+	int validCheck(){
+		return 0;///???
+	}
 
 }
