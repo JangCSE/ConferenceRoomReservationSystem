@@ -7,9 +7,9 @@ import user.NMuser;
 public class NormalUserList extends GenericList<NMuser> {
 
 	public NormalUserList() {
-		
+
 	}
-	
+
 	@Override
 	public void deleteByKey(int k) {
 		Iterator<NMuser> itr = this.getList().iterator();

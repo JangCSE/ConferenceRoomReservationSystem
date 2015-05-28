@@ -2,7 +2,6 @@ package management;
 
 import list.NormalUserList;
 import transmission.LoginData;
-import transmission.TransmissionData;
 import user.NMuser;
 
 public class NMuserManagement {

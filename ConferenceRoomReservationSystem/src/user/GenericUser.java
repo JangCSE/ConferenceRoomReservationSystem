@@ -1,6 +1,8 @@
 package user;
 
-public abstract class GenericUser {
+import java.io.Serializable;
+
+public abstract class GenericUser implements Serializable {
 
 	private int key;
 	private String id;

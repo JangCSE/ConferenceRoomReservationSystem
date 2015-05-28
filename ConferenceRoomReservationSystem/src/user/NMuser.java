@@ -1,8 +1,9 @@
 package user;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class NMuser extends GenericUser {
+public class NMuser extends GenericUser implements Serializable {
 
 	public NMuser(String id, String pw, String name, String email, String ct) {
 		super(id, pw, name, email, ct);

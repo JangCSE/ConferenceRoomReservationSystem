@@ -1,8 +1,9 @@
 package list;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class GenericList<T> {
+public abstract class GenericList<T> implements Serializable {
 
 	private int key = 0;
 	private ArrayList<T> list = new ArrayList<T>();
