@@ -1,9 +1,9 @@
 package management;
 
+import list.NormalUserList;
 import transmission.LoginData;
 import transmission.TransmissionData;
 import user.NMuser;
-import list.NormalUserList;
 
 public class NMuserManagement {
 	
