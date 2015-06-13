@@ -5,10 +5,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import master.ClientMasterController;
+import server.user.EPuser;
+import server.user.NMuser;
 import transmission.LoginData;
 import transmission.TransmissionData;
-import user.EPuser;
-import user.NMuser;
 
 public class RegisterController implements ActionListener {
 

@@ -3,10 +3,10 @@ package transmission;
 import java.io.Serializable;
 import java.util.Date;
 
-import list.RoomList;
-import room.Room;
-import user.EPuser;
-import user.NMuser;
+import server.list.RoomList;
+import server.room.Room;
+import server.user.EPuser;
+import server.user.NMuser;
 
 @SuppressWarnings("serial")
 public class TransmissionData implements Serializable {

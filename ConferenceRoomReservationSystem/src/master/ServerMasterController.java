@@ -2,14 +2,14 @@ package master;
 
 import java.io.IOException;
 
-import room.reservedDate;
 import server.ConnectionToClient;
+import server.management.EPuserManagement;
+import server.management.NMuserManagement;
+import server.management.RoomManagement;
+import server.room.reservedDate;
+import server.user.EPuser;
+import server.user.NMuser;
 import transmission.TransmissionData;
-import user.EPuser;
-import user.NMuser;
-import management.EPuserManagement;
-import management.NMuserManagement;
-import management.RoomManagement;
 
 public class ServerMasterController {
 

@@ -6,9 +6,12 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import listRoom.listRoomController;
-import listRoom.listRoomModel;
-import listRoom.listRoomView;
+import enterprise.listRoom.listRoomController;
+import enterprise.listRoom.listRoomModel;
+import enterprise.listRoom.listRoomView;
+import enterprise.registerRoom.RegisterRoomController;
+import enterprise.registerRoom.RegisterRoomModel;
+import enterprise.registerRoom.RegisterRoomView;
 import transmission.TransmissionData;
 
 public class EnterpriseDistributer extends JPanel {
