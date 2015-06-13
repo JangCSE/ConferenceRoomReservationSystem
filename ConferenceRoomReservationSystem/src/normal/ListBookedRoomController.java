@@ -3,6 +3,7 @@ package normal;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.JLabel;
@@ -19,6 +20,7 @@ public class ListBookedRoomController implements ActionListener {
 	private ListBookedRoomModel lbrm;
 	private ListBookedRoomView lbrv;
 	private TransmissionData data;
+	private FileWriter fw;
 	
 	public ListBookedRoomController(ListBookedRoomModel lbrm, ListBookedRoomView lbrv) {
 		this.lbrm = lbrm;

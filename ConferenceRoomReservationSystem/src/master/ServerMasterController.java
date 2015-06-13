@@ -164,6 +164,13 @@ public class ServerMasterController {
 				sendingData.setFlags(91);
 				sendingData.setMessage("예약이 취소되었습니다.");
 			}
+		} else if (data.getFlags() < 110) {
+			//log out
+			
+			if(data.getFlags() == 100) {
+				sendingData.setFlags(101);
+				sendingData.setMessage("로그아웃에 성공하였습니다.");
+			}
 		}
 		
 		try {

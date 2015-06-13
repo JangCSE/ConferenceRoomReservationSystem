@@ -108,6 +108,9 @@ public class ClientMasterController extends JFrame {
 		} else if (data.getFlags() < 100) {
 			// cancel booking
 			
+		} else if (data.getFlags() < 110) {
+			// log out
+			c.show(cards, "loginPanel");
 		}
 	}
 	

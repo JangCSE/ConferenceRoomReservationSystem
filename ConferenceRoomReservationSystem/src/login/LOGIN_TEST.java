@@ -16,7 +16,7 @@ public class LOGIN_TEST extends TestCase {
 
 		data.setFlags(13);
 		data.setMessage("로그인에 실패하였습니다.");
-		//cmc.perform(data);
+		cmc.perform(data);
 
 		assertEquals(true, true);
 	}
