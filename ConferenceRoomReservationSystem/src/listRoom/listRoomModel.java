@@ -4,13 +4,13 @@ import java.util.Observable;
 
 import list.RoomList;
 
-public class listRoomModel extends Observable  {
+public class listRoomModel extends Observable {
 	private RoomList RL;
-	
+
 	public listRoomModel() {
-		
+
 	}
-	
+
 	public RoomList getRL() {
 		return RL;
 	}

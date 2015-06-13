@@ -16,9 +16,9 @@ public class BookRoomModel extends Observable {
 	private Date date;
 	private Room selectedRoom;
 	private HashSet hs; // 중복 데이터 제거
-		
+
 	public BookRoomModel() {
-		
+
 	}
 
 	public String getMessage() {
@@ -49,25 +49,25 @@ public class BookRoomModel extends Observable {
 		this.selectedRoom = room;
 		setChanged();
 		notifyObservers();
-	}	
-	
+	}
+
 	public void setInstance(String msg, Date date, Room room) {
 		setMessage(msg);
 		setDate(date);
-		setSelectedRoom(room);		
+		setSelectedRoom(room);
 	}
-	
-	int validCheck(){
-		return 0;///???
+
+	int validCheck() {
+		return 0;// /???
 	}
-	
-	public void isRepeated(ArrayList<reservedDate> rd){
-		Iterator it = rd.iterator();	
-		while(it.hasNext() ){
-			if(it.equals(rd)){				
+
+	public void isRepeated(ArrayList<reservedDate> rd) {
+		Iterator it = rd.iterator();
+		while (it.hasNext()) {
+			if (it.equals(rd)) {
 				System.out.println("다른 날짜를 선택하세요.");
-				//다른 날짜를 선택하게 하기.
+				// 다른 날짜를 선택하게 하기.
 			}
-		}		
-	}	
+		}
+	}
 }

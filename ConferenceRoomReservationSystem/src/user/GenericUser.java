@@ -11,9 +11,9 @@ public abstract class GenericUser implements Serializable {
 	private String email;
 	private String contact;
 	private boolean login;
-	
-	public GenericUser(String id, String pw, String name,
-			String email, String ct) {
+
+	public GenericUser(String id, String pw, String name, String email,
+			String ct) {
 		setId(id);
 		setPassword(pw);
 		setName(name);

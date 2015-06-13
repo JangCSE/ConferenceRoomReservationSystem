@@ -22,12 +22,12 @@ public class LoginController implements ActionListener {
 
 	public boolean controlModel(TransmissionData data) {
 
-		if (data.getFlags() == 12) {
-			// there is same named room
+		if (data.getFlags() == 13) {
+			// enterprise user login success
 			lm.setMessage(data.getMessage());
 			return true;
-		} else if (data.getFlags() == 13) {
-			// successfully registered
+		} else if (data.getFlags() == 14) {
+			// login fail
 			lm.setMessage(data.getMessage());
 		}
 
@@ -48,7 +48,7 @@ public class LoginController implements ActionListener {
 			}
 			return;
 		}
-		
+
 		lm.setId(lv.getIdStr());
 		lm.setPw(lv.getPwStr());
 

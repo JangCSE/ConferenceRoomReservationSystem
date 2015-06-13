@@ -33,7 +33,8 @@ public class Room implements Serializable {
 		this.bookingUserKeyList = bookingUserKeyList;
 	}
 
-	public Room(String name, String city, String detailLocation, int maxNumber, int cost, String detail) {
+	public Room(String name, String city, String detailLocation, int maxNumber,
+			int cost, String detail) {
 		setName(name);
 		setCity(city);
 		setDetailLocation(detailLocation);
@@ -41,7 +42,7 @@ public class Room implements Serializable {
 		setCost(cost);
 		setDetail(detail);
 	}
-	
+
 	public String getMessage() {
 		return message;
 	}
@@ -105,16 +106,16 @@ public class Room implements Serializable {
 	public void setEnterpriseKey(int enterpriseKey) {
 		this.enterpriseKey = enterpriseKey;
 	}
-	
+
 	public void addbookingUserKeyList(reservedDate rd) {
 		getBookingUserKeyList().add(rd);
 	}
-	
+
 	public void deletebookingUserKeyList(int key) {
 		int end = getBookingUserKeyList().size();
-		
-		for(int i=0;i<end;i++) {
-			if(getBookingUserKeyList().get(i).getUserKey() == key) {
+
+		for (int i = 0; i < end; i++) {
+			if (getBookingUserKeyList().get(i).getUserKey() == key) {
 				getBookingUserKeyList().remove(i);
 				break;
 			}

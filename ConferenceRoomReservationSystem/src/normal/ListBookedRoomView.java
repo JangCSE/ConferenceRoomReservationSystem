@@ -23,7 +23,7 @@ public class ListBookedRoomView extends JPanel implements Observer {
 
 	private JPanel listBookableRoomPanel = new JPanel();
 	private JPanel buttonPanel = new JPanel();
-	private String[] colHeads = { "회의실 이름", "시", "상세주소", "최대수용인원",  "가격", "부대시설" };
+	private String[] colHeads = { "회의실 이름", "시", "상세주소", "최대수용인원", "가격", "부대시설" };
 	private Object[][] data;
 	private JTable table;
 	private JScrollPane jsp;
@@ -31,54 +31,50 @@ public class ListBookedRoomView extends JPanel implements Observer {
 	private JButton askButton = new JButton("조회하기");
 	private JButton cancelButton = new JButton("예약취소하기");
 	private final Insets insets = new Insets(10, 10, 10, 10);
-	
-	
+
 	public ListBookedRoomView() {
 		this.setLayout(new BorderLayout());
 		listBookableRoomPanel.setBackground(Color.WHITE);
 		listBookableRoomPanel.setLayout(new BorderLayout());
 		model = new DefaultTableModel(colHeads, 0);
-		
+
 		table = new JTable(model);
-		
+
 		jsp = new JScrollPane(table,
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		
+
 		listBookableRoomPanel.add(jsp, BorderLayout.CENTER);
-		
+
 		buttonPanel.setLayout(new GridBagLayout());
 		buttonPanel.add(askButton);
 		buttonPanel.add(cancelButton);
-	
+
 		listBookableRoomPanel.add(buttonPanel, BorderLayout.SOUTH);
 
 		this.add(listBookableRoomPanel, BorderLayout.CENTER);
 	}
-	
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		for (int i = 0; i < model.getRowCount(); i++) {
 			model.removeRow(i);
 		}
-		
-		dataTranslation(((listRoomModel)arg0).getRL().getList());
-		
-		for (int i = 0; i < ((listRoomModel)arg0).getRL().getList().size(); i++) {
+
+		dataTranslation(((listRoomModel) arg0).getRL().getList());
+
+		for (int i = 0; i < ((listRoomModel) arg0).getRL().getList().size(); i++) {
 			model.addRow(data[i]);
 		}
 		model.fireTableDataChanged();
 
 	}
-	
+
 	public void setListBookedRoomListener(ActionListener listener) {
 		askButton.addActionListener(listener);
 		cancelButton.addActionListener(listener);
 	}
-	
-	
-	
+
 	void dataTranslation(ArrayList<Room> rl) { // data에 변환해서 넣음
 		data = new Object[rl.size()][6];
 		for (int i = 0; i < rl.size(); i++) {
@@ -90,7 +86,6 @@ public class ListBookedRoomView extends JPanel implements Observer {
 			data[i][5] = rl.get(i).getDetail();
 		}
 	}
-
 
 	public JTable getTable() {
 		return table;

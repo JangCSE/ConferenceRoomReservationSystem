@@ -62,10 +62,7 @@ public class NormalUserList extends GenericList<NMuser> {
 		// search by id
 		NMuser temp = findByID(id);
 
-		if (temp != null)
-			return true;
-		else
-			return false;
+		return temp != null;
 	}
 
 }

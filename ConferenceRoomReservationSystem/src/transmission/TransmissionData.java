@@ -10,7 +10,7 @@ import user.NMuser;
 
 @SuppressWarnings("serial")
 public class TransmissionData implements Serializable {
-	
+
 	public void TranmissionData() {
 	}
 
@@ -62,29 +62,29 @@ public class TransmissionData implements Serializable {
 	public void setLoginData(LoginData loginData) {
 		this.loginData = loginData;
 	}
-	
+
 	public EPuser getEPuser() {
 		return epuser;
 	}
-	
+
 	public void setEPuser(EPuser epuser) {
 		this.epuser = epuser;
 	}
-	
+
 	public NMuser getNMuser() {
 		return nmuser;
 	}
-	
+
 	public void setNMuser(NMuser nmuser) {
 		this.nmuser = nmuser;
 	}
-	
+
 	public RoomList getRoomList() {
 		return roomlist;
 	}
-	
+
 	public void setRoomList(RoomList roomlist) {
 		this.roomlist = roomlist;
 	}
-	
+
 }

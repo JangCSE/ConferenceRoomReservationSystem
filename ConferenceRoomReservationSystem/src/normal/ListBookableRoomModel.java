@@ -6,7 +6,7 @@ import list.RoomList;
 
 public class ListBookableRoomModel extends Observable {
 	private RoomList myList;
-	
+
 	public RoomList getMyList() {
 		return myList;
 	}
@@ -16,7 +16,7 @@ public class ListBookableRoomModel extends Observable {
 	}
 
 	public ListBookableRoomModel() {
-		
+
 	}
-	
+
 }

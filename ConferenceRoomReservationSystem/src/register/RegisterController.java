@@ -24,9 +24,8 @@ public class RegisterController implements ActionListener {
 
 	public boolean controlModel(TransmissionData data) {
 		if (data.getFlags() == 7) {
-			// there is same named room
+			// user register reject
 			rm.setMessage(data.getMessage());
-			return true;
 		} else if (data.getFlags() == 6) {
 			// successfully registered
 			rm.setMessage(data.getMessage());
@@ -49,19 +48,19 @@ public class RegisterController implements ActionListener {
 			}
 			return;
 		}
-		
+
 		rm.setId(rv.getIdStr());
 		rm.setPassword(rv.getPwStr());
 		rm.setConfirmPassword(rv.getPwConfimStr());
 		rm.setContact(rv.getContactStr());
 		rm.setEmail(rv.getEmailStr());
 		rm.setName(rv.getNameStr());
-		
+
 		if (!rm.getPassword().equals(rm.getConfirmPassword())) {
 			rm.setMessage("비밀번호가 서로 같지 않습니다.");
 			return;
 		}
-		
+
 		if (rv.isEpu() && rv.isNmu()) {
 			rm.setMessage("사용자 하나만을 선택하세요.");
 		} else if (rv.isEpu() == false && rv.isNmu() == false) {
@@ -69,29 +68,31 @@ public class RegisterController implements ActionListener {
 		} else if (rv.isEpu()) {
 			data = new TransmissionData();
 			data.setFlags(5);
-			
-			data.setEPuser(new EPuser(rm.getId(),rm.getPassword(), rm.getName(), rm.getEmail(),rm.getContact()));
-			data.setLoginData(new LoginData(rm.getId(),rm.getPassword()));
+
+			data.setEPuser(new EPuser(rm.getId(), rm.getPassword(), rm
+					.getName(), rm.getEmail(), rm.getContact()));
+			data.setLoginData(new LoginData(rm.getId(), rm.getPassword()));
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		} else if (rv.isNmu()) {
 			data = new TransmissionData();
 			data.setFlags(4);
-			
-			data.setNMuser(new NMuser(rm.getId(),rm.getPassword(), rm.getName(), rm.getEmail(),rm.getContact()));
-			data.setLoginData(new LoginData(rm.getId(),rm.getPassword()));
+
+			data.setNMuser(new NMuser(rm.getId(), rm.getPassword(), rm
+					.getName(), rm.getEmail(), rm.getContact()));
+			data.setLoginData(new LoginData(rm.getId(), rm.getPassword()));
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 

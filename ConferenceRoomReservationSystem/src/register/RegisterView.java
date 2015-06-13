@@ -34,7 +34,7 @@ public class RegisterView extends JPanel implements Observer {
 	private JRadioButton epuRegister = new JRadioButton("기업 사용자로 회원가입");
 	private JRadioButton nmuRegister = new JRadioButton("일반 사용자로 회원가입");
 	private final Insets insets = new Insets(10, 10, 10, 10);
-	
+
 	public RegisterView() {
 		this.setBackground(Color.darkGray);
 		messageArea.setEditable(false);
@@ -44,37 +44,43 @@ public class RegisterView extends JPanel implements Observer {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(registerPanel, nmuRegister, 2, 0, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+
 		addComponent(registerPanel, new JLabel("아이디 :"), 0, 1, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerPanel, idField, 1, 1, GridBagConstraints.REMAINDER,
-				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+		addComponent(registerPanel, idField, 1, 1,
+				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH);
+
 		addComponent(registerPanel, new JLabel("비밀번호 :"), 0, 2, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerPanel, pwField, 1, 2, GridBagConstraints.REMAINDER,
-				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+		addComponent(registerPanel, pwField, 1, 2,
+				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH);
+
 		addComponent(registerPanel, new JLabel("비밀번호 확인 :"), 0, 3, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerPanel, pwConfirmField, 1, 3, GridBagConstraints.REMAINDER,
-				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+		addComponent(registerPanel, pwConfirmField, 1, 3,
+				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH);
+
 		addComponent(registerPanel, new JLabel("이름 :"), 0, 4, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerPanel, nameField, 1, 4, GridBagConstraints.REMAINDER,
-				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+		addComponent(registerPanel, nameField, 1, 4,
+				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH);
+
 		addComponent(registerPanel, new JLabel("이메일 :"), 0, 5, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerPanel, emailField, 1, 5, GridBagConstraints.REMAINDER,
-				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+		addComponent(registerPanel, emailField, 1, 5,
+				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH);
+
 		addComponent(registerPanel, new JLabel("연락처 :"), 0, 6, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerPanel, contactField, 1, 6, GridBagConstraints.REMAINDER,
-				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		
+		addComponent(registerPanel, contactField, 1, 6,
+				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.BOTH);
+
 		addComponent(registerPanel, new JLabel("결과 메시지 :"), 0, 7, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
 		addComponent(registerPanel, messageArea, 1, 7,
@@ -84,34 +90,34 @@ public class RegisterView extends JPanel implements Observer {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(registerPanel, confirmButton, 4, 8, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(this, registerPanel, 0, 0, 1, 1, GridBagConstraints.CENTER,
-				GridBagConstraints.HORIZONTAL);
+		addComponent(this, registerPanel, 0, 0, 1, 1,
+				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
 	}
 
 	public String getIdStr() {
 		return idField.getText();
 	}
-	
+
 	public String getPwStr() {
 		return new String(pwField.getPassword());
 	}
-	
+
 	public String getPwConfimStr() {
 		return new String(pwConfirmField.getPassword());
 	}
-	
+
 	public String getNameStr() {
 		return nameField.getText();
 	}
-	
+
 	public String getEmailStr() {
 		return emailField.getText();
 	}
-	
+
 	public String getContactStr() {
 		return contactField.getText();
 	}
-	
+
 	public boolean isEpu() {
 		return epuRegister.isSelected();
 	}
@@ -119,18 +125,18 @@ public class RegisterView extends JPanel implements Observer {
 	public boolean isNmu() {
 		return nmuRegister.isSelected();
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
 		messageArea.setText(((RegisterModel) arg0).getMessage());
 	}
-	
+
 	public void setLoginListener(ActionListener listener) {
 		confirmButton.addActionListener(listener);
 		cancelButton.addActionListener(listener);
 	}
-	
+
 	private void addComponent(JPanel container, Component component, int gridx,
 			int gridy, int gridwidth, int gridheight, int anchor, int fill) {
 		GridBagConstraints gbc = new GridBagConstraints(gridx, gridy,

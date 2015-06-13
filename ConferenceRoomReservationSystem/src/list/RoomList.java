@@ -135,10 +135,7 @@ public class RoomList extends GenericList<Room> implements Serializable {
 		// search by id
 		Room temp = findByName(name);
 
-		if (temp != null)
-			return true;
-		else
-			return false;
+		return temp != null;
 	}
 
 }

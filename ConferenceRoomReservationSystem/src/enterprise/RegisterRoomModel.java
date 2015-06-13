@@ -11,9 +11,9 @@ public class RegisterRoomModel extends Observable {
 	private int maxNumber;
 	private int cost;
 	private String detail;
-	
+
 	public RegisterRoomModel() {
-		
+
 	}
 
 	public String getMessage() {
@@ -58,7 +58,7 @@ public class RegisterRoomModel extends Observable {
 
 	public String getCity() {
 		return city;
-		
+
 	}
 
 	public void setCity(String city) {
@@ -86,7 +86,7 @@ public class RegisterRoomModel extends Observable {
 		setChanged();
 		notifyObservers();
 	}
-	
+
 	public void setInstance(String msg, String nm, String ct, String dl,
 			int mn, int c, String dt) {
 		setMessage(msg);
@@ -97,9 +97,9 @@ public class RegisterRoomModel extends Observable {
 		setCost(c);
 		setDetail(dt);
 	}
-	
-	int validCheck(){
-		return 0;///???
+
+	int validCheck() {
+		return 0;// /???
 	}
 
 }

@@ -8,7 +8,7 @@ import org.junit.Test;
 import transmission.TransmissionData;
 
 public class LOGIN_TEST extends TestCase {
-	
+
 	@Test
 	public void testMessage() {
 		ClientMasterController cmc = new ClientMasterController();

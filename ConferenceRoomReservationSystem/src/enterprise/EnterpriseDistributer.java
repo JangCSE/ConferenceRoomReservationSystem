@@ -11,7 +11,7 @@ import listRoom.listRoomModel;
 import listRoom.listRoomView;
 import transmission.TransmissionData;
 
-public class EnterpriseDistributer extends JPanel{
+public class EnterpriseDistributer extends JPanel {
 
 	private JTabbedPane EPUserTab = new JTabbedPane();
 	private RegisterRoomModel rrm = new RegisterRoomModel();
@@ -21,23 +21,21 @@ public class EnterpriseDistributer extends JPanel{
 	private listRoomView lrv = new listRoomView();
 	private listRoomController lrc;
 
-	
 	public EnterpriseDistributer() {
 		rrm.addObserver(rrv);
 		rrc = new RegisterRoomController(rrm, rrv);
-		
+
 		lrm.addObserver(lrv);
 		lrc = new listRoomController(lrm, lrv);
-		
+
 		this.setLayout(new BorderLayout());
 		EPUserTab.add("회의실 등록", rrv);
 		EPUserTab.add("등록한 회의실 조회", lrv);
 		this.add(EPUserTab, BorderLayout.CENTER);
 	}
-	
 
 	public void distribute(TransmissionData data) {
-		
+
 		if (data.getFlags() < 30) {
 			// room register
 			rrc.controlModel(data);

@@ -5,8 +5,8 @@ import java.util.Observable;
 import list.RoomList;
 
 public class ListBookedRoomModel extends Observable {
-private RoomList myList;
-	
+	private RoomList myList;
+
 	public RoomList getMyList() {
 		return myList;
 	}
@@ -16,6 +16,6 @@ private RoomList myList;
 	}
 
 	public ListBookedRoomModel() {
-		
+
 	}
 }

@@ -7,9 +7,9 @@ import user.EPuser;
 public class EnterpriseUserList extends GenericList<EPuser> {
 
 	public EnterpriseUserList() {
-		
+
 	}
-	
+
 	@Override
 	public void deleteByKey(int k) {
 		Iterator<EPuser> itr = this.getList().iterator();
@@ -62,10 +62,7 @@ public class EnterpriseUserList extends GenericList<EPuser> {
 		// search by id
 		EPuser temp = findByID(id);
 
-		if (temp != null)
-			return true;
-		else
-			return false;
+		return temp != null;
 	}
 
 }

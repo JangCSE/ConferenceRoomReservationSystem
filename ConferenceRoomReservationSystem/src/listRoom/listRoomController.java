@@ -13,7 +13,7 @@ public class listRoomController implements ActionListener {
 	private listRoomModel lrm;
 	private listRoomView lrv;
 	private TransmissionData data;
-	
+
 	public listRoomController(listRoomModel lm, listRoomView lv) {
 		lrm = lm;
 		lrv = lv;
@@ -22,11 +22,11 @@ public class listRoomController implements ActionListener {
 
 	public void controlModel(TransmissionData data) {
 
-		if(data.getFlags() == 31) {
+		if (data.getFlags() == 31) {
 			lrm.setRL(data.getRoomList());
 		}
 	}
-	
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		if (arg0.getActionCommand().equals("조회하기")) {
@@ -40,7 +40,7 @@ public class listRoomController implements ActionListener {
 			}
 			return;
 		}
-		
+
 	}
 
 }

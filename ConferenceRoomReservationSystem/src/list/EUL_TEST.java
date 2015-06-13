@@ -41,7 +41,7 @@ public class EUL_TEST extends TestCase {
 		EnterpriseUserList EUL = new EnterpriseUserList();
 		EPuser temp = new EPuser("id", "password", "name", "email", "contact");
 		EUL.add(temp);
-		
+
 		assertEquals(true, EUL.isItDuplicated("id"));
 		assertEquals(false, EUL.isItDuplicated("id2"));
 	}
@@ -52,10 +52,10 @@ public class EUL_TEST extends TestCase {
 		EPuser temp = new EPuser("id", "password", "name", "email", "contact");
 		temp.setKey(100);
 		EUL.add(temp);
-		
+
 		EUL.deleteByKey(1);
 		assertEquals(true, EUL.isItDuplicated("id"));
-		
+
 		EUL.deleteByKey(100);
 		assertEquals(false, EUL.isItDuplicated("id"));
 	}
