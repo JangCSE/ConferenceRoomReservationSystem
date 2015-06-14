@@ -67,6 +67,8 @@ public class ServerMasterController {
 					loginedNMuser = new NMuser("", "", "", "", "");
 					loginedNMuser.setNMuser(NMM.getNMuserByID(data
 							.getLoginData().getId()));
+					loginedNMuser.setKey(NMM.getNMuserByID(data
+							.getLoginData().getId()).getKey());
 				} else {
 					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
@@ -79,7 +81,8 @@ public class ServerMasterController {
 					loginedEPuser = new EPuser("", "", "", "", "");
 					loginedEPuser.setEPuser(EPM.getEPuserByID(data
 							.getLoginData().getId()));
-					System.out.println(loginedEPuser.getKey());
+					loginedEPuser.setKey(EPM.getEPuserByID(data
+							.getLoginData().getId()).getKey());
 				} else {
 					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
@@ -95,6 +98,7 @@ public class ServerMasterController {
 					sendingData.setFlags(21);
 					sendingData.setMessage("이미 등록된 회의실 입니다.");
 				} else {
+					data.getRoom().setEnterpriseKey(loginedEPuser.getKey());
 					RM.addRoom(data.getRoom());
 					sendingData.setFlags(22);
 					sendingData.setMessage("회의실 등록에 성공하엿습니다.");
