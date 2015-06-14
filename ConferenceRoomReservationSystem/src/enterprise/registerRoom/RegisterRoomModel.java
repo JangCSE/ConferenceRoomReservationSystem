@@ -99,23 +99,7 @@ public class RegisterRoomModel extends Observable {
 	}
 
 	int validCheck() {
-		
-		if(getCity() == null)
-			return 1;
-		
-		if(getMaxNumber() < 2 || getMaxNumber() > 10000)
-			return 2;
-		
-		if(getCost() < 10000 || (getCost() % 1000 != 0))
-			return 3;
-		
-		if(getName().length() < 1 || getName().length() > 20)
-			return 4;
-		
-		if(getDetail().length() > 500)
-			return 5;
-		
-		return 0;
+		return 0;// /???
 	}
 
 }

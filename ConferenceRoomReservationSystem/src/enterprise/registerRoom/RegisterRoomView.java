@@ -59,11 +59,11 @@ public class RegisterRoomView extends JPanel implements Observer {
 				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(registerRoomPanel, new JLabel("부대시설 :"), 0, 5, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerRoomPanel, detailField, 1, 5, GridBagConstraints.REMAINDER,
+		addComponent(registerRoomPanel, messageArea, 1, 5, GridBagConstraints.REMAINDER,
 				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(registerRoomPanel, new JLabel("결과 메시지:"), 0, 6, 1, 1,
 				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
-		addComponent(registerRoomPanel, messageArea, 1, 6, GridBagConstraints.REMAINDER,
+		addComponent(registerRoomPanel, msgField, 1, 6, GridBagConstraints.REMAINDER,
 				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(registerRoomPanel, registerButton, 1, 7, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
