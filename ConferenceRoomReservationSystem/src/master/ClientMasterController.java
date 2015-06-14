@@ -90,7 +90,7 @@ public class ClientMasterController extends JFrame {
 			ed.distribute(data);
 		} else if (data.getFlags() < 40) {
 			// registered room list
-
+			ed.distribute(data);
 		} else if (data.getFlags() < 50) {
 			// delete room
 
