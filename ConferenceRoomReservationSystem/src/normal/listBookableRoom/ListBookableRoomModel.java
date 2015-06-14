@@ -13,6 +13,8 @@ public class ListBookableRoomModel extends Observable {
 
 	public void setMyList(RoomList myList) {
 		this.myList = myList;
+		setChanged();
+		notifyObservers();
 	}
 
 	public ListBookableRoomModel() {
