@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import server.user.NMuser;
 
+@SuppressWarnings("serial")
 public class NormalUserList extends GenericList<NMuser> {
 
 	public NormalUserList() {

@@ -3,6 +3,7 @@ package server.user;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public class NMuser extends GenericUser implements Serializable {
 
 	public NMuser(String id, String pw, String name, String email, String ct) {

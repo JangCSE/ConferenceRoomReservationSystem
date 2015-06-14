@@ -1,18 +1,11 @@
 package normal.listBookedRoom;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
 import master.ClientMasterController;
-import server.room.Room;
 import transmission.TransmissionData;
 
 public class ListBookedRoomController implements ActionListener {
@@ -20,6 +13,7 @@ public class ListBookedRoomController implements ActionListener {
 	private ListBookedRoomModel lbrm;
 	private ListBookedRoomView lbrv;
 	private TransmissionData data;
+	@SuppressWarnings("unused")
 	private FileWriter fw;
 
 	public ListBookedRoomController(ListBookedRoomModel lbrm,

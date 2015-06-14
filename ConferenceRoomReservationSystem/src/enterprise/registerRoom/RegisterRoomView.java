@@ -15,8 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import register.RegisterModel;
-
+@SuppressWarnings("serial")
 public class RegisterRoomView extends JPanel implements Observer {
 	// 메세지 중복되는거 있음 ????
 	private JPanel registerRoomPanel = new JPanel();

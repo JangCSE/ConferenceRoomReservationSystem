@@ -3,6 +3,7 @@ package server.list;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+@SuppressWarnings("serial")
 public abstract class GenericList<T> implements Serializable {
 
 	private int key = 0;

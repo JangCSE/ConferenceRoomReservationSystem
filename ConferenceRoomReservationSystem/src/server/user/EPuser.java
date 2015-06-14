@@ -2,6 +2,7 @@ package server.user;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class EPuser extends GenericUser implements Serializable {
 
 	public EPuser(String id, String pw, String name, String email, String ct) {

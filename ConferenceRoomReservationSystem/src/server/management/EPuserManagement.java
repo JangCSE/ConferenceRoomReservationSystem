@@ -3,7 +3,6 @@ package server.management;
 import server.list.EnterpriseUserList;
 import server.user.EPuser;
 import transmission.LoginData;
-import transmission.TransmissionData;
 
 public class EPuserManagement {
 

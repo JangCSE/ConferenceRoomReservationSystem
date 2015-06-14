@@ -2,11 +2,7 @@ package normal.listBookableRoom;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -22,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import enterprise.listRoom.listRoomModel;
 import server.room.Room;
 
+@SuppressWarnings("serial")
 public class ListBookableRoomView extends JPanel implements Observer {
 
 	private JPanel listBookableRoomPanel = new JPanel();
@@ -34,7 +31,6 @@ public class ListBookableRoomView extends JPanel implements Observer {
 	private JButton askButton = new JButton("조회하기");
 	private JButton bookButton = new JButton("예약하기");
 	private JButton infoButton = new JButton("예약정보보기");
-	private final Insets insets = new Insets(10, 10, 10, 10);
 
 	public ListBookableRoomView() {
 		this.setLayout(new BorderLayout());

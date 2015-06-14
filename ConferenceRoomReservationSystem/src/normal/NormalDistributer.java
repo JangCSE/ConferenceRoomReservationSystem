@@ -13,6 +13,7 @@ import normal.listBookedRoom.ListBookedRoomModel;
 import normal.listBookedRoom.ListBookedRoomView;
 import transmission.TransmissionData;
 
+@SuppressWarnings("serial")
 public class NormalDistributer extends JPanel {
 	private JTabbedPane NMUserTab = new JTabbedPane();
 	private ListBookableRoomModel lbookablerm = new ListBookableRoomModel();

@@ -17,8 +17,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import login.LoginModel;
-
+@SuppressWarnings("serial")
 public class RegisterView extends JPanel implements Observer {
 
 	private JPanel registerPanel = new JPanel();

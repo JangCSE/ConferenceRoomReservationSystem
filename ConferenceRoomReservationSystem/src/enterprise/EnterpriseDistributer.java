@@ -2,7 +2,6 @@ package enterprise;
 
 import java.awt.BorderLayout;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -14,6 +13,7 @@ import enterprise.registerRoom.RegisterRoomModel;
 import enterprise.registerRoom.RegisterRoomView;
 import transmission.TransmissionData;
 
+@SuppressWarnings("serial")
 public class EnterpriseDistributer extends JPanel {
 
 	private JTabbedPane EPUserTab = new JTabbedPane();

@@ -1,13 +1,10 @@
 package server.list;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
 import server.room.Room;
-import server.user.EPuser;
-import server.user.NMuser;
 
 @SuppressWarnings("serial")
 public class RoomList extends GenericList<Room> implements Serializable {

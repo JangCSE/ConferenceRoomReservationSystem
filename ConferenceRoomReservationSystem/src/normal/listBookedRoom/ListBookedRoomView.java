@@ -3,7 +3,6 @@ package normal.listBookedRoom;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -19,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import enterprise.listRoom.listRoomModel;
 import server.room.Room;
 
+@SuppressWarnings("serial")
 public class ListBookedRoomView extends JPanel implements Observer {
 
 	private JPanel listBookableRoomPanel = new JPanel();
@@ -30,7 +30,6 @@ public class ListBookedRoomView extends JPanel implements Observer {
 	private DefaultTableModel model;
 	private JButton askButton = new JButton("조회하기");
 	private JButton cancelButton = new JButton("예약취소하기");
-	private final Insets insets = new Insets(10, 10, 10, 10);
 
 	public ListBookedRoomView() {
 		this.setLayout(new BorderLayout());

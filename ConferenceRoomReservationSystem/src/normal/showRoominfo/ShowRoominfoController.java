@@ -4,9 +4,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.IOException;
-
-import master.ClientMasterController;
 import transmission.TransmissionData;
 
 public class ShowRoominfoController implements ActionListener {

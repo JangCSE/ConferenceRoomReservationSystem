@@ -6,7 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -18,6 +17,7 @@ import javax.swing.JTextField;
 
 import enterprise.registerRoom.RegisterRoomModel;
 
+@SuppressWarnings("serial")
 public class BookRoomView extends JPanel implements Observer {
 	// 메시지 중복???
 	private JPanel BookRoomPanel = new JPanel();

@@ -4,6 +4,7 @@ import java.util.Iterator;
 
 import server.user.EPuser;
 
+@SuppressWarnings("serial")
 public class EnterpriseUserList extends GenericList<EPuser> {
 
 	public EnterpriseUserList() {

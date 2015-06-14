@@ -15,6 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 import server.room.Room;
 
+@SuppressWarnings("serial")
 public class listRoomView extends JPanel implements Observer {
 
 	private String[] colHeads = { "회의실 이름", "시", "상세주소", "최대수용인원", "가격", "부대시설" };

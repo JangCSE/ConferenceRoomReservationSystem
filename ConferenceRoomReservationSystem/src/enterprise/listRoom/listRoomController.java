@@ -5,7 +5,6 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import master.ClientMasterController;
-import transmission.LoginData;
 import transmission.TransmissionData;
 
 public class listRoomController implements ActionListener {
