@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class RegisterRoomView extends JPanel implements Observer {
@@ -81,6 +82,76 @@ public class RegisterRoomView extends JPanel implements Observer {
 
 		addComponent(this, registerRoomPanel, 0, 0, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+		
+		makeFocusAll();
+	}
+	
+	public void makeFocusAll() {
+		nameField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						nameField.selectAll();
+					}
+				});
+			}
+		});
+
+		maxNumField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						maxNumField.selectAll();
+					}
+				});
+			}
+		});
+		
+		costField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						costField.selectAll();
+					}
+				});
+			}
+		});
+		
+		cityField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						cityField.selectAll();
+					}
+				});
+			}
+		});
+		
+		detailLocField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						detailLocField.selectAll();
+					}
+				});
+			}
+		});
+		
+		detailField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						detailField.selectAll();
+					}
+				});
+			}
+		});
 	}
 
 	public String getMsgStr() {

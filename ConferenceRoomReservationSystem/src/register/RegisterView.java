@@ -16,6 +16,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 
 @SuppressWarnings("serial")
 public class RegisterView extends JPanel implements Observer {
@@ -91,6 +92,76 @@ public class RegisterView extends JPanel implements Observer {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(this, registerPanel, 0, 0, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+		
+		makeFocusAll();
+	}
+	
+	public void makeFocusAll() {
+		idField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						idField.selectAll();
+					}
+				});
+			}
+		});
+
+		pwField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						pwField.selectAll();
+					}
+				});
+			}
+		});
+		
+		pwConfirmField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						pwConfirmField.selectAll();
+					}
+				});
+			}
+		});
+		
+		nameField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						nameField.selectAll();
+					}
+				});
+			}
+		});
+		
+		emailField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						emailField.selectAll();
+					}
+				});
+			}
+		});
+		
+		contactField.addFocusListener(new java.awt.event.FocusAdapter() {
+			public void focusGained(java.awt.event.FocusEvent evt) {
+				SwingUtilities.invokeLater(new Runnable() {
+					@Override
+					public void run() {
+						contactField.selectAll();
+					}
+				});
+			}
+		});
 	}
 
 	public String getIdStr() {
