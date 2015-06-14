@@ -4,6 +4,9 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -19,6 +22,7 @@ public class ListBookableRoomController implements ActionListener {
 	private ListBookableRoomModel lbrm;
 	private ListBookableRoomView lbrv;
 	private TransmissionData data;
+	static SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 
 	public ListBookableRoomController(ListBookableRoomModel lbrm,
 			ListBookableRoomView lbrv) {
@@ -56,7 +60,14 @@ public class ListBookableRoomController implements ActionListener {
 			
 			data.setRoom(new Room("", city.getText(), "", Integer
 					.parseInt(maxNum.getText()), 0, ""));
-
+			
+			try {
+				data.setDate(sd.parse(date.getText()));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null,("날짜 입력 양식은 : yyyy-MM-dd 입니다."));
+				return;
+			}
 			
 			try {
 				ClientMasterController.getClient().sendToServer(data);
