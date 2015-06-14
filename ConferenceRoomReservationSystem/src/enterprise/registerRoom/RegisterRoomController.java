@@ -49,39 +49,41 @@ public class RegisterRoomController implements ActionListener {
 
 		rrm.setMessage(rrv.getMsgStr());
 		rrm.setName(rrv.getNameStr());
-		
+
 		try {
 			rrm.setMaxNumber(Integer.parseInt(rrv.getMaxNumStr()));
 		} catch (NumberFormatException e) {
 			rrm.setMessage("수용인원은 숫자로 입력해 주십시오.");
 			return;
 		}
-		
+
 		try {
 			rrm.setCost(Integer.parseInt(rrv.getCost()));
 		} catch (NumberFormatException e) {
 			rrm.setMessage("대여비용은 숫자로 입력해 주십시오.");
 			return;
 		}
-		
+
 		rrm.setCity(rrv.getCityStr());
 		rrm.setDetailLocation(rrv.getDetailLoc());
 		rrm.setDetail(rrv.getDetail());
 
-		if(rrm.validCheck() == 1) {
+		if (rrm.validCheck() == 1) {
 			rrm.setMessage("회의실 위치가 잘못되었습니다.");
-		} else if(rrm.validCheck() == 2) {
+		} else if (rrm.validCheck() == 2) {
 			rrm.setMessage("수용가능 인원은 최소 두 명에서 최대 만 명입니다.");
-		} else if(rrm.validCheck() == 3) {
+		} else if (rrm.validCheck() == 3) {
 			rrm.setMessage("대여비용은 최소 만 원으로 천 원 단위로 증가시킬 수 있습니다.");
-		} else if(rrm.validCheck() == 4) {
+		} else if (rrm.validCheck() == 4) {
 			rrm.setMessage("회의실 이름은 한 자 이상 스무 자 이하로 입력하셔야 합니다.");
-		} else if(rrm.validCheck() == 5) {
+		} else if (rrm.validCheck() == 5) {
 			rrm.setMessage("부가정보는 최대 500자까지 입니다.");
 		} else {
 			data = new TransmissionData();
 			data.setFlags(20);
-			data.setRoom(new Room(rrm.getName(), rrm.getCity(), rrm.getDetailLocation(), rrm.getMaxNumber(), rrm.getCost(), rrm.getDetail()));
+			data.setRoom(new Room(rrm.getName(), rrm.getCity(), rrm
+					.getDetailLocation(), rrm.getMaxNumber(), rrm.getCost(),
+					rrm.getDetail()));
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {
@@ -89,7 +91,7 @@ public class RegisterRoomController implements ActionListener {
 				e.printStackTrace();
 			}
 			return;
-			
+
 		}
 
 	}
