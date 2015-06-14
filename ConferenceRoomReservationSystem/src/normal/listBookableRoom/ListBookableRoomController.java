@@ -50,12 +50,14 @@ public class ListBookableRoomController implements ActionListener {
 			panel.add(date);
 			panel.add(new JLabel("최대인원"));
 			panel.add(maxNum);
-
+			
+			JOptionPane.showMessageDialog(null, panel, "정보입력",
+					JOptionPane.QUESTION_MESSAGE);
+			
 			data.setRoom(new Room("", city.getText(), "", Integer
 					.parseInt(maxNum.getText()), 0, ""));
 
-			JOptionPane.showMessageDialog(null, panel, "정보입력",
-					JOptionPane.QUESTION_MESSAGE);
+			
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {

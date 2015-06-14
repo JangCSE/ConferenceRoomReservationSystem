@@ -41,6 +41,7 @@ public class NormalDistributer extends JPanel {
 			// book room
 		} else if (data.getFlags() < 70) {
 			// list bookalbeRoom
+			lbookalberc.controlModel(data);
 		} else if (data.getFlags() < 80) {
 			// show Room info
 		} else if (data.getFlags() < 90) {
