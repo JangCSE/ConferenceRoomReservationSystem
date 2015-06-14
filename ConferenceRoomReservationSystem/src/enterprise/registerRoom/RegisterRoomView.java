@@ -15,7 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-@SuppressWarnings("serial")
+import register.RegisterModel;
+
 public class RegisterRoomView extends JPanel implements Observer {
 	// 메세지 중복되는거 있음 ????
 	private JPanel registerRoomPanel = new JPanel();
@@ -27,7 +28,7 @@ public class RegisterRoomView extends JPanel implements Observer {
 	private JTextField detailLocField = new JTextField("상세 주소");
 	private JTextField detailField = new JTextField("디테일");
 	private JTextArea messageArea = new JTextArea("메시지");
-	private JButton backButton = new JButton("되돌아가기");
+	private JButton registerButton = new JButton("회의실등록");
 	private final Insets insets = new Insets(10, 10, 10, 10);
 
 	public RegisterRoomView() {
@@ -36,23 +37,40 @@ public class RegisterRoomView extends JPanel implements Observer {
 		registerRoomPanel.setBackground(Color.WHITE);
 		registerRoomPanel.setLayout(new GridBagLayout());
 
-		addComponent(registerRoomPanel, new JLabel("메세지 : "), 0, 1, 1, 1,
+		addComponent(registerRoomPanel, new JLabel("회의실 이름 :"), 0, 0, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, nameField, 1, 0, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, new JLabel("최대 수용 가능 인원 :"), 0, 1, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, maxNumField, 1, 1, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, new JLabel("가격 :"), 0, 2, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, costField, 1, 2, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, new JLabel("도시 :"), 0, 3, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, cityField, 1, 3, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, new JLabel("상세 주소 :"), 0, 4, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, detailLocField, 1, 4, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, new JLabel("부대시설 :"), 0, 5, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, messageArea, 1, 5, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, new JLabel("결과 메시지:"), 0, 6, 1, 1,
+				GridBagConstraints.EAST, GridBagConstraints.VERTICAL);
+		addComponent(registerRoomPanel, msgField, 1, 6, GridBagConstraints.REMAINDER,
+				1, GridBagConstraints.CENTER, GridBagConstraints.BOTH);
+		addComponent(registerRoomPanel, registerButton, 1, 7, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(registerRoomPanel, new JLabel("회의실 이름 : "), 0, 2, 1, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(registerRoomPanel, new JLabel("최대 수용 인원 : "), 0, 3, 1, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(registerRoomPanel, new JLabel("도시 : "), 0, 4, 1, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(registerRoomPanel, new JLabel("상세 주소 : "), 0, 5, 1, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(registerRoomPanel, new JLabel("Detail : "), 0, 6, 1, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
-		addComponent(registerRoomPanel, messageArea, 1, 7,
-				GridBagConstraints.REMAINDER, 1, GridBagConstraints.CENTER,
-				GridBagConstraints.BOTH);
-		addComponent(this, registerRoomPanel, 0, 0, 1, 1,
-				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
+		
+		
+		addComponent(this, registerRoomPanel, 0, 0, 1, 1, GridBagConstraints.CENTER,
+				GridBagConstraints.HORIZONTAL);
 	}
 
 	public String getMsgStr() {
@@ -90,7 +108,7 @@ public class RegisterRoomView extends JPanel implements Observer {
 	}
 
 	public void setListener(ActionListener listener) {
-		backButton.addActionListener(listener);
+		registerButton.addActionListener(listener);
 	}
 
 	private void addComponent(JPanel container, Component component, int gridx,
