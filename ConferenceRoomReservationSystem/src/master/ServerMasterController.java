@@ -79,6 +79,7 @@ public class ServerMasterController {
 					loginedEPuser = new EPuser("", "", "", "", "");
 					loginedEPuser.setEPuser(EPM.getEPuserByID(data
 							.getLoginData().getId()));
+					System.out.println(loginedEPuser.getKey());
 				} else {
 					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");

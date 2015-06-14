@@ -41,7 +41,7 @@ public class listRoomView extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		for (int i = 0; i < model.getRowCount(); i++) {
+		for (int i = model.getRowCount() - 1; i > -1; i--) {
 			model.removeRow(i);
 		}
 
