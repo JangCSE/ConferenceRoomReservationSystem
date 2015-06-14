@@ -16,6 +16,7 @@ public class listRoomController implements ActionListener {
 	private TransmissionData data;
 	private FileWriter fw;
 	private File dir;
+	private int select = 0;
 
 	public listRoomController(listRoomModel lm, listRoomView lv) {
 		lrm = lm;
@@ -44,19 +45,20 @@ public class listRoomController implements ActionListener {
 			return;
 		} else if (arg0.getActionCommand().equals("파일에 저장")) {
 			fw = null;
+			select = lrv.getTable().getSelectedRow();
 			dir = new File("C:\\ConferenceRoomReservationSystem");
 			if (!dir.exists()) {
 				dir.mkdir();
 			}
 			try {
 				fw = new FileWriter("C:\\ConferenceRoomReservationSystem\\"
-						+ shm.getSelectedRoom().getName() + ".txt");
-				fw.write(shm.getSelectedRoom().getName());
-				fw.write(shm.getSelectedRoom().getCity());
-				fw.write(shm.getSelectedRoom().getDetailLocation());
-				fw.write(Integer.toString(shm.getSelectedRoom().getMaxNumber()));
-				fw.write(Integer.toString(shm.getSelectedRoom().getCost()));
-				fw.write(shm.getSelectedRoom().getDetail());
+						+ String.valueOf(lrv.getTable().getValueAt(select, 0)) + ".txt");
+				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 0)));
+				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 1)));
+				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 2)));
+				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 3)));
+				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 4)));
+				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 5)));
 				fw.close();
 			} catch (Exception e) {
 				System.out.println("error : " + e);

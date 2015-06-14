@@ -70,4 +70,13 @@ public class listRoomView extends JPanel implements Observer {
 		}
 	}
 
+	public JTable getTable() {
+		return table;
+	}
+
+	public void setTable(JTable table) {
+		this.table = table;
+	}
+
+	
 }
