@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import normal.listBookableRoom.ListBookableRoomModel;
 import enterprise.listRoom.listRoomModel;
 import server.room.Room;
 
@@ -59,10 +60,10 @@ public class ListBookedRoomView extends JPanel implements Observer {
 		for (int i = model.getRowCount() - 1; i > -1; i--) {
 			model.removeRow(i);
 		}
+		
+		dataTranslation(((ListBookedRoomModel) arg0).getMyList().getList());
 
-		dataTranslation(((listRoomModel) arg0).getRL().getList());
-
-		for (int i = 0; i < ((listRoomModel) arg0).getRL().getList().size(); i++) {
+		for (int i = 0; i < ((ListBookedRoomModel) arg0).getMyList().getList().size(); i++) {
 			model.addRow(data[i]);
 		}
 		model.fireTableDataChanged();

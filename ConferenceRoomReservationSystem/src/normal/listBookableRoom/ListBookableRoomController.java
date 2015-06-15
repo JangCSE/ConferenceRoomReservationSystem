@@ -54,27 +54,28 @@ public class ListBookableRoomController implements ActionListener {
 			panel.add(date);
 			panel.add(new JLabel("최대인원"));
 			panel.add(maxNum);
-			
+
 			JOptionPane.showMessageDialog(null, panel, "정보입력",
 					JOptionPane.QUESTION_MESSAGE);
-			
+
 			try {
-			data.setRoom(new Room("", city.getText(), "", Integer
-					.parseInt(maxNum.getText()), 0, ""));
+				data.setRoom(new Room("", city.getText(), "", Integer
+						.parseInt(maxNum.getText()), 0, ""));
 			} catch (NumberFormatException e) {
 				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null,("최대 인원은 숫자로 입력해 주십시오."));
+				JOptionPane.showMessageDialog(null, ("최대 인원은 숫자로 입력해 주십시오."));
 				return;
 			}
-			
+
 			try {
 				data.setDate(sd.parse(date.getText()));
 			} catch (ParseException e1) {
 				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null,("날짜 입력 양식은 : yyyy-MM-dd 입니다."));
+				JOptionPane.showMessageDialog(null,
+						("날짜 입력 양식은 : yyyy-MM-dd 입니다."));
 				return;
 			}
-			
+
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {

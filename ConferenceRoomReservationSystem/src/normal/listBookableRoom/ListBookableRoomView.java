@@ -62,9 +62,9 @@ public class ListBookableRoomView extends JPanel implements Observer {
 			model.removeRow(i);
 		}
 
-		dataTranslation(((listRoomModel) arg0).getRL().getList());
+		dataTranslation(((ListBookableRoomModel) arg0).getMyList().getList());
 
-		for (int i = 0; i < ((listRoomModel) arg0).getRL().getList().size(); i++) {
+		for (int i = 0; i < ((ListBookableRoomModel) arg0).getMyList().getList().size(); i++) {
 			model.addRow(data[i]);
 		}
 		model.fireTableDataChanged();
