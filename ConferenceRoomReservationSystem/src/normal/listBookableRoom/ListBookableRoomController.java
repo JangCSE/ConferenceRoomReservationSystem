@@ -58,8 +58,14 @@ public class ListBookableRoomController implements ActionListener {
 			JOptionPane.showMessageDialog(null, panel, "정보입력",
 					JOptionPane.QUESTION_MESSAGE);
 			
+			try {
 			data.setRoom(new Room("", city.getText(), "", Integer
 					.parseInt(maxNum.getText()), 0, ""));
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				JOptionPane.showMessageDialog(null,("최대 인원은 숫자로 입력해 주십시오."));
+				return;
+			}
 			
 			try {
 				data.setDate(sd.parse(date.getText()));
