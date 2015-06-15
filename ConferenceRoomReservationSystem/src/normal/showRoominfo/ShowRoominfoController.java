@@ -32,7 +32,6 @@ public class ShowRoominfoController implements ActionListener {
 	}
 
 	public void controlModel(TransmissionData data) {
-
 		if (data.getFlags() == 71) {
 			shm.setSelectedRoom(data.getRoom());
 		}
@@ -69,7 +68,7 @@ public class ShowRoominfoController implements ActionListener {
 			data.setFlags(70);
 			int select = lbrv.getTable().getSelectedRow();
 			try {
-				data.setRoom(lbrm.getMyList().getList().get(select));
+				data.setKey(lbrm.getMyList().getList().get(select).getKey());
 			} catch (ArrayIndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
 				return;

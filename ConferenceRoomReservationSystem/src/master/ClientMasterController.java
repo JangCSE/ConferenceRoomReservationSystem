@@ -76,8 +76,7 @@ public class ClientMasterController extends JFrame {
 				c.show(cards, "registerPanel");
 			} else if (data.getFlags() == 3) {
 				c.show(cards, "loginPanel");
-			}
-			else
+			} else
 				rc.controlModel(data);
 		} else if (data.getFlags() < 20) {
 			if (data.getFlags() == 12)

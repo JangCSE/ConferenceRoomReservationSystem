@@ -49,6 +49,7 @@ public class ShowRoominfoView extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		
 		for (int i = model.getRowCount() - 1; i > -1; i--) {
 			model.removeRow(i);
 		}

@@ -67,8 +67,8 @@ public class ServerMasterController {
 					loginedNMuser = new NMuser("", "", "", "", "");
 					loginedNMuser.setNMuser(NMM.getNMuserByID(data
 							.getLoginData().getId()));
-					loginedNMuser.setKey(NMM.getNMuserByID(data
-							.getLoginData().getId()).getKey());
+					loginedNMuser.setKey(NMM.getNMuserByID(
+							data.getLoginData().getId()).getKey());
 				} else {
 					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
@@ -81,8 +81,8 @@ public class ServerMasterController {
 					loginedEPuser = new EPuser("", "", "", "", "");
 					loginedEPuser.setEPuser(EPM.getEPuserByID(data
 							.getLoginData().getId()));
-					loginedEPuser.setKey(EPM.getEPuserByID(data
-							.getLoginData().getId()).getKey());
+					loginedEPuser.setKey(EPM.getEPuserByID(
+							data.getLoginData().getId()).getKey());
 				} else {
 					sendingData.setFlags(14); // fail
 					sendingData.setMessage("로그인에 실패하였습니다.");
@@ -123,15 +123,16 @@ public class ServerMasterController {
 		} else if (data.getFlags() < 60) {
 			// book room
 			if (data.getFlags() == 50) {
-				if(NMM.getNMuserByKey(loginedNMuser.getKey()).getBookedRoomKeyList().size() < 3) {
-					if(RM.getRoom(data.getKey()).isReservedDate(data.getDate())) {
+				if (NMM.getNMuserByKey(loginedNMuser.getKey())
+						.getBookedRoomKeyList().size() < 3) {
+					if (RM.getRoom(data.getKey())
+							.isReservedDate(data.getDate())) {
 						sendingData.setFlags(53);
 					} else {
 						bufrd = new reservedDate();
 						bufrd.setDate(data.getDate());
 						bufrd.setUserKey(loginedNMuser.getKey());
-						RM.getRoom(data.getKey())
-								.addbookingUserKeyList(bufrd);
+						RM.getRoom(data.getKey()).addbookingUserKeyList(bufrd);
 						NMM.getNMuserByKey(loginedNMuser.getKey())
 								.addBookedRoomKeyList(data.getKey());
 						sendingData.setFlags(51);
@@ -151,7 +152,7 @@ public class ServerMasterController {
 			// room info
 			if (data.getFlags() == 70) {
 				sendingData.setFlags(71);
-				sendingData.setRoom(RM.getRoomList().findByKey(data.getRoom().getKey()));
+				sendingData.setRoom(RM.getRoomList().findByKey(data.getKey()));
 				sendingData.setMessage("회의실 정보입니다.");
 			}
 		} else if (data.getFlags() < 90) {
