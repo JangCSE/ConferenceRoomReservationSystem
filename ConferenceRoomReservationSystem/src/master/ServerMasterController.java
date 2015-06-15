@@ -91,7 +91,6 @@ public class ServerMasterController {
 
 		} else if (data.getFlags() < 30) {
 			// room register
-
 			if (data.getFlags() == 20) {
 				// room register
 				if (RM.isItduplicated(data.getRoom())) {
@@ -107,7 +106,6 @@ public class ServerMasterController {
 
 		} else if (data.getFlags() < 40) {
 			// registered room list
-
 			if (data.getFlags() == 30) {
 				sendingData.setRoomList(RM.getRegisteredRoomList(loginedEPuser
 						.getKey()));
@@ -117,7 +115,6 @@ public class ServerMasterController {
 
 		} else if (data.getFlags() < 50) {
 			// delete room
-
 			if (data.getFlags() == 40) {
 				RM.deleteRoom(data.getRoom());
 				sendingData.setFlags(41);
@@ -125,7 +122,6 @@ public class ServerMasterController {
 			}
 		} else if (data.getFlags() < 60) {
 			// book room
-
 			if (data.getFlags() == 50) {
 				bufrd = new reservedDate();
 				bufrd.setDate(data.getDate());
@@ -139,24 +135,19 @@ public class ServerMasterController {
 			}
 		} else if (data.getFlags() < 70) {
 			// bookable room list
-
 			if (data.getFlags() == 60) {
 				sendingData.setRoomList(RM.getBookableRoomList(data.getRoom(),
 						data.getDate()));
 				sendingData.setFlags(61);
-				sendingData.setMessage("예약 가능한 회의실 목록입니다.");
 			}
-
 		} else if (data.getFlags() < 80) {
 			// room info
-
 			if (data.getFlags() == 70) {
 				sendingData.setFlags(71);
 				sendingData.setMessage("회의실 정보입니다.");
 			}
 		} else if (data.getFlags() < 90) {
 			// booked room list
-
 			if (data.getFlags() == 80) {
 				int end = loginedNMuser.getBookedRoomKeyList().size();
 

@@ -58,22 +58,34 @@ public class ListBookableRoomController implements ActionListener {
 			JOptionPane.showMessageDialog(null, panel, "정보입력",
 					JOptionPane.QUESTION_MESSAGE);
 
-			try {
-				data.setRoom(new Room("", city.getText(), "", Integer
-						.parseInt(maxNum.getText()), 0, ""));
-			} catch (NumberFormatException e) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null, ("최대 인원은 숫자로 입력해 주십시오."));
-				return;
+			int maxNumInteger;
+
+			if (maxNum.getText().equals("")) {
+				maxNumInteger = 0;
+			} else {
+				try {
+					maxNumInteger = Integer.parseInt(maxNum.getText());
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,
+							("최대 인원은 비워두거나 숫자로 입력해주세요."));
+					return;
+				}
 			}
 
-			try {
-				data.setDate(sd.parse(date.getText()));
-			} catch (ParseException e1) {
-				// TODO Auto-generated catch block
-				JOptionPane.showMessageDialog(null,
-						("날짜 입력 양식은 : yyyy-MM-dd 입니다."));
-				return;
+			data.setRoom(new Room("", city.getText(), "", maxNumInteger, 0, ""));
+
+			if (date.getText().equals("")) {
+				data.setDate(null);
+			} else {
+				try {
+					data.setDate(sd.parse(date.getText()));
+				} catch (ParseException e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null,
+							("날짜 입력 양식은 YYYY-MM-DD 입니다."));
+					return;
+				}
 			}
 
 			try {
@@ -82,7 +94,6 @@ public class ListBookableRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
 		} else if (arg0.getActionCommand().equals("예약하기")) {
 			data = new TransmissionData();
 			data.setFlags(50);
@@ -95,7 +106,6 @@ public class ListBookableRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
 		} else if (arg0.getActionCommand().equals("예약정보보기")) {
 			data = new TransmissionData();
 			data.setFlags(70);
@@ -108,7 +118,6 @@ public class ListBookableRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
 		}
 
 	}

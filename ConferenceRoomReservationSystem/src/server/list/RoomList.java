@@ -54,9 +54,14 @@ public class RoomList extends GenericList<Room> implements Serializable {
 		while (itr.hasNext()) {
 			temp = itr.next();
 
-			if (temp.getCity().equals(room.getCity())) {
+			if (temp.getCity().equals(room.getCity())
+					|| room.getCity().equals("")) {
 				if (temp.getMaxNumber() >= room.getMaxNumber()) {
-					if (isReservedDate(temp,date))
+					if (date == null) {
+						bufRL.add(temp);
+						continue;
+					}
+					else if (isReservedDate(temp, date))
 						bufRL.add(temp);
 				}
 			}
@@ -67,7 +72,7 @@ public class RoomList extends GenericList<Room> implements Serializable {
 				temp = itr2.next();
 
 				if (temp.getMaxNumber() >= room.getMaxNumber()) {
-					if (isReservedDate(temp,date))
+					if (isReservedDate(temp, date))
 						bufRL.add(temp);
 				}
 			}
@@ -78,31 +83,14 @@ public class RoomList extends GenericList<Room> implements Serializable {
 
 	public boolean isReservedDate(Room room, Date date) {
 		int end = room.getBookingUserKeyList().size();
-		
-		for(int i = 0; i < end; i++) {
-			if(room.getBookingUserKeyList().get(i).getDate().equals(date)) {
+
+		for (int i = 0; i < end; i++) {
+			if (room.getBookingUserKeyList().get(i).getDate().equals(date)) {
 				return false;
 			}
 		}
-		
+
 		return true;
-		
-		/*Iterator<Room> itr = this.getList().iterator();
-		Room temp;
-
-		while (itr.hasNext()) {
-			temp = itr.next();
-
-			int end = temp.getBookingUserKeyList().size();
-
-			for (int i = 0; i < end; i++) {
-				if (temp.getBookingUserKeyList().get(i).getDate().equals(date)) {
-					return false;
-				}
-			}
-		}
-
-		return true;*/
 	}
 
 	@Override
