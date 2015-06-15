@@ -1,10 +1,15 @@
 package normal;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
+import normal.bookRoom.BookRoomController;
+import normal.bookRoom.BookRoomModel;
+import normal.bookRoom.BookRoomView;
+import normal.bookRoom.BookRoom_TEST;
 import normal.listBookableRoom.ListBookableRoomController;
 import normal.listBookableRoom.ListBookableRoomModel;
 import normal.listBookableRoom.ListBookableRoomView;
@@ -28,7 +33,7 @@ public class NormalDistributer extends JPanel {
 	private ShowRoominfoModel srm = new ShowRoominfoModel();
 	private ShowRoominfoView srv = new ShowRoominfoView();
 	private ShowRoominfoController src;
-
+	
 	public NormalDistributer() {
 		lbookablerm.addObserver(lbookalberv);
 		lbookalberc = new ListBookableRoomController(lbookablerm, lbookalberv);
@@ -38,11 +43,12 @@ public class NormalDistributer extends JPanel {
 
 		srm.addObserver(srv);
 		src = new ShowRoominfoController(srm, srv, lbookablerm, lbookalberv);
-
+		
 		this.setLayout(new BorderLayout());
 		NMUserTab.add("예약가능한 회의실 조회", lbookalberv);
 		NMUserTab.add("예약한 회의실 조회", lbookedrv);
 		this.add(NMUserTab, BorderLayout.CENTER);
+
 	}
 
 	public void distribute(TransmissionData data) {

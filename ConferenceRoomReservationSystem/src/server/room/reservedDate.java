@@ -1,11 +1,12 @@
 package server.room;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class reservedDate {
+public class reservedDate implements Serializable {
 	private int userKey;
 	private Date date;
-
+	
 	public int getUserKey() {
 		return userKey;
 	}

@@ -58,16 +58,17 @@ public class BookRoomModel extends Observable {
 	}
 
 	int validCheck() {
-		return 0;// /???
+		return 0;
 	}
 
-	public void isRepeated(ArrayList<reservedDate> rd) {
-		Iterator it = rd.iterator();
-		while (it.hasNext()) {
-			if (it.equals(rd)) {
-				System.out.println("다른 날짜를 선택하세요.");
-				// 다른 날짜를 선택하게 하기.
-			}
+	public boolean isRepeated() {
+		int end =selectedRoom.getBookingUserKeyList().size();
+		
+		for(int i=0;i<end;i++){
+			if(selectedRoom.getBookingUserKeyList().get(i).getDate().equals(date))
+				return true;
 		}
+		return false;
 	}
+	
 }

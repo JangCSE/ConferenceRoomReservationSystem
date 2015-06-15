@@ -123,15 +123,24 @@ public class ServerMasterController {
 		} else if (data.getFlags() < 60) {
 			// book room
 			if (data.getFlags() == 50) {
-				bufrd = new reservedDate();
-				bufrd.setDate(data.getDate());
-				bufrd.setUserKey(loginedNMuser.getKey());
-				RM.getRoom(data.getRoom().getKey())
-						.addbookingUserKeyList(bufrd);
-				NMM.getNMuserByKey(loginedNMuser.getKey())
-						.addBookedRoomKeyList(data.getRoom().getKey());
-				sendingData.setFlags(51);
-				sendingData.setMessage("회의실을 예약했습니다.");
+				if(NMM.getNMuserByKey(loginedNMuser.getKey()).getBookedRoomKeyList().size() < 3) {
+					bufrd = new reservedDate();
+					bufrd.setDate(data.getDate());
+					bufrd.setUserKey(loginedNMuser.getKey());
+					RM.getRoom(data.getRoom().getKey())
+							.addbookingUserKeyList(bufrd);
+					NMM.getNMuserByKey(loginedNMuser.getKey())
+							.addBookedRoomKeyList(data.getRoom().getKey());
+					sendingData.setFlags(51);
+					sendingData.setMessage("회의실을 예약했습니다.");
+				} else {
+					sendingData.setFlags(54);
+					sendingData.setMessage("이미 세개의 회의실을 예약하셨습니다.");
+				}
+			} else if (data.getFlags() == 52) {
+				sendingData.setRoom(data.getRoom());
+				sendingData.setFlags(53);
+				sendingData.setMessage("회의실 예약 기능을 실행합니다.");
 			}
 		} else if (data.getFlags() < 70) {
 			// bookable room list
