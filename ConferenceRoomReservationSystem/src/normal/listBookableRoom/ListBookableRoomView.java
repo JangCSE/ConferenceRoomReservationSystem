@@ -74,6 +74,8 @@ public class ListBookableRoomView extends JPanel implements Observer {
 	public void setListBookalbeRoomListener(ActionListener listener) {
 		askButton.addActionListener(listener);
 		bookButton.addActionListener(listener);
+	}
+	public void setShowRoominfoListener(ActionListener listener) {
 		infoButton.addActionListener(listener);
 	}
 

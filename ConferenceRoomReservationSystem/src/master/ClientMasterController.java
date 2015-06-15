@@ -103,7 +103,7 @@ public class ClientMasterController extends JFrame {
 			nd.distribute(data);
 		} else if (data.getFlags() < 80) {
 			// room info
-
+			nd.distribute(data);
 		} else if (data.getFlags() < 90) {
 			// booked room list
 

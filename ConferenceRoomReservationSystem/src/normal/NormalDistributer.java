@@ -11,6 +11,9 @@ import normal.listBookableRoom.ListBookableRoomView;
 import normal.listBookedRoom.ListBookedRoomController;
 import normal.listBookedRoom.ListBookedRoomModel;
 import normal.listBookedRoom.ListBookedRoomView;
+import normal.showRoominfo.ShowRoominfoController;
+import normal.showRoominfo.ShowRoominfoModel;
+import normal.showRoominfo.ShowRoominfoView;
 import transmission.TransmissionData;
 
 @SuppressWarnings("serial")
@@ -22,6 +25,9 @@ public class NormalDistributer extends JPanel {
 	private ListBookedRoomModel lbookedrm = new ListBookedRoomModel();
 	private ListBookedRoomView lbookedrv = new ListBookedRoomView();
 	private ListBookedRoomController lbookedrc;
+	private ShowRoominfoModel srm = new ShowRoominfoModel();
+	private ShowRoominfoView srv = new ShowRoominfoView();
+	private ShowRoominfoController src;
 
 	public NormalDistributer() {
 		lbookablerm.addObserver(lbookalberv);
@@ -29,6 +35,9 @@ public class NormalDistributer extends JPanel {
 
 		lbookedrm.addObserver(lbookedrv);
 		lbookedrc = new ListBookedRoomController(lbookedrm, lbookedrv);
+
+		srm.addObserver(srv);
+		src = new ShowRoominfoController(srm, srv, lbookablerm, lbookalberv);
 
 		this.setLayout(new BorderLayout());
 		NMUserTab.add("예약가능한 회의실 조회", lbookalberv);
@@ -44,6 +53,7 @@ public class NormalDistributer extends JPanel {
 			lbookalberc.controlModel(data);
 		} else if (data.getFlags() < 80) {
 			// show Room info
+			src.controlModel(data);
 		} else if (data.getFlags() < 90) {
 			// list booked room
 		}
