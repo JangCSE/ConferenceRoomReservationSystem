@@ -18,6 +18,8 @@ public class ShowRoominfoModel extends Observable {
 
 	public void setSelectedRoom(Room selectedRoom) {
 		this.selectedRoom = selectedRoom;
+		setChanged();
+		notifyObservers();
 	}
 
 }

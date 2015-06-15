@@ -96,20 +96,7 @@ public class ListBookableRoomController implements ActionListener {
 				e.printStackTrace();
 			}
 			return;
-		} else if (arg0.getActionCommand().equals("예약정보보기")) {
-			data = new TransmissionData();
-			data.setFlags(70);
-			int select = lbrv.getTable().getSelectedRow();
-			data.setRoom(lbrm.getMyList().getList().get(select));
-
-			try {
-				ClientMasterController.getClient().sendToServer(data);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			return;
-		}
+		} 
 
 	}
 }

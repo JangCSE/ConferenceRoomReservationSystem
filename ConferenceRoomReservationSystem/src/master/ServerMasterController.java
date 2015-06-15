@@ -152,6 +152,7 @@ public class ServerMasterController {
 
 			if (data.getFlags() == 70) {
 				sendingData.setFlags(71);
+				sendingData.setRoom(RM.getRoomList().findByKey(data.getRoom().getKey()));
 				sendingData.setMessage("회의실 정보입니다.");
 			}
 		} else if (data.getFlags() < 90) {

@@ -4,19 +4,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
+
+import normal.listBookableRoom.ListBookableRoomModel;
+import normal.listBookableRoom.ListBookableRoomView;
+import master.ClientMasterController;
 import transmission.TransmissionData;
 
 public class ShowRoominfoController implements ActionListener {
 
 	private ShowRoominfoModel shm;
 	private ShowRoominfoView shv;
+	private ListBookableRoomView lbrv;
+	private ListBookableRoomModel lbrm;
 	private FileWriter fw;
 	private File dir;
+	private TransmissionData data;
 
-	public ShowRoominfoController(ShowRoominfoModel sm, ShowRoominfoView sv) {
-		shm = sm;
-		shv = sv;
-		shm.addObserver(shv);
+	public ShowRoominfoController(ShowRoominfoModel sm, ShowRoominfoView sv,  ListBookableRoomModel lbrm, ListBookableRoomView lbrv) {
+		this.shm = sm;
+		this.shv = sv;
+		this.lbrv = lbrv;
+		this.lbrm = lbrm;
+		lbrv.setShowRoominfoListener(this);
 	}
 
 	public void controlModel(TransmissionData data) {
@@ -51,7 +61,20 @@ public class ShowRoominfoController implements ActionListener {
 			}
 
 			return;
-		}
+		} else if (arg0.getActionCommand().equals("예약정보보기")) {
 
+			data = new TransmissionData();
+			data.setFlags(70);
+			int select = lbrv.getTable().getSelectedRow();
+			data.setRoom(lbrm.getMyList().getList().get(select));
+
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return;
+		}
 	}
 }
