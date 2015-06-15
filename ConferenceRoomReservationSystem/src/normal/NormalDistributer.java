@@ -6,10 +6,6 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import normal.bookRoom.BookRoomController;
-import normal.bookRoom.BookRoomModel;
-import normal.bookRoom.BookRoomView;
-import normal.bookRoom.BookRoom_TEST;
 import normal.listBookableRoom.ListBookableRoomController;
 import normal.listBookableRoom.ListBookableRoomModel;
 import normal.listBookableRoom.ListBookableRoomView;
@@ -54,6 +50,7 @@ public class NormalDistributer extends JPanel {
 	public void distribute(TransmissionData data) {
 		if (data.getFlags() < 60) {
 			// book room
+			lbookalberc.controlModel(data);
 		} else if (data.getFlags() < 70) {
 			// list bookalbeRoom
 			lbookalberc.controlModel(data);

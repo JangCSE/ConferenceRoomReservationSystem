@@ -132,15 +132,9 @@ public class ServerMasterController {
 					NMM.getNMuserByKey(loginedNMuser.getKey())
 							.addBookedRoomKeyList(data.getRoom().getKey());
 					sendingData.setFlags(51);
-					sendingData.setMessage("회의실을 예약했습니다.");
 				} else {
 					sendingData.setFlags(54);
-					sendingData.setMessage("이미 세개의 회의실을 예약하셨습니다.");
 				}
-			} else if (data.getFlags() == 52) {
-				sendingData.setRoom(data.getRoom());
-				sendingData.setFlags(53);
-				sendingData.setMessage("회의실 예약 기능을 실행합니다.");
 			}
 		} else if (data.getFlags() < 70) {
 			// bookable room list

@@ -6,9 +6,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import normal.NormalDistributer;
-import normal.bookRoom.BookRoomController;
-import normal.bookRoom.BookRoomModel;
-import normal.bookRoom.BookRoomView;
 import client.ChatClient;
 import login.LoginController;
 import login.LoginModel;
@@ -44,8 +41,6 @@ public class ClientMasterController extends JFrame {
 		lc = new LoginController(lm, lv);
 		rm.addObserver(rv);
 		rc = new RegisterController(rm, rv);
-		brm.addObserver(brv);
-		brc = new BookRoomController(brm,brv);
 	}
 
 	public void initialGUI() {
@@ -59,7 +54,6 @@ public class ClientMasterController extends JFrame {
 		cards.add(rv, "registerPanel");
 		cards.add(ed, "EPUser");
 		cards.add(nd, "NMUser");
-		cards.add(brv, "BookRoom");
 		c = (CardLayout) cards.getLayout();
 		c.show(cards, "loginPanel");
 		this.add(cards);
@@ -73,9 +67,6 @@ public class ClientMasterController extends JFrame {
 	private RegisterView rv = new RegisterView();
 	private RegisterController rc;
 	private LoginController lc;
-	private BookRoomModel brm = new BookRoomModel();
-	private BookRoomView brv = new BookRoomView();
-	private BookRoomController brc;
 
 	public void perform(TransmissionData data) {
 
@@ -105,9 +96,7 @@ public class ClientMasterController extends JFrame {
 
 		} else if (data.getFlags() < 60) {
 			// book room
-			if(data.getFlags() == 53)
-				c.show(cards, "BookRoom");
-			brc.controlModel(data);
+			nd.distribute(data);
 		} else if (data.getFlags() < 70) {
 			// bookable room list
 			nd.distribute(data);
