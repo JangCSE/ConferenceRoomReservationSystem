@@ -22,6 +22,15 @@ public class TransmissionData implements Serializable {
 	private NMuser nmuser;
 	private RoomList roomlist;
 	private Date date;
+	private int key;
+	
+	public int getKey() {
+		return key;
+	}
+
+	public void setKey(int key) {
+		this.key = key;
+	}
 
 	public Date getDate() {
 		return date;

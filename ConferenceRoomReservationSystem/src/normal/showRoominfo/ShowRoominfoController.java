@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import normal.listBookableRoom.ListBookableRoomModel;
 import normal.listBookableRoom.ListBookableRoomView;
 import master.ClientMasterController;
@@ -66,7 +68,12 @@ public class ShowRoominfoController implements ActionListener {
 			data = new TransmissionData();
 			data.setFlags(70);
 			int select = lbrv.getTable().getSelectedRow();
-			data.setRoom(lbrm.getMyList().getList().get(select));
+			try {
+				data.setRoom(lbrm.getMyList().getList().get(select));
+			} catch (ArrayIndexOutOfBoundsException e) {
+				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
+				return;
+			}
 
 			try {
 				ClientMasterController.getClient().sendToServer(data);

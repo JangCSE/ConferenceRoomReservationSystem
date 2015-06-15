@@ -124,16 +124,20 @@ public class ServerMasterController {
 			// book room
 			if (data.getFlags() == 50) {
 				if(NMM.getNMuserByKey(loginedNMuser.getKey()).getBookedRoomKeyList().size() < 3) {
-					bufrd = new reservedDate();
-					bufrd.setDate(data.getDate());
-					bufrd.setUserKey(loginedNMuser.getKey());
-					RM.getRoom(data.getRoom().getKey())
-							.addbookingUserKeyList(bufrd);
-					NMM.getNMuserByKey(loginedNMuser.getKey())
-							.addBookedRoomKeyList(data.getRoom().getKey());
-					sendingData.setFlags(51);
+					if(RM.getRoom(data.getKey()).isReservedDate(data.getDate())) {
+						sendingData.setFlags(53);
+					} else {
+						bufrd = new reservedDate();
+						bufrd.setDate(data.getDate());
+						bufrd.setUserKey(loginedNMuser.getKey());
+						RM.getRoom(data.getKey())
+								.addbookingUserKeyList(bufrd);
+						NMM.getNMuserByKey(loginedNMuser.getKey())
+								.addBookedRoomKeyList(data.getKey());
+						sendingData.setFlags(51);
+					}
 				} else {
-					sendingData.setFlags(54);
+					sendingData.setFlags(52);
 				}
 			}
 		} else if (data.getFlags() < 70) {

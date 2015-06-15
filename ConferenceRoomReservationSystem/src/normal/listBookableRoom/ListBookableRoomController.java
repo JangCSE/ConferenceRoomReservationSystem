@@ -37,8 +37,10 @@ public class ListBookableRoomController implements ActionListener {
 			lbrm.setMyList(data.getRoomList());
 		} else if (data.getFlags() == 51)
 			JOptionPane.showMessageDialog(null, ("회의실이 성공적으로 예약되었습니다."));
-		else if (data.getFlags() == 51)
+		else if (data.getFlags() == 52)
 			JOptionPane.showMessageDialog(null, ("최대 3개의 회의실을 예약할 수 있습니다."));
+		else if (data.getFlags() == 53)
+			JOptionPane.showMessageDialog(null, ("이미 예약된 날짜 입니다."));
 	}
 
 	@Override
@@ -60,31 +62,32 @@ public class ListBookableRoomController implements ActionListener {
 		JOptionPane.showMessageDialog(null, panel, "정보입력",
 				JOptionPane.QUESTION_MESSAGE);
 
-		int select = lbrv.getTable().getSelectedRow();
+			int select = lbrv.getTable().getSelectedRow();
 		// book this room
-		data.setRoom(lbrm.getMyList().getList().get(select));
+		try{
+			data.setRoom(lbrm.getMyList().getList().get(select));
+		} catch(ArrayIndexOutOfBoundsException e) {
+			JOptionPane.showMessageDialog(null, ("예약할 회의실을 선택하여 주십시오."));
+			return;
+		}
 
 		// System.out.println(date.getText());
 
 		if (stringToDate(date.getText()) == null)
 			return;
 
-		if (isRepeated(lbrm.getMyList().getList().get(select),
-				stringToDate(date.getText()))) {
-			return;
-		} else {
-			data = new TransmissionData();
-			data.setFlags(50);
-			data.setDate(stringToDate(date.getText()));
-			data.setRoom(lbrm.getMyList().getList().get(select));
+		data = new TransmissionData();
+		data.setFlags(50);
+		data.setDate(stringToDate(date.getText()));
+		data.setKey(lbrm.getMyList().getList().get(select).getKey());
 
-			try {
-				ClientMasterController.getClient().sendToServer(data);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		try {
+			ClientMasterController.getClient().sendToServer(data);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
 	}
 
 	private Date stringToDate(String strDate) {
@@ -97,16 +100,6 @@ public class ListBookableRoomController implements ActionListener {
 			JOptionPane.showMessageDialog(null, ("날짜 입력 양식은 YYYY-MM-DD 입니다."));
 		}
 		return to;
-	}
-
-	private boolean isRepeated(Room room, Date date) {
-		int end = room.getBookingUserKeyList().size();
-
-		for (int i = 0; i < end; i++) {
-			if (room.getBookingUserKeyList().get(i).getDate().equals(date))
-				return true;
-		}
-		return false;
 	}
 
 	private void search() {

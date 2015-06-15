@@ -1,6 +1,7 @@
 package server.room;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.ArrayList;
 
 @SuppressWarnings("serial")
@@ -120,6 +121,17 @@ public class Room implements Serializable {
 				break;
 			}
 		}
+	}
+	
+	public boolean isReservedDate(Date date) {
+		int end = getBookingUserKeyList().size();
+		
+		for(int i=0;i<end;i++) {
+			if(getBookingUserKeyList().get(i).getDate().equals(date))
+				return true;
+		}
+		
+		return false;
 	}
 
 }
