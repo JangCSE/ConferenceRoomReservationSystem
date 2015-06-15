@@ -4,7 +4,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -15,7 +15,6 @@ import javax.swing.JTextField;
 
 import master.ClientMasterController;
 import server.room.Room;
-import server.room.reservedDate;
 import transmission.TransmissionData;
 
 public class ListBookableRoomController implements ActionListener {
@@ -64,8 +63,8 @@ public class ListBookableRoomController implements ActionListener {
 		int select = lbrv.getTable().getSelectedRow();
 		// book this room
 		data.setRoom(lbrm.getMyList().getList().get(select));
-		
-		//System.out.println(date.getText());
+
+		// System.out.println(date.getText());
 
 		if (stringToDate(date.getText()) == null)
 			return;
@@ -94,6 +93,7 @@ public class ListBookableRoomController implements ActionListener {
 		try {
 			to = (Date) transFormat.parse(strDate);
 		} catch (Exception e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, ("날짜 입력 양식은 YYYY-MM-DD 입니다."));
 		}
 		return to;
