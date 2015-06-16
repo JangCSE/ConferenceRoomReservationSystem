@@ -66,10 +66,17 @@ public class ShowRoominfoController implements ActionListener {
 
 			data = new TransmissionData();
 			data.setFlags(70);
-			int select = lbrv.getTable().getSelectedRow();
+			
+			
+			int	select = lbrv.getTable().getSelectedRow();
+			
+			
 			try {
 				data.setKey(lbrm.getMyList().getList().get(select).getKey());
 			} catch (ArrayIndexOutOfBoundsException e) {
+				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
+				return;
+			} catch (NullPointerException e) {
 				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
 				return;
 			}

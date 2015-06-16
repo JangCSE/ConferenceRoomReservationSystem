@@ -61,18 +61,27 @@ public class ListBookableRoomController implements ActionListener {
 
 		JOptionPane.showMessageDialog(null, panel, "정보입력",
 				JOptionPane.QUESTION_MESSAGE);
-
-			int select = lbrv.getTable().getSelectedRow();
+		
+		int select = lbrv.getTable().getSelectedRow();
+		
 		// book this room
 		try{
 			data.setRoom(lbrm.getMyList().getList().get(select));
 		} catch(ArrayIndexOutOfBoundsException e) {
 			JOptionPane.showMessageDialog(null, ("예약할 회의실을 선택하여 주십시오."));
 			return;
+		} catch(NullPointerException e) {
+			JOptionPane.showMessageDialog(null, ("예약할 회의실을 선택하여 주십시오."));
+			return;
 		}
 
 		// System.out.println(date.getText());
-
+		
+		if(date.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, ("날짜를 입력해 주십시오."));
+			return;
+		}
+		
 		if (stringToDate(date.getText()) == null)
 			return;
 
