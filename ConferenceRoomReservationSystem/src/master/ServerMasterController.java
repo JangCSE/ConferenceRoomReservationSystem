@@ -169,8 +169,6 @@ public class ServerMasterController {
 
 				sendingData.setRoom(rm);
 
-				System.out.println(RM.getRoom(data.getKey())
-						.getBookingUserKeyList().size());
 			}
 		} else if (data.getFlags() < 90) {
 			// booked room list

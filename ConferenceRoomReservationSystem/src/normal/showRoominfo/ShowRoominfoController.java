@@ -34,7 +34,6 @@ public class ShowRoominfoController implements ActionListener {
 
 	public void controlModel(TransmissionData data) {
 		if (data.getFlags() == 71) {
-			System.out.println(data.getRoom().getBookingUserKeyList().size() + data.getKey());
 			shm.setSelectedRoom(data.getRoom());
 		}
 	}
