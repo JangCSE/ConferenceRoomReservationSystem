@@ -1,9 +1,17 @@
 package master;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
 import server.ConnectionToClient;
+import server.list.EnterpriseUserList;
+import server.list.NormalUserList;
 import server.list.RoomList;
 import server.management.EPuserManagement;
 import server.management.NMuserManagement;
@@ -23,6 +31,16 @@ public class ServerMasterController {
 	private EPuser loginedEPuser;
 	private NMuser loginedNMuser;
 	private reservedDate bufrd;
+
+	private OutputStream out = null;
+	private ObjectOutputStream oos = null;
+
+	private InputStream in = null;
+	private ObjectInputStream ois = null;
+
+	public ServerMasterController() {
+		loadFromFile();
+	}
 
 	public void perform(TransmissionData data, ConnectionToClient client) {
 		sendingData = new TransmissionData();
@@ -239,14 +257,50 @@ public class ServerMasterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		saveToFile();
 	}
 
 	public void saveToFile() {
-
+		try {
+			out = new FileOutputStream("database.ser"); // 출력할 장소
+			oos = new ObjectOutputStream(out); // 출력할 오브젝트
+			oos.writeObject(EPM.getEnterpriseUserList()); // DRL을 저장
+			oos.writeObject(NMM.getNormalUserList());
+			oos.writeObject(RM.getRoomList());
+			oos.close();// 종료
+			out.close();// 종료
+		} catch (IOException e) {
+			System.err.println("IOError");
+		}
 	}
 
 	public void loadFromFile() {
+		try {
+			in = new FileInputStream("database.ser"); // 입력파일을 받음
+			ois = new ObjectInputStream(in); // 입력파일에 있는 오브젝트를 받음
 
+			try {
+				EPM.setEnterpriseUserList((EnterpriseUserList) ois.readObject());
+				NMM.setNormalUserList((NormalUserList) ois.readObject());
+				RM.setRoomList((RoomList) ois.readObject());
+
+				in.close();
+				ois.close();
+			} catch (ClassNotFoundException e) { // 오브젝트가 없을때 핸들링
+				e.printStackTrace();
+			}
+
+		} catch (IOException e) { // 입력파일이 없을때
+			try {
+				out = new FileOutputStream("database.ser");
+				oos = new ObjectOutputStream(out);
+
+				oos.close();// 종료
+				out.close();// 종료
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }

@@ -9,10 +9,6 @@ public class EPuserManagement {
 	private EnterpriseUserList EUL = new EnterpriseUserList();
 
 	public EPuserManagement() {
-		// temporary master account
-		EPuser temp = new EPuser("master", "master", "master", "master",
-				"master");
-		addEPuser(temp);
 	}
 
 	public boolean login(LoginData loginData) {
@@ -54,5 +50,13 @@ public class EPuserManagement {
 
 	public void deleteEPuser() {
 
+	}
+	
+	public void setEnterpriseUserList(EnterpriseUserList EUL) {
+		this.EUL = EUL;
+	}
+	
+	public EnterpriseUserList getEnterpriseUserList() {
+		return this.EUL;
 	}
 }
