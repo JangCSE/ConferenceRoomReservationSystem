@@ -1,11 +1,13 @@
 package master;
 
 import java.io.IOException;
+import java.util.Date;
 
 import server.ConnectionToClient;
 import server.management.EPuserManagement;
 import server.management.NMuserManagement;
 import server.management.RoomManagement;
+import server.room.Room;
 import server.room.reservedDate;
 import server.user.EPuser;
 import server.user.NMuser;
@@ -152,8 +154,23 @@ public class ServerMasterController {
 			// room info
 			if (data.getFlags() == 70) {
 				sendingData.setFlags(71);
-				sendingData.setRoom(RM.getRoomList().findByKey(data.getKey()));
-				sendingData.setMessage("회의실 정보입니다.");
+				Room temp = RM.getRoom(data.getKey());
+				Room rm = new Room(temp.getName(), temp.getCity(),
+						temp.getDetailLocation(), temp.getMaxNumber(),
+						temp.getCost(), temp.getDetail());
+
+				for (int i = 0; i < temp.getBookingUserKeyList().size(); i++) {
+					reservedDate temp2 = new reservedDate();
+					temp2.setDate(temp.getBookingUserKeyList().get(i).getDate());
+					temp2.setUserKey(temp.getBookingUserKeyList().get(i)
+							.getUserKey());
+					rm.addbookingUserKeyList(temp2);
+				}
+
+				sendingData.setRoom(rm);
+
+				System.out.println(RM.getRoom(data.getKey())
+						.getBookingUserKeyList().size());
 			}
 		} else if (data.getFlags() < 90) {
 			// booked room list

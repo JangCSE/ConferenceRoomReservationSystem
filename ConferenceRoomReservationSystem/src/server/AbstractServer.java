@@ -298,6 +298,7 @@ public abstract class AbstractServer implements Runnable {
 			// call the hook method to notify that the server has stopped
 			serverStopped();
 		} catch (IOException exception) {
+			exception.printStackTrace();
 			if (!readyToStop) {
 				// Closing the socket must have thrown a SocketException
 				listeningException(exception);

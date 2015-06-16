@@ -14,8 +14,6 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import normal.listBookableRoom.ListBookableRoomModel;
-import server.room.Room;
 import server.room.reservedDate;
 
 @SuppressWarnings("serial")
@@ -49,7 +47,7 @@ public class ShowRoominfoView extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		
+
 		for (int i = model.getRowCount() - 1; i > -1; i--) {
 			model.removeRow(i);
 		}

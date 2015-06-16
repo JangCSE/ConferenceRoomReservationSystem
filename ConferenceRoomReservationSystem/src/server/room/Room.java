@@ -16,7 +16,7 @@ public class Room implements Serializable {
 	private String detail;
 	private int enterpriseKey;
 	private int key;
-	private ArrayList<reservedDate> bookingUserKeyList = new ArrayList<reservedDate>();
+	private ArrayList<reservedDate> bookingUserKeyList;
 
 	public int getKey() {
 		return key;
@@ -42,6 +42,7 @@ public class Room implements Serializable {
 		setMaxNumber(maxNumber);
 		setCost(cost);
 		setDetail(detail);
+		bookingUserKeyList = new ArrayList<reservedDate>();
 	}
 
 	public String getMessage() {
@@ -122,15 +123,15 @@ public class Room implements Serializable {
 			}
 		}
 	}
-	
+
 	public boolean isReservedDate(Date date) {
 		int end = getBookingUserKeyList().size();
-		
-		for(int i=0;i<end;i++) {
-			if(getBookingUserKeyList().get(i).getDate().equals(date))
+
+		for (int i = 0; i < end; i++) {
+			if (getBookingUserKeyList().get(i).getDate().equals(date))
 				return true;
 		}
-		
+
 		return false;
 	}
 

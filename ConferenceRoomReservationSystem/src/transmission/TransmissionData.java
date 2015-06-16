@@ -23,7 +23,7 @@ public class TransmissionData implements Serializable {
 	private RoomList roomlist;
 	private Date date;
 	private int key;
-	
+
 	public int getKey() {
 		return key;
 	}

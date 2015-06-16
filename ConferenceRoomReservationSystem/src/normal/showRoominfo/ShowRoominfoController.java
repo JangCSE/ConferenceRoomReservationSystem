@@ -23,7 +23,8 @@ public class ShowRoominfoController implements ActionListener {
 	private File dir;
 	private TransmissionData data;
 
-	public ShowRoominfoController(ShowRoominfoModel sm, ShowRoominfoView sv,  ListBookableRoomModel lbrm, ListBookableRoomView lbrv) {
+	public ShowRoominfoController(ShowRoominfoModel sm, ShowRoominfoView sv,
+			ListBookableRoomModel lbrm, ListBookableRoomView lbrv) {
 		this.shm = sm;
 		this.shv = sv;
 		this.lbrv = lbrv;
@@ -33,6 +34,7 @@ public class ShowRoominfoController implements ActionListener {
 
 	public void controlModel(TransmissionData data) {
 		if (data.getFlags() == 71) {
+			System.out.println(data.getRoom().getBookingUserKeyList().size() + data.getKey());
 			shm.setSelectedRoom(data.getRoom());
 		}
 	}
@@ -66,11 +68,9 @@ public class ShowRoominfoController implements ActionListener {
 
 			data = new TransmissionData();
 			data.setFlags(70);
-			
-			
-			int	select = lbrv.getTable().getSelectedRow();
-			
-			
+
+			int select = lbrv.getTable().getSelectedRow();
+
 			try {
 				data.setKey(lbrm.getMyList().getList().get(select).getKey());
 			} catch (ArrayIndexOutOfBoundsException e) {

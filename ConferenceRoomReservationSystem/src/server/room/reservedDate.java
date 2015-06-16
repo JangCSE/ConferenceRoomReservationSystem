@@ -3,6 +3,7 @@ package server.room;
 import java.io.Serializable;
 import java.util.Date;
 
+@SuppressWarnings("serial")
 public class reservedDate implements Serializable {
 	private int userKey;
 	private Date date;
