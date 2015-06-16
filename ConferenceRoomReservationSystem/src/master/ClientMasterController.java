@@ -104,10 +104,10 @@ public class ClientMasterController extends JFrame {
 			nd.distribute(data);
 		} else if (data.getFlags() < 90) {
 			// booked room list
-
+			nd.distribute(data);
 		} else if (data.getFlags() < 100) {
 			// cancel booking
-
+			nd.distribute(data);
 		} else if (data.getFlags() < 110) {
 			// log out
 			c.show(cards, "loginPanel");

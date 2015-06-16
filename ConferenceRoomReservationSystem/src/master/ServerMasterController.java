@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Date;
 
 import server.ConnectionToClient;
+import server.list.RoomList;
 import server.management.EPuserManagement;
 import server.management.NMuserManagement;
 import server.management.RoomManagement;
@@ -174,12 +175,12 @@ public class ServerMasterController {
 			// booked room list
 			if (data.getFlags() == 80) {
 				int end = loginedNMuser.getBookedRoomKeyList().size();
-
+				RoomList temp = new RoomList();
 				for (int i = 0; i < end; i++) {
-					sendingData.getRoomList().add(
-							RM.getRoom(loginedNMuser.getBookedRoomKeyList()
+					temp.add(RM.getRoom(loginedNMuser.getBookedRoomKeyList()
 									.get(i)));
 				}
+				sendingData.setRoomList(temp);
 				sendingData.setFlags(81);
 				sendingData.setMessage("예약한 회의실 목록입니다.");
 			}
@@ -191,6 +192,13 @@ public class ServerMasterController {
 						loginedNMuser.getKey());
 				NMM.getNMuserByKey(loginedNMuser.getKey())
 						.deleteBookedRoomKeyList(loginedNMuser.getKey());
+				int end = loginedNMuser.getBookedRoomKeyList().size();
+				RoomList temp = new RoomList();
+				for (int i = 0; i < end; i++) {
+					temp.add(RM.getRoom(loginedNMuser.getBookedRoomKeyList()
+									.get(i)));
+				}
+				sendingData.setRoomList(temp);
 				sendingData.setFlags(91);
 				sendingData.setMessage("예약이 취소되었습니다.");
 			}

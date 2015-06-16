@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -61,13 +62,17 @@ public class ListBookedRoomView extends JPanel implements Observer {
 			model.removeRow(i);
 		}
 		
+		try {
 		dataTranslation(((ListBookedRoomModel) arg0).getMyList().getList());
 
 		for (int i = 0; i < ((ListBookedRoomModel) arg0).getMyList().getList().size(); i++) {
 			model.addRow(data[i]);
 		}
 		model.fireTableDataChanged();
-
+		} catch (NullPointerException e) {
+			JOptionPane.showMessageDialog(null, ("예약한 회의실이 없습니다."));
+			return;
+		}
 	}
 
 	public void setListBookedRoomListener(ActionListener listener) {

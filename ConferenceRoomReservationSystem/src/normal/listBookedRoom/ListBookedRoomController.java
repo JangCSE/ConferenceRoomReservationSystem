@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import master.ClientMasterController;
 import transmission.TransmissionData;
 
@@ -27,6 +29,8 @@ public class ListBookedRoomController implements ActionListener {
 
 		if (data.getFlags() == 81) {
 			lbrm.setMyList(data.getRoomList());
+		} else if (data.getFlags() == 91) {
+			lbrm.setMyList(data.getRoomList());
 		}
 	}
 
@@ -46,9 +50,16 @@ public class ListBookedRoomController implements ActionListener {
 			data = new TransmissionData();
 			data.setFlags(90);
 			int select = lbrv.getTable().getSelectedRow();
-			data.setRoom(lbrm.getMyList().getList().get(select));// 이걸로 예약취소
-			// data.setDate();//date 처리
-
+			try {
+				data.setRoom(lbrm.getMyList().getList().get(select));// 이걸로 예약취소
+				// data.setDate();//date 처리
+			} catch (ArrayIndexOutOfBoundsException e) {
+				JOptionPane.showMessageDialog(null, ("취소할 회의실을 선택하여 주십시오."));
+				return;
+			} catch (NullPointerException e) {
+				JOptionPane.showMessageDialog(null, ("취소할 회의실을 선택하여 주십시오."));
+				return;
+			}
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {

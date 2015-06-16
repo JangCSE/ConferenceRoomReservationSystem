@@ -59,6 +59,9 @@ public class NormalDistributer extends JPanel {
 			src.controlModel(data);
 		} else if (data.getFlags() < 90) {
 			// list booked room
+			lbookedrc.controlModel(data);
+		} else if (data.getFlags() < 100) {
+			lbookedrc.controlModel(data);
 		}
 	}
 }
