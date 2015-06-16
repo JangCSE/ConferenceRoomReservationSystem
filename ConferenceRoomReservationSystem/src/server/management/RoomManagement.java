@@ -12,10 +12,6 @@ public class RoomManagement {
 	private RoomList RL = new RoomList();
 
 	public RoomManagement() {
-		// temporary master account
-		Room temp = new Room("master", "master", "master", 10, 10, "master");
-		temp.setEnterpriseKey(0);
-		addRoom(temp);
 	}
 
 	public RoomList getRoomList() {
@@ -49,6 +45,10 @@ public class RoomManagement {
 		room.setKey(RL.getKey());
 		RL.add(room);
 		RL.increaseKey();
+	}
+
+	public void setRoomList(RoomList RL) {
+		this.RL = RL;
 	}
 	
 }

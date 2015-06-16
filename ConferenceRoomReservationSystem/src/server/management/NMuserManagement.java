@@ -9,10 +9,6 @@ public class NMuserManagement {
 	private NormalUserList NUL = new NormalUserList();
 
 	public NMuserManagement() {
-		// temporary master account
-		NMuser temp = new NMuser("master", "master", "master", "master",
-				"master");
-		addNMuser(temp);
 	}
 
 	public boolean login(LoginData loginData) {
@@ -55,4 +51,13 @@ public class NMuserManagement {
 	public void deleteNMuser() {
 
 	}
+
+	public void setNormalUserList(NormalUserList NUL) {
+		this.NUL = NUL;
+	}
+	
+	public NormalUserList getNormalUserList() {
+		return this.NUL;
+	}
+
 }

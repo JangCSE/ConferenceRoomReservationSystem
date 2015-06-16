@@ -1,9 +1,17 @@
 package master;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.util.Date;
 
 import server.ConnectionToClient;
+import server.list.EnterpriseUserList;
+import server.list.NormalUserList;
 import server.list.RoomList;
 import server.management.EPuserManagement;
 import server.management.NMuserManagement;
@@ -23,6 +31,16 @@ public class ServerMasterController {
 	private EPuser loginedEPuser;
 	private NMuser loginedNMuser;
 	private reservedDate bufrd;
+
+	private OutputStream out = null;
+	private ObjectOutputStream oos = null;
+
+	private InputStream in = null;
+	private ObjectInputStream ois = null;
+
+	public ServerMasterController() {
+		loadFromFile();
+	}
 
 	public void perform(TransmissionData data, ConnectionToClient client) {
 		sendingData = new TransmissionData();
@@ -135,9 +153,10 @@ public class ServerMasterController {
 						bufrd = new reservedDate();
 						bufrd.setDate(data.getDate());
 						bufrd.setUserKey(loginedNMuser.getKey());
-						bufrd.setDateKey(NMM.getNMuserByKey(loginedNMuser.getKey()).getDateKey());
+						bufrd.setDateKey(NMM.getNMuserByKey(
+								loginedNMuser.getKey()).getDateKey());
 						NMM.getNMuserByKey(loginedNMuser.getKey())
-						.addBookedRoomKeyList(data.getKey());
+								.addBookedRoomKeyList(data.getKey());
 						RM.getRoom(data.getKey()).addbookingUserKeyList(bufrd);
 						sendingData.setFlags(51);
 					}
@@ -179,19 +198,25 @@ public class ServerMasterController {
 				RoomList temp = new RoomList();
 				for (int i = 0; i < end; i++) {
 					temp.add(RM.getRoom(loginedNMuser.getBookedRoomKeyList()
-									.get(i).getBookedRoomkey()));
-					temp.getTempDateKey().add(loginedNMuser.getBookedRoomKeyList()
-									.get(i).getDateKey());
+							.get(i).getBookedRoomkey()));
+					temp.getTempDateKey().add(
+							loginedNMuser.getBookedRoomKeyList().get(i)
+									.getDateKey());
 				}
 				sendingData.setRoomList(temp);
 				sendingData.setFlags(81);
 				sendingData.setMessage("예약한 회의실 목록입니다.");
-			} else if(data.getFlags() == 82) {
-				int end = RM.getRoom(data.getKey()).getBookingUserKeyList().size();
-				for(int i=0;i<end;i++) {
-					if(RM.getRoom(data.getKey()).getBookingUserKeyList().get(i).getUserKey() == loginedNMuser.getKey()
-							&& RM.getRoom(data.getKey()).getBookingUserKeyList().get(i).getDateKey() == data.getDateKey()) {
-						sendingData.setDate(RM.getRoom(data.getKey()).getBookingUserKeyList().get(i).getDate());
+			} else if (data.getFlags() == 82) {
+				int end = RM.getRoom(data.getKey()).getBookingUserKeyList()
+						.size();
+				for (int i = 0; i < end; i++) {
+					if (RM.getRoom(data.getKey()).getBookingUserKeyList()
+							.get(i).getUserKey() == loginedNMuser.getKey()
+							&& RM.getRoom(data.getKey())
+									.getBookingUserKeyList().get(i)
+									.getDateKey() == data.getDateKey()) {
+						sendingData.setDate(RM.getRoom(data.getKey())
+								.getBookingUserKeyList().get(i).getDate());
 						sendingData.setFlags(83);
 						sendingData.setMessage("예약 날짜 입니다.");
 					}
@@ -202,16 +227,18 @@ public class ServerMasterController {
 
 			if (data.getFlags() == 90) {
 				RM.getRoom(data.getRoom().getKey()).deletebookingUserKeyList(
-						loginedNMuser.getKey(),data.getDateKey());
+						loginedNMuser.getKey(), data.getDateKey());
 				NMM.getNMuserByKey(loginedNMuser.getKey())
-						.deleteBookedRoomKeyList(loginedNMuser.getKey(),data.getDateKey());
+						.deleteBookedRoomKeyList(loginedNMuser.getKey(),
+								data.getDateKey());
 				int end = loginedNMuser.getBookedRoomKeyList().size();
 				RoomList temp = new RoomList();
 				for (int i = 0; i < end; i++) {
 					temp.add(RM.getRoom(loginedNMuser.getBookedRoomKeyList()
-									.get(i).getBookedRoomkey()));
-					temp.getTempDateKey().add(loginedNMuser.getBookedRoomKeyList()
-							.get(i).getDateKey());
+							.get(i).getBookedRoomkey()));
+					temp.getTempDateKey().add(
+							loginedNMuser.getBookedRoomKeyList().get(i)
+									.getDateKey());
 				}
 				sendingData.setRoomList(temp);
 				sendingData.setFlags(91);
@@ -232,14 +259,50 @@ public class ServerMasterController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		saveToFile();
 	}
 
 	public void saveToFile() {
-
+		try {
+			out = new FileOutputStream("database.ser"); // 출력할 장소
+			oos = new ObjectOutputStream(out); // 출력할 오브젝트
+			oos.writeObject(EPM.getEnterpriseUserList()); // DRL을 저장
+			oos.writeObject(NMM.getNormalUserList());
+			oos.writeObject(RM.getRoomList());
+			oos.close();// 종료
+			out.close();// 종료
+		} catch (IOException e) {
+			System.err.println("IOError");
+		}
 	}
 
 	public void loadFromFile() {
+		try {
+			in = new FileInputStream("database.ser"); // 입력파일을 받음
+			ois = new ObjectInputStream(in); // 입력파일에 있는 오브젝트를 받음
 
+			try {
+				EPM.setEnterpriseUserList((EnterpriseUserList) ois.readObject());
+				NMM.setNormalUserList((NormalUserList) ois.readObject());
+				RM.setRoomList((RoomList) ois.readObject());
+
+				in.close();
+				ois.close();
+			} catch (ClassNotFoundException e) { // 오브젝트가 없을때 핸들링
+				e.printStackTrace();
+			}
+
+		} catch (IOException e) { // 입력파일이 없을때
+			try {
+				out = new FileOutputStream("database.ser");
+				oos = new ObjectOutputStream(out);
+
+				oos.close();// 종료
+				out.close();// 종료
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
 	}
 
 }
