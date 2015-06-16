@@ -135,9 +135,10 @@ public class ServerMasterController {
 						bufrd = new reservedDate();
 						bufrd.setDate(data.getDate());
 						bufrd.setUserKey(loginedNMuser.getKey());
-						RM.getRoom(data.getKey()).addbookingUserKeyList(bufrd);
+						bufrd.setDateKey(NMM.getNMuserByKey(loginedNMuser.getKey()).getDateKey());
 						NMM.getNMuserByKey(loginedNMuser.getKey())
-								.addBookedRoomKeyList(data.getKey());
+						.addBookedRoomKeyList(data.getKey());
+						RM.getRoom(data.getKey()).addbookingUserKeyList(bufrd);
 						sendingData.setFlags(51);
 					}
 				} else {
@@ -178,25 +179,39 @@ public class ServerMasterController {
 				RoomList temp = new RoomList();
 				for (int i = 0; i < end; i++) {
 					temp.add(RM.getRoom(loginedNMuser.getBookedRoomKeyList()
-									.get(i)));
+									.get(i).getBookedRoomkey()));
+					temp.getTempDateKey().add(loginedNMuser.getBookedRoomKeyList()
+									.get(i).getDateKey());
 				}
 				sendingData.setRoomList(temp);
 				sendingData.setFlags(81);
 				sendingData.setMessage("예약한 회의실 목록입니다.");
+			} else if(data.getFlags() == 82) {
+				int end = RM.getRoom(data.getKey()).getBookingUserKeyList().size();
+				for(int i=0;i<end;i++) {
+					if(RM.getRoom(data.getKey()).getBookingUserKeyList().get(i).getUserKey() == loginedNMuser.getKey()
+							&& RM.getRoom(data.getKey()).getBookingUserKeyList().get(i).getDateKey() == data.getDateKey()) {
+						sendingData.setDate(RM.getRoom(data.getKey()).getBookingUserKeyList().get(i).getDate());
+						sendingData.setFlags(83);
+						sendingData.setMessage("예약 날짜 입니다.");
+					}
+				}
 			}
 		} else if (data.getFlags() < 100) {
 			// cancel booking
 
 			if (data.getFlags() == 90) {
 				RM.getRoom(data.getRoom().getKey()).deletebookingUserKeyList(
-						loginedNMuser.getKey());
+						loginedNMuser.getKey(),data.getDateKey());
 				NMM.getNMuserByKey(loginedNMuser.getKey())
-						.deleteBookedRoomKeyList(loginedNMuser.getKey());
+						.deleteBookedRoomKeyList(loginedNMuser.getKey(),data.getDateKey());
 				int end = loginedNMuser.getBookedRoomKeyList().size();
 				RoomList temp = new RoomList();
 				for (int i = 0; i < end; i++) {
 					temp.add(RM.getRoom(loginedNMuser.getBookedRoomKeyList()
-									.get(i)));
+									.get(i).getBookedRoomkey()));
+					temp.getTempDateKey().add(loginedNMuser.getBookedRoomKeyList()
+							.get(i).getDateKey());
 				}
 				sendingData.setRoomList(temp);
 				sendingData.setFlags(91);

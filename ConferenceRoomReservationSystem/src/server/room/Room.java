@@ -113,11 +113,12 @@ public class Room implements Serializable {
 		getBookingUserKeyList().add(rd);
 	}
 
-	public void deletebookingUserKeyList(int key) {
+	public void deletebookingUserKeyList(int key,int datekey) {
 		int end = getBookingUserKeyList().size();
 
 		for (int i = 0; i < end; i++) {
-			if (getBookingUserKeyList().get(i).getUserKey() == key) {
+			if (getBookingUserKeyList().get(i).getUserKey() == key
+					&& getBookingUserKeyList().get(i).getDateKey() == datekey) {
 				getBookingUserKeyList().remove(i);
 				break;
 			}

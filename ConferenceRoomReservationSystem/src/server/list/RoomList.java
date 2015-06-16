@@ -1,6 +1,7 @@
 package server.list;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -9,6 +10,15 @@ import server.room.Room;
 @SuppressWarnings("serial")
 public class RoomList extends GenericList<Room> implements Serializable {
 	private RoomList bufRL;
+	private ArrayList<Integer> tempDateKey = new ArrayList<Integer>();
+
+	public ArrayList<Integer> getTempDateKey() {
+		return tempDateKey;
+	}
+
+	public void setTempDateKey(ArrayList<Integer> tempDateKey) {
+		this.tempDateKey = tempDateKey;
+	}
 
 	public RoomList() {
 

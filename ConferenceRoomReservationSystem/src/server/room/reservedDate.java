@@ -7,7 +7,16 @@ import java.util.Date;
 public class reservedDate implements Serializable {
 	private int userKey;
 	private Date date;
+	private int dateKey;
 	
+	public int getDateKey() {
+		return dateKey;
+	}
+
+	public void setDateKey(int dateKey) {
+		this.dateKey = dateKey;
+	}
+
 	public int getUserKey() {
 		return userKey;
 	}
