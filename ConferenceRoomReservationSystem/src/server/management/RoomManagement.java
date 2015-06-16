@@ -37,8 +37,8 @@ public class RoomManagement {
 		return RL.isItDuplicated(room.getName());
 	}
 
-	public void deleteRoom(Room room) {
-		RL.deleteByKey(room.getKey());
+	public void deleteRoom(int key) {
+		RL.deleteByKey(key);
 	}
 
 	public void addRoom(Room room) {

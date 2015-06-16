@@ -28,9 +28,10 @@ public class listRoomController implements ActionListener {
 
 	public void controlModel(TransmissionData data) {
 
-		if (data.getFlags() == 31) {
+		if (data.getFlags() == 31)
 			lrm.setRL(data.getRoomList());
-		}
+		else if (data.getFlags() == 41)
+			JOptionPane.showMessageDialog(null, ("회의실이 삭제되었습니다."));
 	}
 
 	@Override
@@ -44,11 +45,10 @@ public class listRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
 		} else if (arg0.getActionCommand().equals("텍스트 파일로 저장")) {
 			fw = null;
 			select = lrv.getTable().getSelectedRow();
-			
+
 			try {
 				data.setRoom(lrm.getRL().getList().get(select));
 			} catch (ArrayIndexOutOfBoundsException e) {
@@ -58,7 +58,7 @@ public class listRoomController implements ActionListener {
 				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
 				return;
 			}
-			
+
 			dir = new File("C:\\ConferenceRoomReservationSystem");
 			if (!dir.exists()) {
 				dir.mkdir();
@@ -90,10 +90,23 @@ public class listRoomController implements ActionListener {
 				System.out.println("error : " + e);
 			}
 			JOptionPane.showMessageDialog(null, ("텍스트 파일이 저장되었습니다."));
-			return;
 		} else if (arg0.getActionCommand().equals("로그아웃")) {
 			data = new TransmissionData();
 			data.setFlags(100);
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else if (arg0.getActionCommand().equals("삭제하기")) {
+			data = new TransmissionData();
+			data.setFlags(40);
+
+			int row = lrv.getTable().getSelectedRow();
+
+			data.setKey(lrm.getRL().getList().get(row).getKey());
+
 			try {
 				ClientMasterController.getClient().sendToServer(data);
 			} catch (IOException e) {

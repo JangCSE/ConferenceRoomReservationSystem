@@ -137,9 +137,8 @@ public class ServerMasterController {
 		} else if (data.getFlags() < 50) {
 			// delete room
 			if (data.getFlags() == 40) {
-				RM.deleteRoom(data.getRoom());
+				RM.deleteRoom(data.getKey());
 				sendingData.setFlags(41);
-				sendingData.setMessage("회의실을 삭제했습니다.");
 			}
 		} else if (data.getFlags() < 60) {
 			// book room

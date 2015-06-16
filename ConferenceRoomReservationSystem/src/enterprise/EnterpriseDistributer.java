@@ -37,6 +37,9 @@ public class EnterpriseDistributer extends JPanel {
 		this.add(EPUserTab, BorderLayout.CENTER);
 	}
 
+	/*
+	 * 서버로부터 받은 데이터를 각 기능에 적절하게 할당하는 부분
+	 */
 	public void distribute(TransmissionData data) {
 
 		if (data.getFlags() < 30) {
@@ -46,7 +49,7 @@ public class EnterpriseDistributer extends JPanel {
 			lrc.controlModel(data);
 		} else if (data.getFlags() < 50) {
 			// delete room
-
+			lrc.controlModel(data);
 		}
 	}
 

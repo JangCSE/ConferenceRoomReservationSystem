@@ -28,6 +28,7 @@ public class listRoomView extends JPanel implements Observer {
 	private JPanel buttonPanel = new JPanel();
 	private JButton askButton = new JButton("조회하기");
 	private JButton logoutButton = new JButton("로그아웃");
+	private JButton deleteRoom = new JButton("삭제하기");
 	private JButton fileButton = new JButton("텍스트 파일로 저장");
 
 	public listRoomView() {
@@ -44,6 +45,7 @@ public class listRoomView extends JPanel implements Observer {
 		buttonPanel.setLayout(new GridBagLayout());
 		buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.add(askButton);
+		buttonPanel.add(deleteRoom);
 		buttonPanel.add(logoutButton);
 		buttonPanel.add(fileButton);
 		add(buttonPanel, BorderLayout.SOUTH);
@@ -68,6 +70,7 @@ public class listRoomView extends JPanel implements Observer {
 		askButton.addActionListener(listener);
 		logoutButton.addActionListener(listener);
 		fileButton.addActionListener(listener);
+		deleteRoom.addActionListener(listener);
 	}
 
 	void dataTranslation(ArrayList<Room> rl) { // data에 변환해서 넣음
