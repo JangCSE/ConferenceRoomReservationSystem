@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import normal.listBookableRoom.ListBookableRoomModel;
 import normal.listBookableRoom.ListBookableRoomView;
 import master.ClientMasterController;
+import server.room.Room;
 import transmission.TransmissionData;
 
 public class ShowRoominfoController implements ActionListener {
@@ -44,9 +45,9 @@ public class ShowRoominfoController implements ActionListener {
 
 		if (arg0.getActionCommand().equals("텍스트파일로 저장")) {
 			int select = lbrv.getTable().getSelectedRow();
-			
+			Room temp;
 			try {
-				shm.setSelectedRoom(lbrm.getMyList().getList().get(select));
+				temp = lbrm.getMyList().getList().get(select);
 			} catch (ArrayIndexOutOfBoundsException e) {
 				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
 				return;
@@ -62,24 +63,24 @@ public class ShowRoominfoController implements ActionListener {
 			}
 			try {
 				fw = new FileWriter("C:\\ConferenceRoomReservationSystem\\"
-						+ shm.getSelectedRoom().getName() + ".txt");
+						+ temp.getName() + ".txt");
 				fw.write("Name : ");
-				fw.write(shm.getSelectedRoom().getName());
+				fw.write(temp.getName());
 				fw.write("\r\n");
 				fw.write("City : ");
-				fw.write(shm.getSelectedRoom().getCity());
+				fw.write(temp.getCity());
 				fw.write("\r\n");
 				fw.write("Detail Location : ");
-				fw.write(shm.getSelectedRoom().getDetailLocation());
+				fw.write(temp.getDetailLocation());
 				fw.write("\r\n");
 				fw.write("Max Number : ");
-				fw.write(Integer.toString(shm.getSelectedRoom().getMaxNumber()));
+				fw.write(Integer.toString(temp.getMaxNumber()));
 				fw.write("\r\n");
 				fw.write("Cost : ");
-				fw.write(Integer.toString(shm.getSelectedRoom().getCost()));
+				fw.write(Integer.toString(temp.getCost()));
 				fw.write("\r\n");
 				fw.write("Detail : ");
-				fw.write(shm.getSelectedRoom().getDetail());
+				fw.write(temp.getDetail());
 				fw.write("\r\n");
 				fw.close();
 			} catch (Exception e) {
@@ -89,7 +90,6 @@ public class ShowRoominfoController implements ActionListener {
 			JOptionPane.showMessageDialog(null, ("텍스트 파일이 저장되었습니다."));
 			return;
 		} else if (arg0.getActionCommand().equals("예약정보보기")) {
-
 			data = new TransmissionData();
 			data.setFlags(70);
 
