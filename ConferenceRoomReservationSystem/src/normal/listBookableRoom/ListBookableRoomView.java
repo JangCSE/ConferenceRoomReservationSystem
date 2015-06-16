@@ -31,6 +31,7 @@ public class ListBookableRoomView extends JPanel implements Observer {
 	private JButton askButton = new JButton("조회하기");
 	private JButton bookButton = new JButton("예약하기");
 	private JButton infoButton = new JButton("예약정보보기");
+	private JButton downButton = new JButton("텍스트파일로 저장");
 
 	public ListBookableRoomView() {
 		this.setLayout(new BorderLayout());
@@ -51,6 +52,7 @@ public class ListBookableRoomView extends JPanel implements Observer {
 		buttonPanel.add(askButton);
 		buttonPanel.add(bookButton);
 		buttonPanel.add(infoButton);
+		buttonPanel.add(downButton);
 
 		listBookableRoomPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -78,6 +80,7 @@ public class ListBookableRoomView extends JPanel implements Observer {
 	}
 	public void setShowRoominfoListener(ActionListener listener) {
 		infoButton.addActionListener(listener);
+		downButton.addActionListener(listener);
 	}
 
 	void dataTranslation(ArrayList<Room> rl) { // data에 변환해서 넣음

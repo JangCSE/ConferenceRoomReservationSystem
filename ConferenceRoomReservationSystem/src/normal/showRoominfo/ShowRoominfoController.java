@@ -42,7 +42,7 @@ public class ShowRoominfoController implements ActionListener {
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 
-		if (arg0.getActionCommand().equals("파일에 저장")) {
+		if (arg0.getActionCommand().equals("텍스트파일로 저장")) {
 			fw = null;
 			dir = new File("C:\\ConferenceRoomReservationSystem");
 			if (!dir.exists()) {
@@ -59,10 +59,9 @@ public class ShowRoominfoController implements ActionListener {
 				fw.write(shm.getSelectedRoom().getDetail());
 				fw.close();
 			} catch (Exception e) {
-				System.out.println("error : " + e);
+				e.printStackTrace();
+				JOptionPane.showMessageDialog(null, ("알수없는 오류가 발생했습니다."));
 			}
-
-			return;
 		} else if (arg0.getActionCommand().equals("예약정보보기")) {
 
 			data = new TransmissionData();

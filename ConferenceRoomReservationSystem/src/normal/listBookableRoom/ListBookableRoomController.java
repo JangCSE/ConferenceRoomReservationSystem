@@ -74,8 +74,6 @@ public class ListBookableRoomController implements ActionListener {
 			JOptionPane.showMessageDialog(null, ("예약할 회의실을 선택하여 주십시오."));
 			return;
 		}
-
-		// System.out.println(date.getText());
 		
 		if(date.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, ("날짜를 입력해 주십시오."));
