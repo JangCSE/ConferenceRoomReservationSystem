@@ -8,6 +8,10 @@ import master.ClientMasterController;
 import transmission.LoginData;
 import transmission.TransmissionData;
 
+/*
+ * This class is about to login
+ * MVC controller
+ */
 public class LoginController implements ActionListener {
 
 	private LoginModel lm;
@@ -27,13 +31,16 @@ public class LoginController implements ActionListener {
 			lm.setMessage(data.getMessage());
 			return true;
 		} else if (data.getFlags() == 14) {
-			// login fail
+			// login failed
 			lm.setMessage(data.getMessage());
 		}
 
 		return false;
 	}
 
+	/*
+	 * when logout, reset id field and password field
+	 */
 	public void logout() {
 		lm.setId("아이디");
 		lm.setPw("비밀번호");
@@ -59,6 +66,9 @@ public class LoginController implements ActionListener {
 		lm.setId(lv.getIdStr());
 		lm.setPw(lv.getPwStr());
 
+		/*
+		 * validation and send to server
+		 */
 		if (lv.isEpu() && lv.isNmu()) {
 			lm.setMessage("사용자 하나만을 선택하세요.");
 		} else if (lv.isEpu() == false && lv.isNmu() == false) {

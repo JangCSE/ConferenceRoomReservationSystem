@@ -18,6 +18,10 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
 
+/*
+ * This class is about to login
+ * MVC view
+ */
 @SuppressWarnings("serial")
 public class LoginView extends JPanel implements Observer {
 
@@ -63,6 +67,9 @@ public class LoginView extends JPanel implements Observer {
 		makeFocusAll();
 	}
 
+	/*
+	 * focusing method
+	 */
 	public void makeFocusAll() {
 		idField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
@@ -86,7 +93,7 @@ public class LoginView extends JPanel implements Observer {
 			}
 		});
 	}
-	
+
 	public void logout() {
 		idField.setText("아이디");
 		pwField.setText("비밀번호");

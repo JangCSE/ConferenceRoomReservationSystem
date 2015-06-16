@@ -8,6 +8,10 @@ import master.ClientMasterController;
 import server.room.Room;
 import transmission.TransmissionData;
 
+/*
+ * This class is about to register room
+ * MVC controller
+ */
 public class RegisterRoomController implements ActionListener {
 
 	private RegisterRoomModel rrm;
@@ -38,6 +42,10 @@ public class RegisterRoomController implements ActionListener {
 		rrm.setMessage(rrv.getMsgStr());
 		rrm.setName(rrv.getNameStr());
 
+		/*
+		 * max number form validation
+		 * return if error
+		 */
 		try {
 			rrm.setMaxNumber(Integer.parseInt(rrv.getMaxNumStr()));
 		} catch (NumberFormatException e) {
@@ -45,6 +53,10 @@ public class RegisterRoomController implements ActionListener {
 			return;
 		}
 
+		/*
+		 * cost form validation
+		 * return if error
+		 */
 		try {
 			rrm.setCost(Integer.parseInt(rrv.getCost()));
 		} catch (NumberFormatException e) {
@@ -56,6 +68,9 @@ public class RegisterRoomController implements ActionListener {
 		rrm.setDetailLocation(rrv.getDetailLoc());
 		rrm.setDetail(rrv.getDetail());
 
+		/*
+		 * validation
+		 */
 		if (rrm.validCheck() == 1) {
 			rrm.setMessage("회의실 위치가 잘못되었습니다.");
 		} else if (rrm.validCheck() == 2) {
@@ -78,8 +93,6 @@ public class RegisterRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
-
 		}
 
 	}

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class NMuser extends GenericUser implements Serializable {
-	
+
 	private int dateKey = 0;
 
 	public NMuser(String id, String pw, String name, String email, String ct) {
@@ -23,7 +23,7 @@ public class NMuser extends GenericUser implements Serializable {
 		setBookedRoomKeyList(nmuser.getBookedRoomKeyList());
 		setDateKey(nmuser.getDateKey());
 		setLogin(true);
-		
+
 	}
 
 	private ArrayList<BookedRoomKey> bookedRoomkeyList = new ArrayList<BookedRoomKey>();
@@ -41,16 +41,16 @@ public class NMuser extends GenericUser implements Serializable {
 		brk.setBookedRoomkey(key);
 		brk.setDateKey(getDateKey());
 		increasingKey();
-		
+
 		getBookedRoomKeyList().add(brk);
 	}
 
-	public void deleteBookedRoomKeyList(int key,int datekey) {
+	public void deleteBookedRoomKeyList(int key, int datekey) {
 		int end = getBookedRoomKeyList().size();
 
 		for (int i = 0; i < end; i++) {
 			if (getBookedRoomKeyList().get(i).getBookedRoomkey() == key) {
-				if(getBookedRoomKeyList().get(i).getDateKey() == datekey) {
+				if (getBookedRoomKeyList().get(i).getDateKey() == datekey) {
 					getBookedRoomKeyList().remove(i);
 					break;
 				}
@@ -65,7 +65,7 @@ public class NMuser extends GenericUser implements Serializable {
 	public void setDateKey(int dateKey) {
 		this.dateKey = dateKey;
 	}
-	
+
 	public void increasingKey() {
 		dateKey++;
 	}

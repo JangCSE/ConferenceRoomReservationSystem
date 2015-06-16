@@ -24,7 +24,7 @@ public class TransmissionData implements Serializable {
 	private Date date;
 	private int key;
 	private int dateKey;
-	
+
 	public int getDateKey() {
 		return dateKey;
 	}

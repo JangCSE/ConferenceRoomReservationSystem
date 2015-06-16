@@ -7,8 +7,6 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
-import java.util.Date;
-
 import server.ConnectionToClient;
 import server.list.EnterpriseUserList;
 import server.list.NormalUserList;
@@ -22,6 +20,10 @@ import server.user.EPuser;
 import server.user.NMuser;
 import transmission.TransmissionData;
 
+/*
+ * This class is server master controller.
+ * If client send transmission data, this controls methods by data's flag.
+ */
 public class ServerMasterController {
 
 	private EPuserManagement EPM = new EPuserManagement();
@@ -131,7 +133,6 @@ public class ServerMasterController {
 				sendingData.setRoomList(RM.getRegisteredRoomList(loginedEPuser
 						.getKey()));
 				sendingData.setFlags(31);
-				sendingData.setMessage("등록한 회의실 정보입니다.");
 			}
 
 		} else if (data.getFlags() < 50) {
@@ -191,7 +192,7 @@ public class ServerMasterController {
 
 			}
 		} else if (data.getFlags() < 90) {
-			// booked room list
+			// show booked room list
 			if (data.getFlags() == 80) {
 				int end = loginedNMuser.getBookedRoomKeyList().size();
 				RoomList temp = new RoomList();
@@ -204,7 +205,6 @@ public class ServerMasterController {
 				}
 				sendingData.setRoomList(temp);
 				sendingData.setFlags(81);
-				sendingData.setMessage("예약한 회의실 목록입니다.");
 			} else if (data.getFlags() == 82) {
 				int end = RM.getRoom(data.getKey()).getBookingUserKeyList()
 						.size();
@@ -217,7 +217,6 @@ public class ServerMasterController {
 						sendingData.setDate(RM.getRoom(data.getKey())
 								.getBookingUserKeyList().get(i).getDate());
 						sendingData.setFlags(83);
-						sendingData.setMessage("예약 날짜 입니다.");
 					}
 				}
 			}
@@ -240,8 +239,9 @@ public class ServerMasterController {
 									.getDateKey());
 				}
 				sendingData.setRoomList(temp);
+				
+				System.out.println(temp.getList().size());
 				sendingData.setFlags(91);
-				sendingData.setMessage("예약이 취소되었습니다.");
 			}
 		} else if (data.getFlags() < 110) {
 			// log out
@@ -259,6 +259,9 @@ public class ServerMasterController {
 		saveToFile();
 	}
 
+	/*
+	 * save data to file for next use.
+	 */
 	public void saveToFile() {
 		try {
 			out = new FileOutputStream("database.ser"); // 출력할 장소
@@ -273,6 +276,9 @@ public class ServerMasterController {
 		}
 	}
 
+	/*
+	 * when server starts, server loads data file.
+	 */
 	public void loadFromFile() {
 		try {
 			in = new FileInputStream("database.ser"); // 입력파일을 받음

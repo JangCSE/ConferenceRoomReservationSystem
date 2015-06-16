@@ -1,8 +1,6 @@
 package normal;
 
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
-
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
@@ -29,7 +27,7 @@ public class NormalDistributer extends JPanel {
 	private ShowRoominfoModel srm = new ShowRoominfoModel();
 	private ShowRoominfoView srv = new ShowRoominfoView();
 	private ShowRoominfoController src;
-	
+
 	public NormalDistributer() {
 		lbookablerm.addObserver(lbookalberv);
 		lbookalberc = new ListBookableRoomController(lbookablerm, lbookalberv);
@@ -39,7 +37,7 @@ public class NormalDistributer extends JPanel {
 
 		srm.addObserver(srv);
 		src = new ShowRoominfoController(srm, srv, lbookablerm, lbookalberv);
-		
+
 		this.setLayout(new BorderLayout());
 		NMUserTab.add("예약가능한 회의실 조회", lbookalberv);
 		NMUserTab.add("예약한 회의실 조회", lbookedrv);
@@ -48,19 +46,18 @@ public class NormalDistributer extends JPanel {
 	}
 
 	public void distribute(TransmissionData data) {
-		if (data.getFlags() < 60) {
-			// book room
-			lbookalberc.controlModel(data);
-		} else if (data.getFlags() < 70) {
-			// list bookalbeRoom
+		if (data.getFlags() < 70) {
+			/*
+			 * flag 50~59: book room. flag 60~69: list bookable room
+			 */
 			lbookalberc.controlModel(data);
 		} else if (data.getFlags() < 80) {
 			// show Room info
 			src.controlModel(data);
-		} else if (data.getFlags() < 90) {
-			// list booked room
-			lbookedrc.controlModel(data);
 		} else if (data.getFlags() < 100) {
+			/*
+			 * flag 80~89: list booked room. flag 90~91: cancel reservation.
+			 */
 			lbookedrc.controlModel(data);
 		}
 	}

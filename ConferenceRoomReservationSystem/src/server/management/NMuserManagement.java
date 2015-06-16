@@ -55,7 +55,7 @@ public class NMuserManagement {
 	public void setNormalUserList(NormalUserList NUL) {
 		this.NUL = NUL;
 	}
-	
+
 	public NormalUserList getNormalUserList() {
 		return this.NUL;
 	}

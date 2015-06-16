@@ -70,8 +70,7 @@ public class RoomList extends GenericList<Room> implements Serializable {
 					if (date == null) {
 						bufRL.add(temp);
 						continue;
-					}
-					else if (isReservedDate(temp, date))
+					} else if (isReservedDate(temp, date))
 						bufRL.add(temp);
 				}
 			}

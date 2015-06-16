@@ -17,6 +17,9 @@ import javax.swing.table.DefaultTableModel;
 
 import server.room.Room;
 
+/*
+ * This is MVC View
+ */
 @SuppressWarnings("serial")
 public class listRoomView extends JPanel implements Observer {
 
@@ -31,6 +34,9 @@ public class listRoomView extends JPanel implements Observer {
 	private JButton deleteRoom = new JButton("삭제하기");
 	private JButton fileButton = new JButton("텍스트 파일로 저장");
 
+	/*
+	 * Constructor
+	 */
 	public listRoomView() {
 		setLayout(new BorderLayout());
 
@@ -51,6 +57,12 @@ public class listRoomView extends JPanel implements Observer {
 		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 * MVC Observer pattern update
+	 */
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		for (int i = model.getRowCount() - 1; i > -1; i--) {
@@ -59,13 +71,18 @@ public class listRoomView extends JPanel implements Observer {
 
 		dataTranslation(((listRoomModel) arg0).getRL().getList());
 
-		for (int i = 0; i < ((listRoomModel) arg0).getRL().getList().size(); i++) {
+		int size = ((listRoomModel) arg0).getRL().getList().size();
+
+		for (int i = 0; i < size; i++) {
 			model.addRow(data[i]);
 		}
 		model.fireTableDataChanged();
 
 	}
 
+	/*
+	 * Add Listener
+	 */
 	public void setListRoomListener(ActionListener listener) {
 		askButton.addActionListener(listener);
 		logoutButton.addActionListener(listener);
@@ -73,7 +90,10 @@ public class listRoomView extends JPanel implements Observer {
 		deleteRoom.addActionListener(listener);
 	}
 
-	void dataTranslation(ArrayList<Room> rl) { // data에 변환해서 넣음
+	/*
+	 * This function makes ArrayList of room to JTable data
+	 */
+	void dataTranslation(ArrayList<Room> rl) {
 		data = new Object[rl.size()][6];
 		for (int i = 0; i < rl.size(); i++) {
 			data[i][0] = rl.get(i).getName();

@@ -16,6 +16,10 @@ import register.RegisterModel;
 import register.RegisterView;
 import transmission.TransmissionData;
 
+/*
+ * This class is client master controller.
+ * If server send transmission data, this controls methods by data's flag
+ */
 @SuppressWarnings("serial")
 public class ClientMasterController extends JFrame {
 
@@ -70,48 +74,45 @@ public class ClientMasterController extends JFrame {
 
 	public void perform(TransmissionData data) {
 
-		if (data.getFlags() < 10) {
+		int flag = data.getFlags();
+
+		if (flag < 10) {
 			// user register
-			if (data.getFlags() == 1) {
+			if (flag == 1) {
 				// request register
 				c.show(cards, "registerPanel");
-			} else if (data.getFlags() == 3) {
+			} else if (flag == 3) {
 				// cancel register
 				c.show(cards, "loginPanel");
-			} else // user register
+			} else
+				// user register
 				rc.controlModel(data);
-		} else if (data.getFlags() < 20) {
-			if (data.getFlags() == 12)
+		} else if (flag < 20) {
+			/*
+			 * flag 12 is show nm user flag 13 is show ep user
+			 */
+			if (flag == 12)
 				c.show(cards, "NMUser");
-			if (data.getFlags() == 13)
+			if (flag == 13)
 				c.show(cards, "EPUser");
 			lc.controlModel(data);
-		} else if (data.getFlags() < 30) {
-			// room register
-			ed.distribute(data);
-		} else if (data.getFlags() < 40) {
-			// registered room list
-			ed.distribute(data);
-		} else if (data.getFlags() < 50) {
+		} else if (flag < 50) {
+			/*
+			 * if flag is 20~29, register room. else if flag is 30~39, show
+			 * registered room list. else if flag is 40~49, delete room.
+			 */
 			// delete room
 			ed.distribute(data);
-		} else if (data.getFlags() < 60) {
-			// book room
+		} else if (flag < 100) {
+			/*
+			 * if flag is 50~59, book room. else if flag is 60~69 show bookable
+			 * room list. else if flag is 70~79, show room info. else if flag is
+			 * 80~89, show booked room list. else if flag is 90~99, cancel
+			 * booking
+			 */
 			nd.distribute(data);
-		} else if (data.getFlags() < 70) {
-			// bookable room list
-			nd.distribute(data);
-		} else if (data.getFlags() < 80) {
-			// room info
-			nd.distribute(data);
-		} else if (data.getFlags() < 90) {
-			// booked room list
-			nd.distribute(data);
-		} else if (data.getFlags() < 100) {
-			// cancel booking
-			nd.distribute(data);
-		} else if (data.getFlags() < 110) {
-			// log out
+		} else if (flag < 110) {
+			// logout
 			c.show(cards, "loginPanel");
 			lc.logout();
 		}

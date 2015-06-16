@@ -5,8 +5,6 @@ import java.util.Date;
 import server.list.RoomList;
 import server.room.Room;
 
-;
-
 public class RoomManagement {
 
 	private RoomList RL = new RoomList();
@@ -50,5 +48,5 @@ public class RoomManagement {
 	public void setRoomList(RoomList RL) {
 		this.RL = RL;
 	}
-	
+
 }

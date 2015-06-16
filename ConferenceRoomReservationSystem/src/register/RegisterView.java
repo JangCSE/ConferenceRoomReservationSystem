@@ -92,10 +92,13 @@ public class RegisterView extends JPanel implements Observer {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(this, registerPanel, 0, 0, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-		
+
 		makeFocusAll();
 	}
-	
+
+	/*
+	 * focusing method.
+	 */
 	public void makeFocusAll() {
 		idField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
@@ -118,7 +121,7 @@ public class RegisterView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		pwConfirmField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -129,7 +132,7 @@ public class RegisterView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		nameField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -140,7 +143,7 @@ public class RegisterView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		emailField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -151,7 +154,7 @@ public class RegisterView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		contactField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {

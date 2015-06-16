@@ -1,5 +1,8 @@
 package enterprise.listRoom;
 
+/*
+ * this is MVC model
+ */
 import java.util.Observable;
 
 import server.list.RoomList;

@@ -3,12 +3,15 @@ package server.room;
 import java.io.Serializable;
 import java.util.Date;
 
+/*
+ * This class is about booked user data in room
+ */
 @SuppressWarnings("serial")
 public class reservedDate implements Serializable {
 	private int userKey;
 	private Date date;
 	private int dateKey;
-	
+
 	public int getDateKey() {
 		return dateKey;
 	}

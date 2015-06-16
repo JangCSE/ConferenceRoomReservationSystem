@@ -82,10 +82,13 @@ public class RegisterRoomView extends JPanel implements Observer {
 
 		addComponent(this, registerRoomPanel, 0, 0, 1, 1,
 				GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL);
-		
+
 		makeFocusAll();
 	}
-	
+
+	/*
+	 * focus function. if user click text field, focus all automatically
+	 */
 	public void makeFocusAll() {
 		nameField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
@@ -108,7 +111,7 @@ public class RegisterRoomView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		costField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -119,7 +122,7 @@ public class RegisterRoomView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		cityField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -130,7 +133,7 @@ public class RegisterRoomView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		detailLocField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -141,7 +144,7 @@ public class RegisterRoomView extends JPanel implements Observer {
 				});
 			}
 		});
-		
+
 		detailField.addFocusListener(new java.awt.event.FocusAdapter() {
 			public void focusGained(java.awt.event.FocusEvent evt) {
 				SwingUtilities.invokeLater(new Runnable() {
@@ -192,6 +195,9 @@ public class RegisterRoomView extends JPanel implements Observer {
 		registerButton.addActionListener(listener);
 	}
 
+	/*
+	 * GUI method
+	 */
 	private void addComponent(JPanel container, Component component, int gridx,
 			int gridy, int gridwidth, int gridheight, int anchor, int fill) {
 		GridBagConstraints gbc = new GridBagConstraints(gridx, gridy,

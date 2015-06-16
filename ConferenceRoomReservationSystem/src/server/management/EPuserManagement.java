@@ -51,11 +51,11 @@ public class EPuserManagement {
 	public void deleteEPuser() {
 
 	}
-	
+
 	public void setEnterpriseUserList(EnterpriseUserList EUL) {
 		this.EUL = EUL;
 	}
-	
+
 	public EnterpriseUserList getEnterpriseUserList() {
 		return this.EUL;
 	}

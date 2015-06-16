@@ -2,6 +2,10 @@ package login;
 
 import java.util.Observable;
 
+/*
+ * This is class about to login
+ * MVC model
+ */
 public class LoginModel extends Observable {
 
 	private String id;

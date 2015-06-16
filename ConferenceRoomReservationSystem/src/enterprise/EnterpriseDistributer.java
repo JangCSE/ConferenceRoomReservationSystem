@@ -38,17 +38,18 @@ public class EnterpriseDistributer extends JPanel {
 	}
 
 	/*
-	 * 서버로부터 받은 데이터를 각 기능에 적절하게 할당하는 부분
+	 * distribute which is controlled by flag from server
 	 */
 	public void distribute(TransmissionData data) {
 
 		if (data.getFlags() < 30) {
 			// room register
 			rrc.controlModel(data);
-		} else if (data.getFlags() < 40) {
-			lrc.controlModel(data);
 		} else if (data.getFlags() < 50) {
-			// delete room
+			/*
+			 * if flag is 31~40 list registered room else if flag is 41~50
+			 * delete room
+			 */
 			lrc.controlModel(data);
 		}
 	}

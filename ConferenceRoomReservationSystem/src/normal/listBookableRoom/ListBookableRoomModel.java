@@ -4,6 +4,10 @@ import java.util.Observable;
 
 import server.list.RoomList;
 
+/*
+ * This class is about to list bookable room
+ * MVC model
+ */
 public class ListBookableRoomModel extends Observable {
 	private RoomList myList;
 

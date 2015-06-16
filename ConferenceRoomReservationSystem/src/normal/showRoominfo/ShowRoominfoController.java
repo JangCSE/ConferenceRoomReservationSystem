@@ -17,6 +17,7 @@ import transmission.TransmissionData;
 public class ShowRoominfoController implements ActionListener {
 
 	private ShowRoominfoModel shm;
+	@SuppressWarnings("unused")
 	private ShowRoominfoView shv;
 	private ListBookableRoomView lbrv;
 	private ListBookableRoomModel lbrm;
@@ -55,7 +56,7 @@ public class ShowRoominfoController implements ActionListener {
 				JOptionPane.showMessageDialog(null, ("회의실을 선택해주십시오."));
 				return;
 			}
-			
+
 			fw = null;
 			dir = new File("C:\\ConferenceRoomReservationSystem");
 			if (!dir.exists()) {
