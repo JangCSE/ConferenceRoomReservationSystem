@@ -59,7 +59,7 @@ public class LoginView extends JPanel implements Observer {
 				GridBagConstraints.CENTER, GridBagConstraints.BOTH);
 		addComponent(this, loginPanel, 0, 0, 1, 1, GridBagConstraints.CENTER,
 				GridBagConstraints.HORIZONTAL);
-		
+
 		makeFocusAll();
 	}
 
@@ -85,6 +85,11 @@ public class LoginView extends JPanel implements Observer {
 				});
 			}
 		});
+	}
+	
+	public void logout() {
+		idField.setText("아이디");
+		pwField.setText("비밀번호");
 	}
 
 	public String getIdStr() {

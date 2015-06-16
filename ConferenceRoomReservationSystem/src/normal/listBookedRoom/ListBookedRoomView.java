@@ -16,8 +16,6 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
-import normal.listBookableRoom.ListBookableRoomModel;
-import enterprise.listRoom.listRoomModel;
 import server.room.Room;
 
 @SuppressWarnings("serial")
@@ -33,6 +31,7 @@ public class ListBookedRoomView extends JPanel implements Observer {
 	private JButton askButton = new JButton("조회하기");
 	private JButton cancelButton = new JButton("예약취소하기");
 	private JButton dateButton = new JButton("예약 날짜 확인");
+	private JButton logoutButton = new JButton("로그아웃");
 
 	public ListBookedRoomView() {
 		this.setLayout(new BorderLayout());
@@ -49,9 +48,11 @@ public class ListBookedRoomView extends JPanel implements Observer {
 		listBookableRoomPanel.add(jsp, BorderLayout.CENTER);
 
 		buttonPanel.setLayout(new GridBagLayout());
+		buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.add(askButton);
 		buttonPanel.add(cancelButton);
 		buttonPanel.add(dateButton);
+		buttonPanel.add(logoutButton);
 
 		listBookableRoomPanel.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -60,17 +61,17 @@ public class ListBookedRoomView extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		for (int i = model.getRowCount() - 1; i > -1; i--) {
+		for (int i = model.getRowCount() - 1; i > -1; i--)
 			model.removeRow(i);
-		}
-		
-		try {
-		dataTranslation(((ListBookedRoomModel) arg0).getMyList().getList());
 
-		for (int i = 0; i < ((ListBookedRoomModel) arg0).getMyList().getList().size(); i++) {
-			model.addRow(data[i]);
-		}
-		model.fireTableDataChanged();
+		try {
+			dataTranslation(((ListBookedRoomModel) arg0).getMyList().getList());
+
+			for (int i = 0; i < ((ListBookedRoomModel) arg0).getMyList()
+					.getList().size(); i++) {
+				model.addRow(data[i]);
+			}
+			model.fireTableDataChanged();
 		} catch (NullPointerException e) {
 			JOptionPane.showMessageDialog(null, ("예약한 회의실이 없습니다."));
 			return;
@@ -81,9 +82,11 @@ public class ListBookedRoomView extends JPanel implements Observer {
 		askButton.addActionListener(listener);
 		cancelButton.addActionListener(listener);
 		dateButton.addActionListener(listener);
+		logoutButton.addActionListener(listener);
 	}
 
-	void dataTranslation(ArrayList<Room> rl) { // data에 변환해서 넣음
+	void dataTranslation(ArrayList<Room> rl) {
+		// put into data
 		data = new Object[rl.size()][6];
 		for (int i = 0; i < rl.size(); i++) {
 			data[i][0] = rl.get(i).getName();

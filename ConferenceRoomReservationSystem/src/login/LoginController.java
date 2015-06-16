@@ -34,6 +34,13 @@ public class LoginController implements ActionListener {
 		return false;
 	}
 
+	public void logout() {
+		lm.setId("아이디");
+		lm.setPw("비밀번호");
+		lv.logout();
+		lm.setMessage("정상적으로 로그아웃되었습니다.");
+	}
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub

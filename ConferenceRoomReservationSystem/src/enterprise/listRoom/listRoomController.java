@@ -52,7 +52,8 @@ public class listRoomController implements ActionListener {
 			}
 			try {
 				fw = new FileWriter("C:\\ConferenceRoomReservationSystem\\"
-						+ String.valueOf(lrv.getTable().getValueAt(select, 0)) + ".txt");
+						+ String.valueOf(lrv.getTable().getValueAt(select, 0))
+						+ ".txt");
 				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 0)));
 				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 1)));
 				fw.write(String.valueOf(lrv.getTable().getValueAt(select, 2)));
@@ -62,8 +63,17 @@ public class listRoomController implements ActionListener {
 				fw.close();
 			} catch (Exception e) {
 				System.out.println("error : " + e);
-			}		
+			}
 			return;
+		} else if (arg0.getActionCommand().equals("·Î±×¾Æ¿ô")) {
+			data = new TransmissionData();
+			data.setFlags(100);
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

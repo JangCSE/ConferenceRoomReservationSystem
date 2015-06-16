@@ -50,7 +50,6 @@ public class ListBookedRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
 		} else if (arg0.getActionCommand().equals("예약취소하기")) {
 			data = new TransmissionData();
 			data.setFlags(90);
@@ -72,7 +71,6 @@ public class ListBookedRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
 		} else if (arg0.getActionCommand().equals("예약 날짜 확인")) {
 			data = new TransmissionData();
 			data.setFlags(82);
@@ -81,7 +79,8 @@ public class ListBookedRoomController implements ActionListener {
 				data.setKey(lbrm.getMyList().getList().get(select).getKey());
 				data.setDateKey(lbrm.getMyList().getTempDateKey().get(select));
 			} catch (ArrayIndexOutOfBoundsException e) {
-				JOptionPane.showMessageDialog(null, ("예약날짜를 확인할 회의실을 선택해 주십시오."));
+				JOptionPane.showMessageDialog(null,
+						("예약날짜를 확인할 회의실을 선택해 주십시오."));
 				return;
 			} catch (NullPointerException e) {
 				JOptionPane.showMessageDialog(null, ("회의실을 조회해 주십시오."));
@@ -93,7 +92,15 @@ public class ListBookedRoomController implements ActionListener {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			return;
+		} else if (arg0.getActionCommand().equals("로그아웃")) {
+			data = new TransmissionData();
+			data.setFlags(100);
+			try {
+				ClientMasterController.getClient().sendToServer(data);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 	}

@@ -73,10 +73,12 @@ public class ClientMasterController extends JFrame {
 		if (data.getFlags() < 10) {
 			// user register
 			if (data.getFlags() == 1) {
+				// request register
 				c.show(cards, "registerPanel");
 			} else if (data.getFlags() == 3) {
+				// cancel register
 				c.show(cards, "loginPanel");
-			} else
+			} else // user register
 				rc.controlModel(data);
 		} else if (data.getFlags() < 20) {
 			if (data.getFlags() == 12)
@@ -111,6 +113,7 @@ public class ClientMasterController extends JFrame {
 		} else if (data.getFlags() < 110) {
 			// log out
 			c.show(cards, "loginPanel");
+			lc.logout();
 		}
 	}
 

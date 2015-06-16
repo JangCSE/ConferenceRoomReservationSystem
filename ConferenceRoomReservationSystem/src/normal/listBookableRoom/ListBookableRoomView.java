@@ -47,6 +47,7 @@ public class ListBookableRoomView extends JPanel implements Observer {
 		listBookableRoomPanel.add(jsp, BorderLayout.CENTER);
 
 		buttonPanel.setLayout(new GridBagLayout());
+		buttonPanel.setBackground(Color.WHITE);
 		buttonPanel.add(askButton);
 		buttonPanel.add(bookButton);
 		buttonPanel.add(infoButton);

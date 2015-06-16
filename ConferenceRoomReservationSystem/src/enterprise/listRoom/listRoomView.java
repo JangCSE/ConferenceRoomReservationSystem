@@ -1,6 +1,8 @@
 package enterprise.listRoom;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -23,7 +25,9 @@ public class listRoomView extends JPanel implements Observer {
 	private JTable table;
 	private JScrollPane jsp;
 	private DefaultTableModel model;
+	private JPanel buttonPanel = new JPanel();
 	private JButton askButton = new JButton("조회하기");
+	private JButton logoutButton = new JButton("로그아웃");
 
 	public listRoomView() {
 		setLayout(new BorderLayout());
@@ -36,7 +40,11 @@ public class listRoomView extends JPanel implements Observer {
 				ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED,
 				ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		add(jsp, BorderLayout.CENTER);
-		add(askButton, BorderLayout.SOUTH);
+		buttonPanel.setLayout(new GridBagLayout());
+		buttonPanel.setBackground(Color.WHITE);
+		buttonPanel.add(askButton);
+		buttonPanel.add(logoutButton);
+		add(buttonPanel, BorderLayout.SOUTH);
 	}
 
 	@Override
@@ -56,6 +64,7 @@ public class listRoomView extends JPanel implements Observer {
 
 	public void setListRoomListener(ActionListener listener) {
 		askButton.addActionListener(listener);
+		logoutButton.addActionListener(listener);
 	}
 
 	void dataTranslation(ArrayList<Room> rl) { // data에 변환해서 넣음
@@ -78,5 +87,4 @@ public class listRoomView extends JPanel implements Observer {
 		this.table = table;
 	}
 
-	
 }
