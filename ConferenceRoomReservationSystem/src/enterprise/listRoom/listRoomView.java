@@ -9,6 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -69,6 +70,7 @@ public class listRoomView extends JPanel implements Observer {
 			model.removeRow(i);
 		}
 
+		try {
 		dataTranslation(((listRoomModel) arg0).getRL().getList());
 
 		int size = ((listRoomModel) arg0).getRL().getList().size();
@@ -77,7 +79,9 @@ public class listRoomView extends JPanel implements Observer {
 			model.addRow(data[i]);
 		}
 		model.fireTableDataChanged();
-
+		} catch (NullPointerException e) {
+			return;
+		}
 	}
 
 	/*

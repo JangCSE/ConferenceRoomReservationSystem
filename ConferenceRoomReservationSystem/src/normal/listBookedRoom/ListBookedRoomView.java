@@ -73,7 +73,6 @@ public class ListBookedRoomView extends JPanel implements Observer {
 			}
 			model.fireTableDataChanged();
 		} catch (NullPointerException e) {
-			JOptionPane.showMessageDialog(null, ("예약한 회의실이 없습니다."));
 			return;
 		}
 	}

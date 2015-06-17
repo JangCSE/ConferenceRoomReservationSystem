@@ -240,7 +240,6 @@ public class ServerMasterController {
 				}
 				sendingData.setRoomList(temp);
 				
-				System.out.println(temp.getList().size());
 				sendingData.setFlags(91);
 			}
 		} else if (data.getFlags() < 110) {

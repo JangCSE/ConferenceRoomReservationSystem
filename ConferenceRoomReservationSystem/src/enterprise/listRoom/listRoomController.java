@@ -33,11 +33,13 @@ public class listRoomController implements ActionListener {
 			 * listing rooms success flag
 			 */
 			lrm.setRL(data.getRoomList());
-		} else if (data.getFlags() == 41)
+		} else if (data.getFlags() == 41) {
 			/*
 			 * deleting room success flag
 			 */
+			lrm.setRL(data.getRoomList());
 			JOptionPane.showMessageDialog(null, ("회의실이 삭제되었습니다."));
+		}
 	}
 
 	/*
